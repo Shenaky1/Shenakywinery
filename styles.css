@@ -1,0 +1,57 @@
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Georgia,'Times New Roman',serif;background:#f7f0e6;color:#241711;line-height:1.65}
+a{color:inherit}
+.topbar{position:sticky;top:0;z-index:50;background:rgba(35,20,14,.96);color:#fff;padding:12px 6%;display:flex;align-items:center;justify-content:space-between;box-shadow:0 4px 20px rgba(0,0,0,.18)}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand img{width:56px;height:56px;border-radius:50%;background:white;object-fit:contain;padding:3px}
+.brand-title{font-weight:bold;letter-spacing:1.5px}
+.brand-sub{font-size:.82rem;color:#ead6b8}
+.nav{display:flex;gap:16px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.nav a{text-decoration:none;font-size:.95rem;color:#fff}
+.langs a{color:#d9b66f;margin-left:8px;text-decoration:none}
+.hero{min-height:620px;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;padding:90px 20px;background:linear-gradient(rgba(30,18,12,.45),rgba(30,18,12,.66)),linear-gradient(160deg,#b47a3e 0%,#6d4528 34%,#2f4f25 35%,#758a3f 62%,#2a1a12 100%);position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(105deg,rgba(255,255,255,.10) 0 3px,transparent 3px 98px);opacity:.75}
+.hero:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 70% 20%,rgba(255,214,133,.55),transparent 23%)}
+.hero-content{position:relative;z-index:1;max-width:980px}
+.hero-logo{width:135px;height:135px;border-radius:50%;background:rgba(255,255,255,.94);object-fit:contain;padding:8px;box-shadow:0 12px 35px rgba(0,0,0,.35)}
+.eyebrow,.section-label{text-transform:uppercase;letter-spacing:2.4px;color:#9a6b25;font-size:.82rem;font-weight:bold}
+.hero .eyebrow{color:#f0d597;margin:14px 0 4px}
+h1{font-size:clamp(2.7rem,5vw,4.8rem);letter-spacing:3px;margin:.08em 0;text-shadow:0 4px 20px rgba(0,0,0,.42)}
+.tagline{font-size:clamp(1.08rem,2vw,1.55rem);font-style:italic;max-width:900px;margin:12px auto}
+.since{text-transform:uppercase;letter-spacing:3px;color:#f0d597;font-weight:bold;font-size:.94rem;margin:18px 0}
+.hero-actions a{display:inline-block;color:white;text-decoration:none;border:1px solid white;padding:11px 20px;margin:8px;background:rgba(0,0,0,.14)}
+.section{max-width:1120px;margin:auto;padding:64px 24px}
+.intro{text-align:center}
+.large{font-size:1.32rem;max-width:880px;margin:auto;color:#4b3024}
+h2{font-size:clamp(2rem,3vw,2.8rem);line-height:1.18;color:#5b1f17;margin:8px 0 20px}
+.split,.recognition{display:grid;grid-template-columns:1.25fr .75fr;gap:40px;align-items:start}
+.story-card{background:#fffaf3;border-left:5px solid #8c2f24;padding:26px;box-shadow:0 10px 30px rgba(0,0,0,.08)}
+.wines{text-align:center;background:#efe1cc;max-width:none}
+.wines>*{max-width:1120px;margin-left:auto;margin-right:auto}
+.centered{max-width:840px}
+.wine-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:30px;text-align:left}
+.wine-grid article{background:#fffaf3;border:1px solid #dfc89b;padding:22px;min-height:255px}
+.wine-grid h3{color:#5b1f17;margin-top:0}
+.abv{font-weight:bold;color:#8c2f24}
+.status{display:inline-block;margin-top:8px;border:1px solid #8c2f24;color:#8c2f24;padding:5px 10px;font-size:.85rem;text-transform:uppercase;letter-spacing:1px}
+.awards{margin:0;padding:22px 22px 22px 42px;background:#fffaf3;border:1px solid #dfc89b}
+.future-shop{text-align:center;background:#fffaf3;border-top:1px solid #ead8b8;border-bottom:1px solid #ead8b8;max-width:none}
+.future-shop>*{max-width:850px;margin-left:auto;margin-right:auto}
+.contact{text-align:center}
+.contact a{font-weight:bold;color:#7d251d;font-size:1.15rem}
+footer{text-align:center;background:#241511;color:#f4e6ce;padding:36px 20px}
+footer img{width:80px;height:80px;border-radius:50%;background:white;object-fit:contain;padding:4px}
+body.rtl{direction:rtl;text-align:right}
+body.rtl .topbar,body.rtl .split,body.rtl .recognition,body.rtl .wine-grid{direction:rtl}
+body.rtl .story-card{border-left:0;border-right:5px solid #8c2f24}
+body.rtl .wine-grid{text-align:right}
+body.rtl .awards{padding:22px 42px 22px 22px}
+@media(max-width:980px){
+.topbar{display:block;text-align:center}
+.brand{justify-content:center;margin-bottom:10px}
+.nav{justify-content:center}
+.split,.recognition,.wine-grid{grid-template-columns:1fr}
+.hero{min-height:585px;padding:70px 20px}
+}
