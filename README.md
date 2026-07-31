@@ -1,10 +1,8 @@
-# Shenaky Winery — Version 6 Production
+# Shenaky Winery — Compact Production Release
 
-Static multilingual website for Cloudflare deployment.
-
-Languages:
-- English
-- French
-- Persian
-
-Online ordering is intentionally disabled and marked Coming Soon.
+Changes:
+- Reduced overall desktop scale and vertical spacing
+- Shorter hero and page banners
+- Smaller images and typography
+- Language selector uses EN, FR, and فارسی
+- Maintains responsive mobile behavior
