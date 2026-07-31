@@ -286,3 +286,110 @@ body:not(.home-page) .section > .container{
     min-height:auto;
   }
 }
+/* HOME PAGE — balanced layout */
+
+.home-page .hero {
+    min-height: 170px;
+}
+
+.home-page .hero-inner {
+    padding: 20px 0;
+    max-width: 720px;
+}
+
+.home-page .hero h1 {
+    font-size: clamp(28px, 2.6vw, 37px);
+    line-height: 1.06;
+    margin: 6px 0 8px;
+}
+
+.home-page .hero p {
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.home-page .section {
+    padding: 20px 0;
+}
+
+.home-page .split {
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 26px;
+}
+
+.home-page .split h2,
+.home-page .section-title h2,
+.home-page .contact-box h2 {
+    font-size: clamp(23px, 2vw, 29px);
+    line-height: 1.08;
+    margin: 4px 0 7px;
+}
+
+.home-page .split p,
+.home-page .section-title p,
+.home-page .contact-box p {
+    font-size: 12.5px;
+    line-height: 1.45;
+}
+
+.home-page .photo-frame img {
+    height: 240px;
+}
+
+.home-page .quote {
+    font-size: 15px;
+    margin-top: 12px;
+}
+
+.home-page .section-title {
+    margin-bottom: 10px;
+}
+
+.home-page .contact-box {
+    padding: 18px 22px;
+}
+/* AWARDS PAGE — balanced layout */
+
+body:not(.home-page) .awards-grid {
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: 26px;
+    align-items: start;
+}
+
+body:not(.home-page) .award-photo {
+    padding: 6px;
+}
+
+body:not(.home-page) .award-photo img {
+    width: 100%;
+    height: 360px;
+    object-fit: contain;
+}
+
+body:not(.home-page) .award-list {
+    gap: 11px;
+}
+
+body:not(.home-page) .award-item {
+    padding: 14px 16px;
+}
+
+body:not(.home-page) .award-item strong {
+    font-size: 18px;
+    line-height: 1.18;
+    margin-bottom: 4px;
+}
+
+body:not(.home-page) .selected-note {
+    margin-bottom: 12px;
+    font-size: 12.5px;
+}
+
+body:not(.home-page) .gallery {
+    gap: 12px;
+}
+
+body:not(.home-page) .gallery img {
+    height: 220px;
+    object-fit: cover;
+}
