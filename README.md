@@ -1,11 +1,3 @@
-# Shenaky Winery — Version 2
+# Shenaky Winery website
 
-Static multilingual website for Cloudflare Workers/Pages.
-
-Version 2 refinements:
-- Reduced hero and page-title typography
-- Reduced hero height and spacing
-- Smaller logo and navigation text
-- More subtle disabled cart styling
-- Darker hero overlay for readability
-- Correct Persian spelling: شناکی
+Revision 3: reduced typography, shorter page headers, corrected birthplace story, no Alamo reference, current wines placeholder, selected-awards wording, and verified info@shenakywinery.com contact.
