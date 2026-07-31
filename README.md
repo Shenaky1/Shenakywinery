@@ -1,14 +1,10 @@
-# Shenaky Winery — Version 7 Balanced Production
+# Shenaky Winery — Version 7 Consistent
 
-Design objective:
-- Each page should fill roughly 85–95% of a typical desktop browser window.
-- Avoid both oversized sections and large unused white areas.
-- Preserve an elegant boutique-winery look with efficient spacing.
+All pages now use the Contact page as the common scale reference.
 
-Key changes:
-- Medium-height header and hero sections
-- Comfortable typography and spacing
-- Interior pages use flex layout so footer settles naturally near the bottom
-- Story, wines, awards and contact pages scaled independently
-- EN, FR and فارسی language labels
-- Responsive tablet and mobile layouts retained
+Included:
+- Same header, banner, content spacing and footer rhythm across pages
+- Compact footer so copyright remains on screen
+- Balanced page-specific treatment for Story, Wines, Awards and Contact
+- Home page adjusted to the same overall visual scale
+- EN, FR and فارسی language selector
