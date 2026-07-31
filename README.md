@@ -1,9 +1,11 @@
-# Shenaky Winery Website
+# Shenaky Winery — Version 2
 
-Complete static site for Cloudflare Workers/Pages.
+Static multilingual website for Cloudflare Workers/Pages.
 
-## Deployment
-Commit all files to the root of the `Shenakywinery` GitHub repository. Cloudflare will redeploy automatically.
-
-## Languages
-English, French, and Persian/Farsi.
+Version 2 refinements:
+- Reduced hero and page-title typography
+- Reduced hero height and spacing
+- Smaller logo and navigation text
+- More subtle disabled cart styling
+- Darker hero overlay for readability
+- Correct Persian spelling: شناکی
