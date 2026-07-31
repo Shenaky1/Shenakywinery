@@ -1,8 +1,11 @@
-# Shenaky Winery — Compact Production Release
+# Shenaky Winery — Compact V2
 
-Changes:
-- Reduced overall desktop scale and vertical spacing
-- Shorter hero and page banners
-- Smaller images and typography
-- Language selector uses EN, FR, and فارسی
-- Maintains responsive mobile behavior
+This release uses a separate cache-busted compact stylesheet so the change is immediately visible.
+
+Desktop changes:
+- Header reduced to 43px
+- Hero reduced to about 118px
+- Story image reduced to 170px
+- Section padding reduced to 10px
+- Typography, buttons, footer and galleries reduced substantially
+- FA replaced by فارسی
