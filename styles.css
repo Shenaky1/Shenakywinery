@@ -5,3 +5,39 @@
 @media(max-width:600px){.container{width:min(100% - 28px,1160px)}body{font-size:16px}.hero{min-height:440px}.hero h1{font-size:38px}.hero p{font-size:16px}.section{padding:54px 0}.section-title h2,.split h2,.contact-box h2{font-size:35px}.grid-3,.gallery,.contact-details,.footer-grid{grid-template-columns:1fr}.wine-card img,.gallery img{height:390px}.photo-frame img,.photo-frame.vineyard img{height:430px}.contact-box{padding:30px}.brand small{display:none}}
 
 .notice-card{max-width:820px;margin:auto;background:#fff;border:1px solid var(--line);padding:34px;box-shadow:0 8px 25px rgba(23,40,58,.05);text-align:center}.notice-card h2{font-size:clamp(27px,3vw,36px);margin:0 0 12px}.notice-card p{margin:0;color:var(--muted);font-size:16px}.selected-note{margin:0 0 28px;color:var(--muted);font-size:15px}.sample-label{font-size:13px;color:var(--muted);margin-top:12px;text-align:center}
+
+/* Revision 4: compact Arianistan-style scale */
+body{font-size:15px;line-height:1.55}
+.nav{height:70px}.brand-logo{width:36px;height:36px}.brand strong{font-size:18px}.nav-links{font-size:12px;gap:22px}
+.hero{min-height:300px}.hero-inner{padding:34px 0;max-width:680px}.hero h1{font-size:clamp(28px,3.2vw,38px);margin:10px 0 16px;line-height:1.08}.hero p{font-size:15px}.actions{margin-top:20px}
+.page-hero{padding:18px 0 16px}.page-hero h1{font-size:clamp(24px,2.7vw,32px);margin:5px 0 7px}.page-hero p{font-size:14px;line-height:1.45;max-width:800px}
+.section{padding:42px 0}.section-title{margin-bottom:22px}.section-title h2,.split h2,.contact-box h2{font-size:clamp(24px,2.8vw,34px);margin:7px 0 10px}.section-title p,.story-copy p{font-size:15px}.quote{font-size:21px}.photo-frame img,.photo-frame.vineyard img{height:420px}
+.notice-card{padding:26px}.notice-card h2{font-size:clamp(23px,2.5vw,30px)}
+@media(max-width:900px){.hero{min-height:300px}.hero-inner{padding:36px 0}.page-hero{padding:16px 0 14px}}
+@media(max-width:600px){body{font-size:15px}.hero{min-height:270px}.hero h1{font-size:30px}.hero p{font-size:14px}.section{padding:38px 0}.section-title h2,.split h2,.contact-box h2{font-size:28px}.page-hero h1{font-size:27px}.page-hero p{font-size:13px}.photo-frame img,.photo-frame.vineyard img{height:340px}}
+
+
+/* Revision 5 — 72% compact scale, aligned with Arianistan proportions */
+:root{--shadow:0 8px 22px rgba(23,40,58,.08)}
+body{font-size:13.5px;line-height:1.48}
+.container{width:min(1040px,calc(100% - 36px))}
+.nav{height:58px;gap:18px}
+.brand{gap:9px}.brand-logo{width:30px;height:30px}.brand strong{font-size:15px}.brand small{font-size:8.5px;margin-top:2px;letter-spacing:.11em}
+.nav-links{gap:17px;font-size:10.5px}.cart{padding:5px 8px;font-size:9.5px}.lang a{font-size:9.5px;padding:3px 4px}
+.hero{min-height:210px;background:linear-gradient(90deg,rgba(16,28,41,.72),rgba(16,28,41,.34)),url('assets/vineyard-grapes.jpg') center/cover no-repeat}
+.hero-inner{padding:25px 0;max-width:610px}.eyebrow{font-size:9.5px;letter-spacing:.16em}
+.hero h1{font-size:clamp(23px,2.55vw,31px);line-height:1.08;margin:8px 0 11px}.hero p{font-size:13px;max-width:610px;line-height:1.45}
+.actions{margin-top:14px;gap:8px}.btn{padding:9px 14px;font-size:10.5px}
+.page-hero{padding:11px 0 10px}.page-hero h1{font-size:clamp(20px,2.2vw,26px);margin:3px 0 4px}.page-hero p{font-size:12px;line-height:1.4;max-width:720px}
+.section{padding:27px 0}.section-title{margin-bottom:15px;max-width:720px}
+.section-title h2,.split h2,.contact-box h2{font-size:clamp(20px,2.25vw,27px);line-height:1.1;margin:5px 0 7px}
+.section-title p,.story-copy p{font-size:13px}.split{gap:32px}.quote{font-size:17px;padding-left:12px;margin-top:16px}
+.photo-frame{padding:7px}.photo-frame img,.photo-frame.vineyard img{height:300px}
+.grid-3{gap:14px}.wine-card img{height:275px}.wine-card .content{padding:14px}.card h3{font-size:19px;margin:7px 0}
+.awards-grid{gap:28px}.award-photo{padding:7px}.award-list{gap:9px}.award-item{padding:12px 14px}.award-item strong{font-size:16px}
+.gallery{gap:11px}.gallery img{height:280px;padding:5px}
+.contact-box{gap:22px;padding:28px}.contact-box p{font-size:13px}.contact-details{gap:12px;margin-top:18px}.contact-detail{padding:16px}.contact-detail h3{font-size:17px}
+.notice-card{max-width:720px;padding:20px}.notice-card h2{font-size:clamp(20px,2.1vw,25px)}.notice-card p{font-size:13px}.selected-note{font-size:12px;margin-bottom:18px}.sample-label{font-size:11px}
+.site-footer{padding:29px 0 12px}.footer-grid{gap:24px}.site-footer p{font-size:11.5px}.site-footer h4{font-size:13px}.footer-bottom{margin-top:18px;padding-top:11px;font-size:9.5px}
+@media(max-width:900px){.nav{height:58px}.nav-links{top:58px;padding:14px 18px;gap:11px}.hero{min-height:220px}.hero-inner{padding:26px 0}.split,.awards-grid{gap:22px}.photo-frame img,.photo-frame.vineyard img{height:300px}}
+@media(max-width:600px){.container{width:min(100% - 24px,1040px)}body{font-size:13.5px}.hero{min-height:205px}.hero h1{font-size:25px}.hero p{font-size:12.5px}.section{padding:25px 0}.section-title h2,.split h2,.contact-box h2{font-size:23px}.page-hero h1{font-size:23px}.photo-frame img,.photo-frame.vineyard img{height:270px}.wine-card img,.gallery img{height:285px}.contact-box{padding:22px}}
