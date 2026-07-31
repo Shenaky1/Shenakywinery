@@ -1,12 +1,14 @@
-# Shenaky Winery — Single-Screen Home Release
+# Shenaky Winery — Version 7 Balanced Production
 
-Desktop home-page layout redesigned to fit the complete page within one typical 1920x1080 browser window.
+Design objective:
+- Each page should fill roughly 85–95% of a typical desktop browser window.
+- Avoid both oversized sections and large unused white areas.
+- Preserve an elegant boutique-winery look with efficient spacing.
 
 Key changes:
-- 39px header
-- 92px hero
-- 128px story image
-- Wines and Awards displayed side-by-side
-- Compact contact and footer
-- Language selector uses EN, FR, فارسی
-- Tablet and mobile layouts remain readable
+- Medium-height header and hero sections
+- Comfortable typography and spacing
+- Interior pages use flex layout so footer settles naturally near the bottom
+- Story, wines, awards and contact pages scaled independently
+- EN, FR and فارسی language labels
+- Responsive tablet and mobile layouts retained
