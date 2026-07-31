@@ -1,1 +1,8 @@
-document.querySelectorAll('.menu-button').forEach(b=>b.addEventListener('click',()=>document.querySelector('.nav-links').classList.toggle('open')));
+
+document.querySelectorAll('.menu-button').forEach(function(button){
+  button.addEventListener('click', function(){
+    const nav = button.parentElement.querySelector('.nav-links');
+    nav.classList.toggle('open');
+    button.setAttribute('aria-expanded', nav.classList.contains('open') ? 'true' : 'false');
+  });
+});
