@@ -1,11 +1,12 @@
-# Shenaky Winery — Compact V2
+# Shenaky Winery — Single-Screen Home Release
 
-This release uses a separate cache-busted compact stylesheet so the change is immediately visible.
+Desktop home-page layout redesigned to fit the complete page within one typical 1920x1080 browser window.
 
-Desktop changes:
-- Header reduced to 43px
-- Hero reduced to about 118px
-- Story image reduced to 170px
-- Section padding reduced to 10px
-- Typography, buttons, footer and galleries reduced substantially
-- FA replaced by فارسی
+Key changes:
+- 39px header
+- 92px hero
+- 128px story image
+- Wines and Awards displayed side-by-side
+- Compact contact and footer
+- Language selector uses EN, FR, فارسی
+- Tablet and mobile layouts remain readable
