@@ -1,395 +1,56 @@
 
-/* SHENAKY WINERY — VERSION 7 CONSISTENT
-   Uses the Contact page proportions as the common scale for all pages. */
-
-:root{
-  --page-max:1120px;
-}
-
-html,body{
-  min-height:100%;
-}
-
-body{
-  font-size:13px;
-  line-height:1.46;
-}
-
-body:not(.home-page){
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-}
-
-body:not(.home-page) main{
-  flex:1 0 auto;
-  display:flex;
-  flex-direction:column;
-}
-
-body:not(.home-page) .site-footer{
-  margin-top:auto;
-}
-
-.container{
-  width:min(var(--page-max),calc(100% - 42px));
-}
-
-/* Header — same on every page */
-.nav{
-  min-height:58px;
-  gap:18px;
-}
-.brand-logo{
-  width:31px;
-  height:31px;
-}
-.brand strong{
-  font-size:15px;
-}
-.brand small{
-  font-size:8px;
-}
-.nav-links{
-  gap:17px;
-  font-size:10px;
-}
-.cart{
-  padding:5px 8px;
-  font-size:9px;
-}
-.lang a{
-  padding:4px 6px;
-  font-size:9px;
-  white-space:nowrap;
-}
-
-/* Shared interior banner — same proportions as Contact */
-.page-hero{
-  min-height:122px;
-  padding:18px 0 16px;
-  display:flex;
-  align-items:center;
-}
-.page-hero h1{
-  font-size:clamp(30px,2.8vw,40px);
-  line-height:1.06;
-  margin:5px 0 7px;
-}
-.page-hero p{
-  max-width:850px;
-  font-size:14px;
-  line-height:1.45;
-}
-
-/* Shared content area — same vertical rhythm as Contact */
-body:not(.home-page) .section{
-  padding:30px 0;
-}
-body:not(.home-page) .section > .container{
-  width:min(var(--page-max),calc(100% - 42px));
-}
-
-/* Story */
-.story-copy{
-  max-width:1020px;
-}
-.story-copy h2{
-  font-size:clamp(25px,2.2vw,32px);
-  margin:0 0 15px;
-}
-.story-copy p{
-  font-size:15px;
-  line-height:1.58;
-  margin:0 0 15px;
-}
-.story-copy .quote{
-  font-size:18px;
-  margin-top:20px;
-}
-
-/* Wines */
-.notice-card{
-  max-width:880px;
-  padding:30px 38px;
-}
-.notice-card h2{
-  font-size:clamp(26px,2.3vw,34px);
-  margin-bottom:10px;
-}
-.notice-card p{
-  font-size:15px;
-  line-height:1.52;
-}
-
-/* Awards */
-.selected-note{
-  margin-bottom:14px;
-  font-size:13px;
-}
-.awards-grid{
-  grid-template-columns:1fr 1fr;
-  gap:28px;
-}
-.award-photo img{
-  width:100%;
-  max-height:430px;
-  object-fit:contain;
-}
-.award-list{
-  gap:12px;
-}
-.award-item{
-  padding:16px 18px;
-}
-.award-item strong{
-  font-size:19px;
-  margin-bottom:4px;
-}
-.gallery{
-  gap:14px;
-}
-.gallery img{
-  height:245px;
-}
-
-/* Contact */
-.contact-details{
-  gap:22px;
-}
-.contact-detail{
-  padding:28px;
-  min-height:150px;
-}
-.contact-detail h3{
-  font-size:23px;
-  margin-bottom:12px;
-}
-.contact-detail p{
-  font-size:15px;
-}
-
-/* Home — balanced to the same overall scale */
-.home-page .hero{
-  min-height:185px;
-}
-.home-page .hero-inner{
-  padding:22px 0;
-  max-width:720px;
-}
-.home-page .hero h1{
-  font-size:clamp(29px,2.8vw,39px);
-  line-height:1.06;
-  margin:7px 0 9px;
-}
-.home-page .hero p{
-  font-size:14px;
-  line-height:1.42;
-}
-.home-page .section{
-  padding:24px 0;
-}
-.home-page .split{
-  grid-template-columns:1.08fr .92fr;
-  gap:30px;
-}
-.home-page .split h2,
-.home-page .section-title h2,
-.home-page .contact-box h2{
-  font-size:clamp(24px,2.2vw,31px);
-}
-.home-page .split p,
-.home-page .section-title p,
-.home-page .contact-box p{
-  font-size:13px;
-  line-height:1.5;
-}
-.home-page .photo-frame img{
-  height:270px;
-}
-.home-page .contact-box{
-  padding:22px 26px;
-}
-
-/* Footer — compact enough so the copyright stays on the same screen */
-.site-footer{
-  padding:16px 0 8px;
-  font-size:11px;
-  line-height:1.3;
-}
-.footer-grid{
-  gap:24px;
-}
-.site-footer h4{
-  font-size:13px;
-  margin-bottom:5px;
-}
-.site-footer p{
-  font-size:10.5px;
-  line-height:1.35;
-  margin:3px 0;
-}
-.footer-bottom{
-  margin-top:8px;
-  padding-top:8px;
-  font-size:9.5px;
-  line-height:1.2;
-}
-.footer-bottom p{
-  margin:0;
-}
-
-/* Tablet */
+:root{--page-max:1120px}
+html,body{min-height:100%}
+body{font-size:13px;line-height:1.46}
+body:not(.home-page){min-height:100vh;display:flex;flex-direction:column}
+body:not(.home-page) main{flex:1 0 auto;display:flex;flex-direction:column}
+body:not(.home-page) .site-footer{margin-top:auto}
+.container{width:min(var(--page-max),calc(100% - 42px))}
+.nav{min-height:58px;gap:18px}
+.brand-logo{width:31px;height:31px}
+.brand strong{font-size:15px}
+.brand small{font-size:8px}
+.nav-links{gap:17px;font-size:10px}
+.cart{padding:5px 8px;font-size:9px}
+.lang a{padding:4px 6px;font-size:9px;white-space:nowrap}
+.page-hero{min-height:122px;padding:18px 0 16px;display:flex;align-items:center}
+.page-hero h1{font-size:clamp(30px,2.8vw,40px);line-height:1.06;margin:5px 0 7px}
+.page-hero p{max-width:850px;font-size:14px;line-height:1.45}
+body:not(.home-page) .section{padding:30px 0}
+body:not(.home-page) .section>.container{width:min(var(--page-max),calc(100% - 42px))}
+.story-copy{max-width:1020px}
+.story-copy h2{font-size:clamp(25px,2.2vw,32px);margin:0 0 15px}
+.story-copy p{font-size:15px;line-height:1.58;margin:0 0 15px}
+.story-copy .quote{font-size:18px;margin-top:20px}
+.notice-card{max-width:880px;padding:30px 38px}
+.notice-card h2{font-size:clamp(26px,2.3vw,34px);margin-bottom:10px}
+.notice-card p{font-size:15px;line-height:1.52}
+.contact-details{gap:22px}
+.contact-detail{padding:28px;min-height:150px}
+.contact-detail h3{font-size:23px;margin-bottom:12px}
+.contact-detail p{font-size:15px}
+.home-page .hero{min-height:185px}
+.home-page .hero-inner{padding:22px 0;max-width:720px}
+.home-page .hero h1{font-size:clamp(29px,2.8vw,39px);line-height:1.06;margin:7px 0 9px}
+.home-page .hero p{font-size:14px;line-height:1.42}
+.site-footer{padding:16px 0 8px;font-size:11px;line-height:1.3}
+.footer-grid{gap:24px}
+.site-footer h4{font-size:13px;margin-bottom:5px}
+.site-footer p{font-size:10.5px;line-height:1.35;margin:3px 0}
+.footer-bottom{margin-top:8px;padding-top:8px;font-size:9.5px;line-height:1.2}
+.footer-bottom p{margin:0}
 @media(max-width:900px){
-  .container{
-    width:min(100% - 28px,var(--page-max));
-  }
-  .page-hero{
-    min-height:auto;
-    padding:22px 0 18px;
-  }
-  .page-hero h1{
-    font-size:31px;
-  }
-  body:not(.home-page) .section{
-    padding:30px 0;
-  }
-  .home-page .hero{
-    min-height:225px;
-  }
-  .home-page .photo-frame img{
-    height:310px;
-  }
+ .container{width:min(100% - 28px,var(--page-max))}
+ .page-hero{min-height:auto;padding:22px 0 18px}
+ .page-hero h1{font-size:31px}
+ body:not(.home-page) .section{padding:30px 0}
+ .home-page .hero{min-height:225px}
 }
-
-/* Mobile */
 @media(max-width:600px){
-  .home-page .hero{
-    min-height:235px;
-  }
-  .home-page .hero h1{
-    font-size:28px;
-  }
-  .home-page .section{
-    padding:24px 0;
-  }
-  .page-hero h1{
-    font-size:28px;
-  }
-  .story-copy h2{
-    font-size:25px;
-  }
-  .story-copy p{
-    font-size:14px;
-  }
-  .contact-detail{
-    min-height:auto;
-  }
-}
-/* HOME PAGE — balanced layout */
-
-.home-page .hero {
-    min-height: 170px;
-}
-
-.home-page .hero-inner {
-    padding: 20px 0;
-    max-width: 720px;
-}
-
-.home-page .hero h1 {
-    font-size: clamp(28px, 2.6vw, 37px);
-    line-height: 1.06;
-    margin: 6px 0 8px;
-}
-
-.home-page .hero p {
-    font-size: 13px;
-    line-height: 1.4;
-}
-
-.home-page .section {
-    padding: 20px 0;
-}
-
-.home-page .split {
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 26px;
-}
-
-.home-page .split h2,
-.home-page .section-title h2,
-.home-page .contact-box h2 {
-    font-size: clamp(23px, 2vw, 29px);
-    line-height: 1.08;
-    margin: 4px 0 7px;
-}
-
-.home-page .split p,
-.home-page .section-title p,
-.home-page .contact-box p {
-    font-size: 12.5px;
-    line-height: 1.45;
-}
-
-.home-page .photo-frame img {
-    height: 240px;
-}
-
-.home-page .quote {
-    font-size: 15px;
-    margin-top: 12px;
-}
-
-.home-page .section-title {
-    margin-bottom: 10px;
-}
-
-.home-page .contact-box {
-    padding: 18px 22px;
-}
-/* AWARDS PAGE — balanced layout */
-
-body:not(.home-page) .awards-grid {
-    grid-template-columns: 0.95fr 1.05fr;
-    gap: 26px;
-    align-items: start;
-}
-
-body:not(.home-page) .award-photo {
-    padding: 6px;
-}
-
-body:not(.home-page) .award-photo img {
-    width: 100%;
-    height: 360px;
-    object-fit: contain;
-}
-
-body:not(.home-page) .award-list {
-    gap: 11px;
-}
-
-body:not(.home-page) .award-item {
-    padding: 14px 16px;
-}
-
-body:not(.home-page) .award-item strong {
-    font-size: 18px;
-    line-height: 1.18;
-    margin-bottom: 4px;
-}
-
-body:not(.home-page) .selected-note {
-    margin-bottom: 12px;
-    font-size: 12.5px;
-}
-
-body:not(.home-page) .gallery {
-    gap: 12px;
-}
-
-body:not(.home-page) .gallery img {
-    height: 220px;
-    object-fit: cover;
+ .home-page .hero{min-height:235px}
+ .home-page .hero h1{font-size:28px}
+ .page-hero h1{font-size:28px}
+ .story-copy h2{font-size:25px}
+ .story-copy p{font-size:14px}
+ .contact-detail{min-height:auto}
 }
