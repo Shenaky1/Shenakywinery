@@ -1,1 +1,1 @@
-Complete deployable package correcting only Home and Awards while preserving approved Story, Wines, and Contact proportions.
+Complete deployable Shenaky Winery website package. Includes the approved Home and Awards refinements plus a bilingual cart preview. The cart is intentionally inactive and displays that online ordering is not currently available; it is ready for a future Vinoshipper connection.
