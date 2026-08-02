@@ -63,10 +63,25 @@ a{color:inherit}
   min-height:210px;
   display:flex;align-items:center;color:white;
   background:
-    linear-gradient(90deg,rgba(16,28,41,.68),rgba(16,28,41,.28)),
-    url("assets/vineyard-grapes.jpg") center/cover no-repeat;
+    linear-gradient(90deg,rgba(16,28,41,.76),rgba(16,28,41,.34)),
+    url("assets/shenaky-landscape.jpg") center 55%/cover no-repeat;
 }
 .hero-inner{padding:25px 0;max-width:610px}
+.minimalist-home{height:100vh;overflow:hidden}
+.minimalist-home main{height:calc(100vh - 58px)}
+.heritage-home{
+  height:100%;display:flex;align-items:flex-end;color:#fff;
+  background:
+    linear-gradient(90deg,rgba(16,28,41,.66),rgba(16,28,41,.18)),
+    url("assets/shenaky-landscape.jpg") center/cover no-repeat;
+}
+.heritage-home-inner{padding-bottom:7vh}
+.heritage-home p{
+  max-width:760px;margin:0;padding:19px 23px;
+  font:700 clamp(22px,2.45vw,36px)/1.2 Georgia,"Times New Roman",serif;
+  letter-spacing:-.012em;text-shadow:0 2px 8px rgba(0,0,0,.42);
+  background:rgba(13,25,37,.48);border-left:4px solid var(--gold);
+}
 .eyebrow{
   color:var(--gold);font-weight:800;font-size:9.5px;
   letter-spacing:.16em;text-transform:uppercase;
@@ -176,5 +191,10 @@ a{color:inherit}
   .gallery img{height:285px}
   .contact-box{padding:22px}
   .brand small{display:none}
+  .minimalist-home{height:auto;min-height:100vh;overflow:auto}
+  .minimalist-home main{height:calc(100vh - 58px);min-height:560px}
+  .heritage-home{background-position:center}
+  .heritage-home-inner{padding-bottom:8vh}
+  .heritage-home p{font-size:21px;line-height:1.24;padding:16px 17px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
