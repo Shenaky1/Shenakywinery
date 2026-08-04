@@ -78,10 +78,12 @@ a{color:inherit}
   background:url("assets/shenaky-green-vineyard-painting.png") center 58%/cover no-repeat;
 }
 .award-watermark{
-  position:absolute;left:4.5vw;top:7vh;width:clamp(220px,24vw,360px);
-  display:block;opacity:.48;transition:opacity .2s ease;
+  position:absolute;right:4.5vw;top:20vh;width:clamp(220px,24vw,360px);
+  display:block;opacity:.72;
+  filter:drop-shadow(0 1px 2px rgba(255,255,255,.55));
+  transition:opacity .2s ease;
 }
-.award-watermark:hover,.award-watermark:focus-visible{opacity:.68}
+.award-watermark:hover,.award-watermark:focus-visible{opacity:.88}
 .award-watermark img{display:block;width:100%;height:auto}
 .eyebrow{
   color:var(--gold);font-weight:800;font-size:9.5px;
@@ -208,6 +210,6 @@ a{color:inherit}
   .minimalist-home{height:auto;min-height:100vh;overflow:auto}
   .minimalist-home main{height:calc(100vh - 58px);min-height:560px}
   .heritage-home{background-position:center}
-  .award-watermark{left:18px;top:28px;width:min(55vw,230px);opacity:.5}
+  .award-watermark{left:auto;right:18px;top:18vh;width:min(55vw,230px);opacity:.72}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
