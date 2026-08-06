@@ -147,7 +147,8 @@ a{color:inherit}
   transform:translateY(-3px);box-shadow:0 11px 26px rgba(23,40,58,.13);
 }
 .wine-card img{
-  width:100%;aspect-ratio:9/16;object-fit:cover;background:#ded7cc;
+  width:100%;height:260px;object-fit:contain;object-position:center;
+  padding:10px;background:#f3eee5;
 }
 .wine-card-copy{padding:11px 12px 13px;border-top:1px solid var(--line)}
 .wine-card-copy span{
@@ -227,6 +228,7 @@ a{color:inherit}
   .photo-frame img{height:270px}
   .gallery,.contact-details,.footer-grid{grid-template-columns:1fr}
   .wine-gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .wine-card img{height:230px;padding:7px}
   .wine-card-copy{padding:9px 9px 11px}
   .wine-card-copy h2{font-size:15px}
   .gallery img{height:285px}
