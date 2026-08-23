@@ -80,7 +80,7 @@ a{color:inherit}
 .award-watermark{
   position:absolute;right:4.5vw;top:20vh;width:clamp(220px,24vw,360px);
   display:block;opacity:.72;
-  filter:drop-shadow(0 1px 2px rgba(255,255,255,.55));
+  filter:drop-shadow(0 2px 3px rgba(15,38,27,.72));
   transition:opacity .2s ease;
 }
 .award-watermark:hover,.award-watermark:focus-visible{opacity:.88}
@@ -156,9 +156,18 @@ a{color:inherit}
 }
 .wine-card-copy h2{font-size:17px;line-height:1.15;margin:3px 0 4px}
 .wine-card-copy p{margin:0;color:var(--muted);font-size:10.5px}
+.wine-buy-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:11px}
+.wine-buy-row strong{font:700 18px Georgia,"Times New Roman",serif;color:var(--ink)}
+.wine-buy-row .add-cart{border:0;cursor:pointer;padding:8px 11px;font-size:9px}
+.wine-buy-row .add-cart.is-added{background:#386b4b}
+
+.cart-count{
+  display:inline-grid;place-items:center;min-width:18px;height:18px;margin-left:4px;padding:0 5px;
+  border-radius:20px;background:var(--gold);color:#101b27;font-size:9px;font-weight:800;vertical-align:middle;
+}
 
 .cart-page-main{min-height:calc(100vh - 58px);display:flex;flex-direction:column}
-.cart-page-main .section{flex:1;display:flex;align-items:center}
+.cart-page-main .section{flex:1}
 .cart-empty{
   max-width:650px;width:100%;margin:auto;background:#fff;border:1px solid var(--line);
   padding:42px 28px;text-align:center;box-shadow:var(--shadow);
@@ -169,6 +178,37 @@ a{color:inherit}
 .cart-empty-icon svg{display:block;width:100%;height:100%}
 .cart-empty h2{font-size:clamp(23px,2.4vw,30px);margin:0 0 9px}
 .cart-empty p{max-width:470px;margin:0 auto 20px;color:var(--muted);font-size:13px}
+.cart-section{background:linear-gradient(180deg,var(--cream),#f5f0e8)}
+.cart-layout{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(280px,.75fr);gap:22px;align-items:start}
+.cart-panel,.cart-summary{background:#fff;border:1px solid var(--line);box-shadow:var(--shadow)}
+.cart-panel{padding:20px}
+.cart-panel-heading{display:flex;justify-content:space-between;align-items:end;gap:18px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.cart-panel-heading h2{margin:3px 0 0;font-size:25px}
+.text-link{color:var(--ink);font-size:11px;font-weight:700}
+.cart-empty-state{text-align:center;padding:42px 16px;color:var(--muted)}
+.cart-empty-state p{margin:0 0 15px}
+.cart-item{display:grid;grid-template-columns:68px minmax(0,1fr) auto auto;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
+.cart-item img{width:68px;height:86px;object-fit:contain;background:#f3eee5;padding:4px}
+.cart-item-name strong{display:block;font:700 16px Georgia,"Times New Roman",serif}
+.cart-item-name span{color:var(--muted);font-size:10px}
+.cart-quantity{display:flex;align-items:center;border:1px solid var(--line)}
+.cart-quantity button{width:29px;height:30px;border:0;background:#f5f0e8;cursor:pointer;font-size:16px}
+.cart-quantity output{min-width:28px;text-align:center;font-size:12px;font-weight:700}
+.cart-item-price{text-align:right;min-width:72px}
+.cart-item-price strong{display:block}
+.cart-remove{border:0;background:none;color:#8a3030;padding:4px 0;cursor:pointer;font-size:9px;text-decoration:underline}
+.cart-summary{position:sticky;top:76px;padding:21px}
+.cart-summary-line{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--line);font-size:12px}
+.cart-summary-line.cart-total{font-size:16px}
+.cart-summary>p{font-size:10.5px;line-height:1.45;color:var(--muted)}
+.cart-summary form{display:grid;gap:10px;margin-top:15px}
+.cart-summary label{display:grid;gap:4px;font-size:10px;font-weight:700}
+.cart-summary input{width:100%;border:1px solid var(--line);background:#fff;padding:9px;font:inherit}
+.cart-summary .age-check{display:flex;grid-template-columns:auto 1fr;align-items:flex-start;gap:8px;font-weight:500;line-height:1.35}
+.cart-summary .age-check input{width:auto;margin-top:2px}
+.cart-request{border:0;cursor:pointer;background:var(--gold);color:#101b27;width:100%;margin-top:3px}
+.cart-request:disabled{opacity:.45;cursor:not-allowed}
+.cart-form-note{min-height:15px;margin-bottom:0!important;color:#386b4b!important}
 
 .awards-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:28px;align-items:start}
 .award-photo{background:#fff;border:1px solid var(--line);padding:7px;box-shadow:var(--shadow)}
@@ -214,6 +254,8 @@ a{color:inherit}
   .rtl .nav-links{align-items:flex-end}
   .hero{min-height:220px}.hero-inner{padding:26px 0}
   .split,.awards-grid{grid-template-columns:1fr;gap:22px}
+  .cart-layout{grid-template-columns:1fr}
+  .cart-summary{position:static}
   .wine-gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .photo-frame img{height:300px}
   .contact-box{align-items:flex-start;flex-direction:column}
@@ -231,6 +273,12 @@ a{color:inherit}
   .wine-card img{height:230px;padding:7px}
   .wine-card-copy{padding:9px 9px 11px}
   .wine-card-copy h2{font-size:15px}
+  .wine-buy-row{align-items:flex-start;flex-direction:column}
+  .wine-buy-row .add-cart{width:100%}
+  .cart-item{grid-template-columns:54px minmax(0,1fr) auto;gap:9px}
+  .cart-item img{width:54px;height:72px}
+  .cart-quantity{grid-column:2}
+  .cart-item-price{grid-column:3;grid-row:1/3}
   .gallery img{height:285px}
   .contact-box{padding:22px}
   .brand small{display:none}
