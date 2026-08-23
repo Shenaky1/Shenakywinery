@@ -107,21 +107,35 @@ document.querySelectorAll('.menu-button').forEach(function(button){
 
   var orderForm = document.querySelector('[data-order-form]');
   if (orderForm) orderForm.addEventListener('submit', function(event){
-    event.preventDefault();
     var cart = readCart();
-    if (!cart.length) return;
-    var data = new FormData(orderForm);
+    if (!cart.length) {
+      event.preventDefault();
+      return;
+    }
     var total = cart.reduce(function(sum,item){ return sum + item.price * item.quantity; }, 0);
     var lines = cart.map(function(item){ return item.quantity + ' x ' + item.year + ' ' + item.name + ' — ' + money(item.price * item.quantity); });
-    var subject = isFrench ? 'Demande de commande de vin' : 'Wine order request';
-    var body = (isFrench ? 'Nom : ' : 'Name: ') + data.get('customerName') + '\n' +
-      (isFrench ? 'Courriel : ' : 'Email: ') + data.get('customerEmail') + '\n' +
-      (isFrench ? 'Téléphone : ' : 'Phone: ') + (data.get('customerPhone') || '—') + '\n\n' +
-      lines.join('\n') + '\n\n' + (isFrench ? 'Sous-total estimé : ' : 'Estimated subtotal: ') + money(total) + '\n\n' +
-      (isFrench ? 'Je confirme avoir au moins 21 ans. Merci de confirmer la disponibilité et les modalités.' : 'I confirm that I am at least 21 years old. Please confirm availability and fulfillment details.');
-    window.location.href = 'mailto:info@shenakywinery.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-    document.querySelector('[data-cart-message]').textContent = isFrench ? 'Votre application de courriel va s’ouvrir.' : 'Your email application will open with the order request.';
+    setOrderField('Order', lines.join('\n'));
+    setOrderField(isFrench ? 'Sous-total estimé' : 'Estimated subtotal', money(total));
+    var submit = orderForm.querySelector('.cart-request');
+    submit.disabled = true;
+    submit.textContent = isFrench ? 'Envoi…' : 'Sending…';
   });
+
+  function setOrderField(name, value){
+    var field = orderForm.querySelector('[data-generated-field="' + name + '"]');
+    if (!field) {
+      field = document.createElement('input');
+      field.type = 'hidden';
+      field.name = name;
+      field.dataset.generatedField = name;
+      orderForm.appendChild(field);
+    }
+    field.value = value;
+  }
+
+  if (document.querySelector('[data-order-success]')) {
+    localStorage.removeItem(storageKey);
+  }
 
   updateCartCount(readCart());
   renderCart();

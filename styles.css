@@ -288,3 +288,4 @@ a{color:inherit}
   .award-watermark{left:auto;right:18px;top:18vh;width:min(55vw,230px);opacity:.72}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.form-honeypot{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;overflow:hidden!important}
