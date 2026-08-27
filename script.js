@@ -116,6 +116,9 @@ document.querySelectorAll('.menu-button').forEach(function(button){
     var lines = cart.map(function(item){ return item.quantity + ' x ' + item.year + ' ' + item.name + ' — ' + money(item.price * item.quantity); });
     setOrderField('Order', lines.join('\n'));
     setOrderField(isFrench ? 'Sous-total estimé' : 'Estimated subtotal', money(total));
+    var reference = 'TEST-' + new Date().toISOString().replace(/[-:TZ.]/g, '').slice(0, 14);
+    setOrderField(isFrench ? 'Référence du test' : 'Test reference', reference);
+    setOrderField(isFrench ? 'Envoyé à' : 'Submitted at', new Date().toLocaleString(isFrench ? 'fr-CA' : 'en-US', { timeZoneName:'short' }));
     var submit = orderForm.querySelector('.cart-request');
     submit.disabled = true;
     submit.textContent = isFrench ? 'Envoi…' : 'Sending…';

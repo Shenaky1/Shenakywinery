@@ -204,6 +204,9 @@ a{color:inherit}
 .cart-summary form{display:grid;gap:10px;margin-top:15px}
 .cart-summary label{display:grid;gap:4px;font-size:10px;font-weight:700}
 .cart-summary input{width:100%;border:1px solid var(--line);background:#fff;padding:9px;font:inherit}
+.cart-summary .address-fields{display:grid;gap:10px;margin:2px 0;padding:12px;border:1px solid var(--line)}
+.cart-summary .address-fields legend{padding:0 5px;font-size:10px;font-weight:800;color:var(--ink)}
+.cart-summary .address-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .cart-summary .age-check{display:flex;grid-template-columns:auto 1fr;align-items:flex-start;gap:8px;font-weight:500;line-height:1.35}
 .cart-summary .age-check input{width:auto;margin-top:2px}
 .cart-request{border:0;cursor:pointer;background:var(--gold);color:#101b27;width:100%;margin-top:3px}
