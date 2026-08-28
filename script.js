@@ -10,6 +10,7 @@ document.querySelectorAll('.menu-button').forEach(function(button){
 (function(){
   var storageKey = 'shenakyCart';
   var isFrench = document.documentElement.lang === 'fr';
+  var checkoutConfig = window.SHENAKY_CHECKOUT || { mode:'test', allowedState:'CA', testCard:'4242424242424242' };
 
   function readCart(){
     try { return JSON.parse(localStorage.getItem(storageKey)) || []; }
@@ -112,6 +113,26 @@ document.querySelectorAll('.menu-button').forEach(function(button){
       event.preventDefault();
       return;
     }
+    if (checkoutConfig.mode !== 'test') {
+      event.preventDefault();
+      showOrderMessage(isFrench ? 'Le paiement en direct n’est pas encore configuré.' : 'Live payment is not configured yet.', true);
+      return;
+    }
+    if (!validateAge()) {
+      event.preventDefault();
+      showOrderMessage(isFrench ? 'La date de naissance doit confirmer un âge de 21 ans ou plus.' : 'The date of birth must confirm an age of 21 or older.', true);
+      return;
+    }
+    if (!validateCaliforniaAddress()) {
+      event.preventDefault();
+      showOrderMessage(isFrench ? 'Veuillez saisir un code postal valide de Californie.' : 'Enter a valid California ZIP code.', true);
+      return;
+    }
+    if (!validateTestPayment()) {
+      event.preventDefault();
+      showOrderMessage(isFrench ? 'Utilisez uniquement les données de carte test indiquées.' : 'Use only the displayed test-card details.', true);
+      return;
+    }
     var total = cart.reduce(function(sum,item){ return sum + item.price * item.quantity; }, 0);
     var lines = cart.map(function(item){ return item.quantity + ' x ' + item.year + ' ' + item.name + ' — ' + money(item.price * item.quantity); });
     setOrderField('Order', lines.join('\n'));
@@ -119,10 +140,69 @@ document.querySelectorAll('.menu-button').forEach(function(button){
     var reference = 'TEST-' + new Date().toISOString().replace(/[-:TZ.]/g, '').slice(0, 14);
     setOrderField(isFrench ? 'Référence du test' : 'Test reference', reference);
     setOrderField(isFrench ? 'Envoyé à' : 'Submitted at', new Date().toLocaleString(isFrench ? 'fr-CA' : 'en-US', { timeZoneName:'short' }));
+    setOrderField(isFrench ? 'Résultat du paiement' : 'Payment result', isFrench ? 'PAIEMENT TEST SIMULÉ AUTORISÉ — AUCUN DÉBIT' : 'SIMULATED TEST PAYMENT AUTHORIZED — NO CHARGE');
+    setOrderField(isFrench ? 'Contrôle d’âge' : 'Age validation', isFrench ? 'Date de naissance validée : 21 ans ou plus' : 'Date of birth validated: age 21 or older');
     var submit = orderForm.querySelector('.cart-request');
     submit.disabled = true;
     submit.textContent = isFrench ? 'Envoi…' : 'Sending…';
   });
+
+  function validateAge(){
+    var dobField = orderForm.querySelector('[data-dob]');
+    if (!dobField || !dobField.value) return false;
+    var parts = dobField.value.split('-').map(Number);
+    if (parts.length !== 3) return false;
+    var birth = new Date(parts[0], parts[1] - 1, parts[2]);
+    if (birth.getFullYear() !== parts[0] || birth.getMonth() !== parts[1] - 1 || birth.getDate() !== parts[2]) return false;
+    var today = new Date();
+    var age = today.getFullYear() - birth.getFullYear();
+    var beforeBirthday = today.getMonth() < birth.getMonth() || (today.getMonth() === birth.getMonth() && today.getDate() < birth.getDate());
+    if (beforeBirthday) age -= 1;
+    return age >= 21;
+  }
+
+  function validateTestPayment(){
+    var card = (orderForm.querySelector('[data-test-card]').value || '').replace(/\D/g, '');
+    var expiry = (orderForm.querySelector('[data-test-expiry]').value || '').trim();
+    var cvc = (orderForm.querySelector('[data-test-cvc]').value || '').replace(/\D/g, '');
+    var match = expiry.match(/^(0[1-9]|1[0-2])\/(\d{2})$/);
+    if (!match || card !== checkoutConfig.testCard || !/^\d{3}$/.test(cvc)) return false;
+    var now = new Date();
+    var month = Number(match[1]);
+    var year = 2000 + Number(match[2]);
+    return year > now.getFullYear() || (year === now.getFullYear() && month >= now.getMonth() + 1);
+  }
+
+  function validateCaliforniaAddress(){
+    var state = orderForm.querySelector('select[name="State"], select[name="État"]');
+    var zip = orderForm.querySelector('input[name="ZIP code"], input[name="Code postal"]');
+    if (!state || state.value !== checkoutConfig.allowedState || !zip) return false;
+    var value = zip.value.trim();
+    if (!/^\d{5}$/.test(value)) return false;
+    var number = Number(value);
+    return number >= 90001 && number <= 96162;
+  }
+
+  function showOrderMessage(message, isError){
+    var output = document.querySelector('[data-cart-message]');
+    if (!output) return;
+    output.textContent = message;
+    output.classList.toggle('is-error', Boolean(isError));
+  }
+
+  if (orderForm) {
+    var dob = orderForm.querySelector('[data-dob]');
+    if (dob) {
+      var cutoff = new Date();
+      cutoff.setFullYear(cutoff.getFullYear() - 21);
+      dob.max = cutoff.toISOString().slice(0, 10);
+    }
+    var cardField = orderForm.querySelector('[data-test-card]');
+    if (cardField) cardField.addEventListener('input', function(){
+      var digits = cardField.value.replace(/\D/g, '').slice(0, 16);
+      cardField.value = digits.replace(/(.{4})/g, '$1 ').trim();
+    });
+  }
 
   function setOrderField(name, value){
     var field = orderForm.querySelector('[data-generated-field="' + name + '"]');

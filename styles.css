@@ -203,15 +203,24 @@ a{color:inherit}
 .cart-summary>p{font-size:10.5px;line-height:1.45;color:var(--muted)}
 .cart-summary form{display:grid;gap:10px;margin-top:15px}
 .cart-summary label{display:grid;gap:4px;font-size:10px;font-weight:700}
-.cart-summary input{width:100%;border:1px solid var(--line);background:#fff;padding:9px;font:inherit}
+.cart-summary input,.cart-summary select{width:100%;border:1px solid var(--line);background:#fff;padding:9px;font:inherit}
+.cart-summary label small{font-weight:500;color:var(--muted)}
 .cart-summary .address-fields{display:grid;gap:10px;margin:2px 0;padding:12px;border:1px solid var(--line)}
-.cart-summary .address-fields legend{padding:0 5px;font-size:10px;font-weight:800;color:var(--ink)}
+.cart-summary .address-fields legend,.cart-summary .fulfillment-fields legend,.cart-summary .test-payment legend{padding:0 5px;font-size:10px;font-weight:800;color:var(--ink)}
 .cart-summary .address-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .cart-summary .age-check{display:flex;grid-template-columns:auto 1fr;align-items:flex-start;gap:8px;font-weight:500;line-height:1.35}
 .cart-summary .age-check input{width:auto;margin-top:2px}
+.test-mode-banner{display:flex;justify-content:space-between;gap:8px;margin:10px 0 3px;padding:9px;border:1px solid #c89636;background:#fff4d6;color:#5f4211;font-size:9px}
+.test-mode-banner strong{letter-spacing:.1em}
+.fulfillment-fields,.test-payment{display:grid;gap:8px;margin:2px 0;padding:12px;border:1px solid var(--line)}
+.fulfillment-fields .choice-row{display:flex;align-items:center;gap:8px;font-weight:600}
+.fulfillment-fields .choice-row input{width:auto}
+.fulfillment-fields p,.test-payment p{margin:0;font-size:9.5px;line-height:1.45;color:var(--muted)}
+.test-payment{border-color:#c89636;background:#fffaf0}
 .cart-request{border:0;cursor:pointer;background:var(--gold);color:#101b27;width:100%;margin-top:3px}
 .cart-request:disabled{opacity:.45;cursor:not-allowed}
 .cart-form-note{min-height:15px;margin-bottom:0!important;color:#386b4b!important}
+.cart-form-note.is-error{color:#9a2828!important;font-weight:700}
 
 .awards-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:28px;align-items:start}
 .award-photo{background:#fff;border:1px solid var(--line);padding:7px;box-shadow:var(--shadow)}

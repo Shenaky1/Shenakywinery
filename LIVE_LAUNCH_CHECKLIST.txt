@@ -1,0 +1,18 @@
+SHENAKY WINERY — LIVE CHECKOUT LAUNCH CHECKLIST
+
+The website is currently in TEST MODE. No real card is charged.
+
+[ ] Every wine label offered for sale has final TTB approval.
+[ ] A compliant live payment processor/hosted checkout is connected.
+[ ] Live payment credentials are stored server-side, never in browser files.
+[ ] The winery has an approved wine-shipping account with UPS or FedEx.
+[ ] Adult Signature Required is enabled for EVERY wine shipment.
+[ ] Carrier instructions prohibit leaving wine unattended at the door.
+[ ] Shipping destinations are restricted to California.
+[ ] Full name, DOB, email, phone, and shipping address are collected.
+[ ] Customer must declare age 21+.
+[ ] Pickup procedure requires staff to inspect government-issued photo ID.
+[ ] A complete live-mode test has been performed before public launch.
+
+IMPORTANT: Changing checkout-config.js alone does not activate payments.
+A secure processor integration and server-side order endpoint are required.
