@@ -1,20 +1,25 @@
-Complete deployable Shenaky Winery website package. Includes the approved Home and Awards refinements plus a bilingual cart preview. The cart is intentionally inactive and displays that online ordering is not currently available; it is ready for a future Vinoshipper connection.
-# Checkout status (August 2026)
+# Shenaky Winery — VinoShipper-ready website
 
-The cart is intentionally locked in **test mode** in `checkout-config.js`.
-It collects full name, date of birth, email, phone, and a California shipping
-address; validates age 21+; and records the required adult-signature notice.
+This package removes the temporary simulated card form and prepares the wine pages for VinoShipper's official website integration. It is intentionally **disabled**, so no order or payment can be submitted yet.
 
-The displayed test card is simulated in the browser. Card fields have no
-`name` attributes, are not stored, and are never sent to FormSubmit. Do not set
-the mode to live. A compliant live payment processor and server-side checkout
-must be connected first.
+## Activate after the labels and VinoShipper products are approved
 
-Before live launch:
+1. Open `vinoshipper-config.js`.
+2. Enter the winery's numeric VinoShipper Account ID in `accountId`. Find it in VinoShipper under **Account → Profile**.
+3. Enter the numeric VinoShipper Product ID for each wine. Do not enter a COLA/TTB ID here.
+4. Confirm every displayed website price matches the corresponding price in VinoShipper.
+5. In VinoShipper, limit availability to California and confirm all fulfillment, tax, age-verification, and shipping settings.
+6. Only when ready to accept real orders, change `enabled: false` to `enabled: true`.
 
-1. Obtain approval for every label being sold.
-2. Connect a compliant payment processor using its hosted checkout/API.
-3. Configure an approved winery UPS or FedEx alcohol-shipping account.
-4. Require Adult Signature Required on every wine shipment.
-5. Restrict shipping to California and never authorize unattended delivery.
-6. Train staff to check government-issued photo ID for pickup orders.
+The website uses VinoShipper's official Injector. VinoShipper, rather than this website, collects the customer's payment and checkout information.
+
+## Important operating requirements
+
+- Sell initially only within California.
+- Use only the approved winery UPS or FedEx shipping account configured for compliant wine shipments.
+- Require Adult Signature Required for every shipment.
+- Never authorize a carrier to leave wine unattended.
+- Check government-issued photo ID for winery pickup.
+- Confirm each label/product is approved before activating it.
+
+Website code cannot by itself guarantee carrier or VinoShipper account settings. Verify those settings inside VinoShipper before launch.

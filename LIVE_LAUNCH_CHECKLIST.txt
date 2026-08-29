@@ -1,18 +1,17 @@
-SHENAKY WINERY — LIVE CHECKOUT LAUNCH CHECKLIST
+SHENAKY WINERY — VINOSHIPPER LAUNCH CHECKLIST
 
-The website is currently in TEST MODE. No real card is charged.
+[ ] All labels/products being sold are approved
+[ ] VinoShipper Account ID entered in vinoshipper-config.js
+[ ] Correct VinoShipper Product ID entered for every wine
+[ ] Website prices match VinoShipper prices
+[ ] Sales/shipping limited initially to California
+[ ] Full name, DOB, email, phone, and shipping address collected by VinoShipper checkout
+[ ] 21+ declaration and age verification enabled
+[ ] Approved winery UPS or FedEx shipping account configured
+[ ] Adult Signature Required enabled for every shipment
+[ ] No unattended delivery permitted
+[ ] Government-issued photo ID checked for pickup
+[ ] Test order completed successfully in the VinoShipper-supported test/preview process
+[ ] enabled changed from false to true only when ready for real orders
 
-[ ] Every wine label offered for sale has final TTB approval.
-[ ] A compliant live payment processor/hosted checkout is connected.
-[ ] Live payment credentials are stored server-side, never in browser files.
-[ ] The winery has an approved wine-shipping account with UPS or FedEx.
-[ ] Adult Signature Required is enabled for EVERY wine shipment.
-[ ] Carrier instructions prohibit leaving wine unattended at the door.
-[ ] Shipping destinations are restricted to California.
-[ ] Full name, DOB, email, phone, and shipping address are collected.
-[ ] Customer must declare age 21+.
-[ ] Pickup procedure requires staff to inspect government-issued photo ID.
-[ ] A complete live-mode test has been performed before public launch.
-
-IMPORTANT: Changing checkout-config.js alone does not activate payments.
-A secure processor integration and server-side order endpoint are required.
+Never enter or store card numbers in the Shenaky Winery website files.
