@@ -9,15 +9,14 @@
  * Do not put passwords, banking information, or API secrets in this file.
  */
 window.SHENAKY_VINOSHIPPER = Object.freeze({
-  enabled: false,
-  accountId: '',
+  enabled: true,
+  accountId: '6135',
   products: Object.freeze({
     '2024-red-blend': '',
-    '2025-merlot': '',
+    '2025-merlot': '200015',
     '2024-merlot': '',
     '2024-sauvignon-blanc': '',
     '2025-symphony': '',
     '2023-riesling-ice-wine': ''
   })
 });
-

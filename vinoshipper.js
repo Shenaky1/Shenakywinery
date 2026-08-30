@@ -7,6 +7,7 @@
   var configured = config.enabled === true && /^\d+$/.test(accountId);
   var slots = document.querySelectorAll('[data-vs-product-key]');
   var status = document.querySelector('[data-vs-checkout-status]');
+  var checkoutDetails = status && status.nextElementSibling;
 
   function unavailableText(){
     return isFrench ? 'Vente bientôt disponible' : 'Sales opening soon';
@@ -43,6 +44,11 @@
       ? (isFrench ? 'Utilisez le panier VinoShipper pour terminer votre achat sécurisé.' : 'Use the VinoShipper cart to complete secure checkout.')
       : unavailableText();
   }
+  if (checkoutDetails) {
+    checkoutDetails.textContent = isFrench
+      ? 'Les frais d’expédition sont calculés lors du paiement. Les commandes sont acceptées vers les destinations où VinoShipper autorise une livraison conforme dans plus de 40 États. Une signature d’adulte et une pièce d’identité officielle sont obligatoires; le vin n’est jamais laissé sans surveillance.'
+      : 'Shipping is calculated at checkout. Orders are accepted for destinations where VinoShipper authorizes compliant delivery in more than 40 states. Adult signature and government-issued photo ID are required; wine is never left unattended.';
+  }
 
   window.document.addEventListener('vinoshipper:loaded', function(){
     window.Vinoshipper.init(Number(accountId), {});
@@ -53,4 +59,3 @@
   injector.async = true;
   document.body.appendChild(injector);
 })();
-
