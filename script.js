@@ -101,6 +101,7 @@ document.querySelectorAll('.menu-button').forEach(function(button){
 (function () {
   var bottleImages = Array.prototype.slice.call(document.querySelectorAll('.wine-card > img'));
   if (!bottleImages.length) return;
+  var isFrenchPage = (document.documentElement.lang || '').toLowerCase().indexOf('fr') === 0;
 
   var lightbox = document.createElement('div');
   lightbox.className = 'wine-lightbox';
@@ -109,22 +110,26 @@ document.querySelectorAll('.menu-button').forEach(function(button){
   lightbox.setAttribute('aria-label', 'Enlarged wine bottle');
   lightbox.innerHTML =
     '<figure class="wine-lightbox-figure">' +
-      '<img class="wine-lightbox-image" alt="">' +
+      '<div class="wine-lightbox-bottle"><img class="wine-lightbox-image" alt=""></div>' +
+      '<figcaption class="wine-lightbox-details">' +
+        '<p class="wine-lightbox-vintage"></p>' +
+        '<h2 class="wine-lightbox-title"></h2>' +
+        '<p class="wine-lightbox-origin"></p>' +
+        '<div class="wine-lightbox-label-crop"><img class="wine-lightbox-label-image" alt=""></div>' +
+        '<div class="wine-lightbox-caption"><span>' + (isFrenchPage ? 'Étiquette agrandie' : 'Enlarged bottle label') + '</span><strong class="wine-lightbox-price"></strong></div>' +
+      '</figcaption>' +
       '<button class="wine-lightbox-close" type="button" aria-label="Close enlarged bottle">&times;</button>' +
     '</figure>';
   document.body.appendChild(lightbox);
 
   var enlargedImage = lightbox.querySelector('.wine-lightbox-image');
+  var labelImage = lightbox.querySelector('.wine-lightbox-label-image');
+  var vintageText = lightbox.querySelector('.wine-lightbox-vintage');
+  var titleText = lightbox.querySelector('.wine-lightbox-title');
+  var originText = lightbox.querySelector('.wine-lightbox-origin');
+  var priceText = lightbox.querySelector('.wine-lightbox-price');
   var closeButton = lightbox.querySelector('.wine-lightbox-close');
   var activeSource = null;
-
-  // Keep the entire portrait photograph inside the visible browser window.
-  // Inline important values prevent older/global image rules from cropping it.
-  enlargedImage.style.setProperty('width', 'auto', 'important');
-  enlargedImage.style.setProperty('height', 'auto', 'important');
-  enlargedImage.style.setProperty('max-width', 'calc(100vw - 80px)', 'important');
-  enlargedImage.style.setProperty('max-height', 'calc(100vh - 120px)', 'important');
-  enlargedImage.style.setProperty('object-fit', 'contain', 'important');
 
   function closeBottle() {
     if (activeSource) {
@@ -134,7 +139,9 @@ document.querySelectorAll('.menu-button').forEach(function(button){
     activeSource = null;
     lightbox.classList.remove('is-open');
     enlargedImage.removeAttribute('src');
+    labelImage.removeAttribute('src');
     enlargedImage.alt = '';
+    labelImage.alt = '';
   }
 
   function openBottle(source) {
@@ -147,10 +154,18 @@ document.querySelectorAll('.menu-button').forEach(function(button){
       activeSource.setAttribute('aria-expanded', 'false');
     }
     activeSource = source;
+    var card = source.closest('.wine-card');
+    var imageUrl = source.currentSrc || source.src;
     source.classList.add('is-enlarged-source');
     source.setAttribute('aria-expanded', 'true');
-    enlargedImage.src = source.currentSrc || source.src;
+    enlargedImage.src = imageUrl;
     enlargedImage.alt = source.alt;
+    labelImage.src = imageUrl;
+    labelImage.alt = (source.alt || 'Wine bottle') + ' label close-up';
+    vintageText.textContent = card.querySelector('.wine-card-copy span').textContent;
+    titleText.textContent = card.querySelector('.wine-card-copy h2').textContent;
+    originText.textContent = card.querySelector('.wine-card-copy p').textContent;
+    priceText.textContent = card.querySelector('.wine-buy-row strong').textContent;
     lightbox.classList.add('is-open');
   }
 
