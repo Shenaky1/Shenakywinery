@@ -110,20 +110,22 @@ document.querySelectorAll('.menu-button').forEach(function(button){
   lightbox.setAttribute('aria-label', 'Enlarged wine bottle');
   lightbox.innerHTML =
     '<figure class="wine-lightbox-figure">' +
-      '<div class="wine-lightbox-bottle"><img class="wine-lightbox-image" alt=""></div>' +
+      '<div class="wine-lightbox-bottle"><img class="wine-lightbox-image" alt=""><span class="wine-lightbox-lens" aria-hidden="true"></span></div>' +
       '<figcaption class="wine-lightbox-details">' +
         '<p class="wine-lightbox-vintage"></p>' +
         '<h2 class="wine-lightbox-title"></h2>' +
         '<p class="wine-lightbox-origin"></p>' +
-        '<div class="wine-lightbox-label-crop"><img class="wine-lightbox-label-image" alt=""></div>' +
-        '<div class="wine-lightbox-caption"><span>' + (isFrenchPage ? 'Étiquette agrandie' : 'Enlarged bottle label') + '</span><strong class="wine-lightbox-price"></strong></div>' +
+        '<div class="wine-lightbox-zoom" role="img" aria-label="' + (isFrenchPage ? 'Zone agrandie de la bouteille' : 'Magnified bottle area') + '"></div>' +
+        '<div class="wine-lightbox-caption"><span>' + (isFrenchPage ? 'Déplacez le curseur sur la bouteille pour agrandir' : 'Move the cursor over the bottle to magnify') + '</span><strong class="wine-lightbox-price"></strong></div>' +
       '</figcaption>' +
       '<button class="wine-lightbox-close" type="button" aria-label="Close enlarged bottle">&times;</button>' +
     '</figure>';
   document.body.appendChild(lightbox);
 
   var enlargedImage = lightbox.querySelector('.wine-lightbox-image');
-  var labelImage = lightbox.querySelector('.wine-lightbox-label-image');
+  var bottleStage = lightbox.querySelector('.wine-lightbox-bottle');
+  var lens = lightbox.querySelector('.wine-lightbox-lens');
+  var zoomPanel = lightbox.querySelector('.wine-lightbox-zoom');
   var vintageText = lightbox.querySelector('.wine-lightbox-vintage');
   var titleText = lightbox.querySelector('.wine-lightbox-title');
   var originText = lightbox.querySelector('.wine-lightbox-origin');
@@ -139,9 +141,8 @@ document.querySelectorAll('.menu-button').forEach(function(button){
     activeSource = null;
     lightbox.classList.remove('is-open');
     enlargedImage.removeAttribute('src');
-    labelImage.removeAttribute('src');
     enlargedImage.alt = '';
-    labelImage.alt = '';
+    zoomPanel.style.backgroundImage = '';
   }
 
   function openBottle(source) {
@@ -160,8 +161,7 @@ document.querySelectorAll('.menu-button').forEach(function(button){
     source.setAttribute('aria-expanded', 'true');
     enlargedImage.src = imageUrl;
     enlargedImage.alt = source.alt;
-    labelImage.src = imageUrl;
-    labelImage.alt = (source.alt || 'Wine bottle') + ' label close-up';
+    zoomPanel.style.backgroundImage = 'url("' + imageUrl.replace(/"/g, '%22') + '")';
     vintageText.textContent = card.querySelector('.wine-card-copy span').textContent;
     titleText.textContent = card.querySelector('.wine-card-copy h2').textContent;
     originText.textContent = card.querySelector('.wine-card-copy p').textContent;
@@ -185,6 +185,26 @@ document.querySelectorAll('.menu-button').forEach(function(button){
   });
 
   closeButton.addEventListener('click', closeBottle);
+  bottleStage.addEventListener('pointerenter', function () {
+    bottleStage.classList.add('is-zooming');
+  });
+  bottleStage.addEventListener('pointerleave', function () {
+    bottleStage.classList.remove('is-zooming');
+  });
+  bottleStage.addEventListener('pointermove', function (event) {
+    if (!activeSource || !enlargedImage.complete) return;
+    var imageRect = enlargedImage.getBoundingClientRect();
+    var stageRect = bottleStage.getBoundingClientRect();
+    var x = Math.max(0, Math.min(event.clientX - imageRect.left, imageRect.width));
+    var y = Math.max(0, Math.min(event.clientY - imageRect.top, imageRect.height));
+    var xPercent = imageRect.width ? (x / imageRect.width) * 100 : 50;
+    var yPercent = imageRect.height ? (y / imageRect.height) * 100 : 50;
+    var lensWidth = lens.offsetWidth;
+    var lensHeight = lens.offsetHeight;
+    lens.style.left = (imageRect.left - stageRect.left + x - lensWidth / 2) + 'px';
+    lens.style.top = (imageRect.top - stageRect.top + y - lensHeight / 2) + 'px';
+    zoomPanel.style.backgroundPosition = xPercent + '% ' + yPercent + '%';
+  });
   document.addEventListener('keydown', function (event) {
     if (event.key === 'Escape' && activeSource) closeBottle();
   });

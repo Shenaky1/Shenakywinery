@@ -166,19 +166,27 @@ a{color:inherit}
   background:#fffaf2;border:1px solid rgba(185,138,61,.8);border-radius:10px;
   box-shadow:0 25px 70px rgba(0,0,0,.42);pointer-events:none;
 }
-.wine-lightbox-bottle{display:grid;place-items:center;min-height:0;padding:18px;background:#eee7dc}
+.wine-lightbox-bottle{
+  position:relative;display:grid;place-items:center;min-height:0;padding:18px;
+  background:#eee7dc;cursor:crosshair;pointer-events:auto;touch-action:none;overflow:hidden;
+}
 .wine-lightbox-image{
-  display:block;width:100%;height:100%;max-width:100%;max-height:calc(100vh - 140px);
+  display:block;width:auto;height:auto;max-width:100%;max-height:calc(100vh - 140px);
   object-fit:contain;object-position:center;filter:drop-shadow(0 16px 25px rgba(0,0,0,.28));
 }
+.wine-lightbox-lens{
+  position:absolute;width:108px;height:108px;border:2px solid var(--gold);
+  background:rgba(255,250,242,.28);box-shadow:0 3px 15px rgba(0,0,0,.18);
+  pointer-events:none;opacity:0;transition:opacity .12s ease;
+}
+.wine-lightbox-bottle.is-zooming .wine-lightbox-lens{opacity:1}
 .wine-lightbox-details{min-width:0;padding:28px 32px;display:flex;flex-direction:column;justify-content:center;background:#fffaf2}
 .wine-lightbox-vintage{margin:0;color:var(--gold);font-size:14px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
 .wine-lightbox-title{margin:4px 0 5px;color:var(--wine);font:700 clamp(30px,3vw,44px)/1.05 Georgia,serif}
 .wine-lightbox-origin{margin:0 0 16px;color:var(--muted);font-size:17px}
-.wine-lightbox-label-crop{height:min(34vh,300px);overflow:hidden;border:1px solid var(--line);background:#e8e0d4}
-.wine-lightbox-label-image{
-  display:block;width:100%;height:100%;object-fit:cover;object-position:center 72%;
-  transform:scale(2.05);transform-origin:center 72%;
+.wine-lightbox-zoom{
+  height:min(42vh,380px);border:1px solid var(--line);background-color:#e8e0d4;
+  background-repeat:no-repeat;background-position:center;background-size:260% auto;
 }
 .wine-lightbox-caption{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-top:14px}
 .wine-lightbox-caption span{color:var(--muted);font-size:13px}
@@ -331,8 +339,8 @@ a{color:inherit}
   .wine-lightbox-title{font-size:23px}
   .wine-lightbox-origin{font-size:12px;margin-bottom:10px}
   .wine-lightbox-vintage{font-size:10px}
-  .wine-lightbox-label-crop{height:34vh}
-  .wine-lightbox-label-image{transform:scale(2.3)}
+  .wine-lightbox-zoom{height:40vh;background-size:300% auto}
+  .wine-lightbox-lens{width:76px;height:76px}
   .wine-lightbox-caption{align-items:flex-start;flex-direction:column;gap:3px;margin-top:9px}
   .wine-lightbox-caption span{font-size:10px}
   .wine-lightbox-price{font-size:22px}
