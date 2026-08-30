@@ -118,6 +118,14 @@ document.querySelectorAll('.menu-button').forEach(function(button){
   var closeButton = lightbox.querySelector('.wine-lightbox-close');
   var activeSource = null;
 
+  // Keep the entire portrait photograph inside the visible browser window.
+  // Inline important values prevent older/global image rules from cropping it.
+  enlargedImage.style.setProperty('width', 'auto', 'important');
+  enlargedImage.style.setProperty('height', 'auto', 'important');
+  enlargedImage.style.setProperty('max-width', 'calc(100vw - 80px)', 'important');
+  enlargedImage.style.setProperty('max-height', 'calc(100vh - 120px)', 'important');
+  enlargedImage.style.setProperty('object-fit', 'contain', 'important');
+
   function closeBottle() {
     if (activeSource) {
       activeSource.classList.remove('is-enlarged-source');
