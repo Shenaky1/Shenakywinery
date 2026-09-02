@@ -75,15 +75,22 @@ a{color:inherit}
 .minimalist-home main{height:calc(100vh - 58px)}
 .heritage-home{
   position:relative;height:100%;
-  background:url("assets/shenaky-green-vineyard-painting.png") center 58%/cover no-repeat;
+  background:url("assets/shenaky-green-vineyard-painting.png") center 32%/cover no-repeat;
 }
 .award-watermark{
-  position:absolute;right:4.5vw;top:20vh;width:clamp(220px,24vw,360px);
+  position:absolute;right:4.5vw;top:7vh;width:clamp(250px,27vw,400px);
   display:block;opacity:.72;
   filter:drop-shadow(0 2px 3px rgba(15,38,27,.72));
   transition:opacity .2s ease;
+  color:#fff;text-align:center;text-decoration:none;
 }
 .award-watermark:hover,.award-watermark:focus-visible{opacity:.88}
+.home-winery-name{
+  display:block;margin:0 0 8px;
+  color:#fff;font:700 clamp(24px,2.6vw,39px)/1.05 Georgia,"Times New Roman",serif;
+  letter-spacing:.035em;text-transform:uppercase;
+  text-shadow:0 2px 5px rgba(10,26,42,.82);
+}
 .award-watermark img{display:block;width:100%;height:auto}
 .eyebrow{
   color:var(--gold);font-weight:800;font-size:9.5px;
@@ -140,6 +147,8 @@ a{color:inherit}
   display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px;
 }
 .wine-card{
+  display:flex;
+  flex-direction:column;
   min-width:0;background:#fff;border:1px solid var(--line);overflow:hidden;
   box-shadow:var(--shadow);transition:transform .2s ease,box-shadow .2s ease;
 }
@@ -198,13 +207,16 @@ a{color:inherit}
 }
 .wine-lightbox-close:hover,.wine-lightbox-close:focus-visible{background:var(--wine);color:#fff}
 .wine-card img.is-enlarged-source{opacity:.38}
-.wine-card-copy{padding:11px 12px 13px;border-top:1px solid var(--line)}
+.wine-card-copy{display:flex;flex:1;flex-direction:column;padding:11px 12px 13px;border-top:1px solid var(--line)}
 .wine-card-copy span{
   color:var(--gold);font-size:9px;font-weight:800;letter-spacing:.14em;
 }
 .wine-card-copy h2{font-size:17px;line-height:1.15;margin:3px 0 4px}
 .wine-card-copy p{margin:0;color:var(--muted);font-size:10.5px}
-.wine-buy-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:11px}
+.wine-card-copy .wine-description{margin-top:10px;color:var(--ink);font-size:14px;line-height:1.45}
+.wine-card-copy .wine-pairing{margin-top:8px;color:var(--muted);font-size:13px;line-height:1.4}
+.wine-card-copy .wine-pairing strong{color:var(--burgundy)}
+.wine-buy-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto;padding-top:13px}
 .wine-buy-row strong{font:700 18px Georgia,"Times New Roman",serif;color:var(--ink)}
 .wine-buy-row .add-cart{border:0;cursor:pointer;padding:8px 11px;font-size:9px}
 .wine-buy-row .add-cart.is-added{background:#386b4b}
@@ -358,8 +370,9 @@ a{color:inherit}
   .brand small{display:none}
   .minimalist-home{height:auto;min-height:100vh;overflow:auto}
   .minimalist-home main{height:calc(100vh - 58px);min-height:560px}
-  .heritage-home{background-position:center}
-  .award-watermark{left:auto;right:18px;top:18vh;width:min(55vw,230px);opacity:.72}
+  .heritage-home{background-position:center 28%}
+  .award-watermark{left:auto;right:18px;top:7vh;width:min(62vw,270px);opacity:.78}
+  .home-winery-name{font-size:clamp(20px,6vw,29px);margin-bottom:6px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.wine-lightbox{transition:none}}
 .form-honeypot{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;overflow:hidden!important}
