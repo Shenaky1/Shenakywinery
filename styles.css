@@ -78,7 +78,7 @@ a{color:inherit}
   background:url("assets/shenaky-green-vineyard-painting.png") center 32%/cover no-repeat;
 }
 .award-watermark{
-  position:absolute;right:4.5vw;top:7vh;width:clamp(250px,27vw,400px);
+  position:absolute;left:4.5vw;right:auto;top:5vh;width:clamp(250px,27vw,400px);
   display:block;opacity:.72;
   filter:drop-shadow(0 2px 3px rgba(15,38,27,.72));
   transition:opacity .2s ease;
@@ -371,7 +371,7 @@ a{color:inherit}
   .minimalist-home{height:auto;min-height:100vh;overflow:auto}
   .minimalist-home main{height:calc(100vh - 58px);min-height:560px}
   .heritage-home{background-position:center 28%}
-  .award-watermark{left:auto;right:18px;top:7vh;width:min(62vw,270px);opacity:.78}
+  .award-watermark{left:18px;right:auto;top:4vh;width:min(62vw,270px);opacity:.78}
   .home-winery-name{font-size:clamp(20px,6vw,29px);margin-bottom:6px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.wine-lightbox{transition:none}}
