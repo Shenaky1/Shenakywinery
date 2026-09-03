@@ -106,7 +106,7 @@ document.querySelectorAll('.menu-button').forEach(function(button){
   var lightbox = document.createElement('div');
   lightbox.className = 'wine-lightbox';
   lightbox.setAttribute('role', 'dialog');
-  lightbox.setAttribute('aria-modal', 'false');
+  lightbox.setAttribute('aria-modal', 'true');
   lightbox.setAttribute('aria-label', 'Enlarged wine bottle');
   lightbox.innerHTML =
     '<figure class="wine-lightbox-figure">' +
@@ -116,7 +116,8 @@ document.querySelectorAll('.menu-button').forEach(function(button){
         '<h2 class="wine-lightbox-title"></h2>' +
         '<p class="wine-lightbox-origin"></p>' +
         '<div class="wine-lightbox-zoom" role="img" aria-label="' + (isFrenchPage ? 'Zone agrandie de la bouteille' : 'Magnified bottle area') + '"></div>' +
-        '<div class="wine-lightbox-caption"><span>' + (isFrenchPage ? 'Déplacez le curseur sur la bouteille pour agrandir' : 'Move the cursor over the bottle to magnify') + '</span><strong class="wine-lightbox-price"></strong></div>' +
+        '<button class="wine-lightbox-turn" type="button">' + (isFrenchPage ? 'Tourner la bouteille' : 'Turn the bottle') + '</button>' +
+        '<div class="wine-lightbox-caption"><span>' + (isFrenchPage ? 'Touchez l’image ou déplacez le curseur pour examiner l’étiquette' : 'Tap the image or move the cursor to examine the label') + '</span><strong class="wine-lightbox-price"></strong></div>' +
       '</figcaption>' +
       '<button class="wine-lightbox-close" type="button" aria-label="Close enlarged bottle">&times;</button>' +
     '</figure>';
@@ -130,10 +131,15 @@ document.querySelectorAll('.menu-button').forEach(function(button){
   var titleText = lightbox.querySelector('.wine-lightbox-title');
   var originText = lightbox.querySelector('.wine-lightbox-origin');
   var priceText = lightbox.querySelector('.wine-lightbox-price');
+  var turnButton = lightbox.querySelector('.wine-lightbox-turn');
   var closeButton = lightbox.querySelector('.wine-lightbox-close');
   var activeSource = null;
+  var frontImageUrl = '';
+  var backImageUrl = '';
+  var showingBack = false;
 
   function closeBottle() {
+    var returnTarget = activeSource;
     if (activeSource) {
       activeSource.classList.remove('is-enlarged-source');
       activeSource.setAttribute('aria-expanded', 'false');
@@ -143,6 +149,9 @@ document.querySelectorAll('.menu-button').forEach(function(button){
     enlargedImage.removeAttribute('src');
     enlargedImage.alt = '';
     zoomPanel.style.backgroundImage = '';
+    turnButton.classList.remove('is-available');
+    document.body.classList.remove('wine-view-open');
+    if (returnTarget) returnTarget.focus();
   }
 
   function openBottle(source) {
@@ -157,6 +166,9 @@ document.querySelectorAll('.menu-button').forEach(function(button){
     activeSource = source;
     var card = source.closest('.wine-card');
     var imageUrl = source.currentSrc || source.src;
+    frontImageUrl = imageUrl;
+    backImageUrl = source.getAttribute('data-back-src') || '';
+    showingBack = false;
     source.classList.add('is-enlarged-source');
     source.setAttribute('aria-expanded', 'true');
     enlargedImage.src = imageUrl;
@@ -166,7 +178,11 @@ document.querySelectorAll('.menu-button').forEach(function(button){
     titleText.textContent = card.querySelector('.wine-card-copy h2').textContent;
     originText.textContent = card.querySelector('.wine-card-copy p').textContent;
     priceText.textContent = card.querySelector('.wine-buy-row strong').textContent;
+    turnButton.classList.toggle('is-available', Boolean(backImageUrl));
+    turnButton.textContent = isFrenchPage ? 'Voir l’étiquette arrière' : 'View back label';
     lightbox.classList.add('is-open');
+    document.body.classList.add('wine-view-open');
+    closeButton.focus();
   }
 
   bottleImages.forEach(function (image) {
@@ -175,6 +191,10 @@ document.querySelectorAll('.menu-button').forEach(function(button){
     image.setAttribute('aria-haspopup', 'dialog');
     image.setAttribute('aria-expanded', 'false');
     image.setAttribute('aria-label', (image.alt || 'Wine bottle') + ' - enlarge');
+    var hint = document.createElement('span');
+    hint.className = 'bottle-view-hint';
+    hint.textContent = isFrenchPage ? 'Touchez pour agrandir' : 'Click to explore the bottle';
+    image.insertAdjacentElement('afterend', hint);
     image.addEventListener('click', function () { openBottle(image); });
     image.addEventListener('keydown', function (event) {
       if (event.key === 'Enter' || event.key === ' ') {
@@ -185,6 +205,23 @@ document.querySelectorAll('.menu-button').forEach(function(button){
   });
 
   closeButton.addEventListener('click', closeBottle);
+  lightbox.addEventListener('click', function (event) {
+    if (event.target === lightbox) closeBottle();
+  });
+  turnButton.addEventListener('click', function () {
+    if (!backImageUrl) return;
+    enlargedImage.classList.add('is-turning');
+    window.setTimeout(function () {
+      showingBack = !showingBack;
+      var nextUrl = showingBack ? backImageUrl : frontImageUrl;
+      enlargedImage.src = nextUrl;
+      zoomPanel.style.backgroundImage = 'url("' + nextUrl.replace(/"/g, '%22') + '")';
+      turnButton.textContent = showingBack
+        ? (isFrenchPage ? 'Voir l’étiquette avant' : 'View front label')
+        : (isFrenchPage ? 'Voir l’étiquette arrière' : 'View back label');
+      enlargedImage.classList.remove('is-turning');
+    }, 220);
+  });
   bottleStage.addEventListener('pointerenter', function () {
     bottleStage.classList.add('is-zooming');
   });

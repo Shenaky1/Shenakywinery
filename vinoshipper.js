@@ -13,6 +13,14 @@
     return isFrench ? 'Vente bientôt disponible' : 'Sales opening soon';
   }
 
+  function pendingApprovalText(){
+    return isFrench ? 'En attente d’approbation de l’étiquette' : 'Awaiting label approval';
+  }
+
+  function checkoutPendingText(){
+    return isFrench ? 'Étiquette approuvée · Paiement en préparation' : 'Label approved · Checkout setup in progress';
+  }
+
   if (!configured) {
     slots.forEach(function(slot){
       slot.className = 'wine-status';
@@ -28,10 +36,17 @@
 
   var renderedProductCount = 0;
   slots.forEach(function(slot){
-    var productId = String((config.products || {})[slot.dataset.vsProductKey] || '').trim();
+    var productKey = slot.dataset.vsProductKey;
+    var approved = (config.approvals || {})[productKey] === true;
+    var productId = String((config.products || {})[productKey] || '').trim();
+    if (!approved) {
+      slot.className = 'wine-status is-pending-approval';
+      slot.textContent = pendingApprovalText();
+      return;
+    }
     if (!/^\d+$/.test(productId)) {
-      slot.className = 'wine-status';
-      slot.textContent = unavailableText();
+      slot.className = 'wine-status is-checkout-pending';
+      slot.textContent = checkoutPendingText();
       return;
     }
     slot.className = 'vs-add-to-cart';

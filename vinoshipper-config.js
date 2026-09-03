@@ -11,6 +11,14 @@
 window.SHENAKY_VINOSHIPPER = Object.freeze({
   enabled: true,
   accountId: '6135',
+  approvals: Object.freeze({
+    '2024-red-blend': false,
+    '2025-merlot': true,
+    '2024-merlot': true,
+    '2024-sauvignon-blanc': true,
+    '2025-symphony': true,
+    '2023-riesling-ice-wine': false
+  }),
   products: Object.freeze({
     '2024-red-blend': '',
     '2025-merlot': '200015',
