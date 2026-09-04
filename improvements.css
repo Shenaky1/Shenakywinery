@@ -229,3 +229,5 @@ body.wine-view-open{overflow:hidden}
   .home-awards-preview,.home-contact-preview{align-items:flex-start;flex-direction:column;padding:30px 24px}
   .home-contact-preview{margin-top:32px;margin-bottom:40px}
 }
+
+.home-center-motto small,.story-copy .quote small{display:block;margin-top:5px;font:normal .78em Arial,sans-serif;letter-spacing:.02em}
