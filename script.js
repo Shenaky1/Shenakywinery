@@ -186,19 +186,43 @@ document.querySelectorAll('.menu-button').forEach(function(button){
   }
 
   bottleImages.forEach(function (image) {
+    var lastTouchAt = 0;
+
+    function openFromTouch(event) {
+      event.preventDefault();
+      lastTouchAt = Date.now();
+      openBottle(image);
+    }
+
+    function openFromClick(event) {
+      // iOS sends a delayed click after touchend. Ignore it so the bottle
+      // does not open and immediately close again.
+      if (Date.now() - lastTouchAt < 800) {
+        event.preventDefault();
+        return;
+      }
+      openBottle(image);
+    }
+
     image.setAttribute('tabindex', '0');
     image.setAttribute('role', 'button');
     image.setAttribute('aria-haspopup', 'dialog');
     image.setAttribute('aria-expanded', 'false');
-    image.setAttribute('aria-label', (image.alt || 'Wine bottle') + ' - enlarge');
+    image.setAttribute('aria-label', (image.alt || 'Wine bottle') + ', enlarge');
+    image.style.touchAction = 'manipulation';
+
     var hint = document.createElement('button');
     hint.type = 'button';
     hint.className = 'bottle-view-hint';
-    hint.textContent = isFrenchPage ? 'Voir la bouteille et l’étiquette' : 'View bottle & label';
-    hint.setAttribute('aria-label', (image.alt || 'Wine bottle') + (isFrenchPage ? ' — ouvrir la vue agrandie' : ' — open enlarged view'));
+    hint.textContent = isFrenchPage ? 'Toucher pour agrandir' : 'Tap to enlarge';
+    hint.setAttribute('aria-label', (image.alt || 'Wine bottle') + (isFrenchPage ? ', ouvrir la vue agrandie' : ', open enlarged view'));
+    hint.style.touchAction = 'manipulation';
     image.insertAdjacentElement('afterend', hint);
-    hint.addEventListener('click', function () { openBottle(image); });
-    image.addEventListener('click', function () { openBottle(image); });
+
+    image.addEventListener('touchend', openFromTouch, { passive: false });
+    hint.addEventListener('touchend', openFromTouch, { passive: false });
+    image.addEventListener('click', openFromClick);
+    hint.addEventListener('click', openFromClick);
     image.addEventListener('keydown', function (event) {
       if (event.key === 'Enter' || event.key === ' ') {
         event.preventDefault();
