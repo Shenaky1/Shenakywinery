@@ -78,3 +78,154 @@ body.wine-view-open{overflow:hidden}
 @media(prefers-reduced-motion:reduce){
   .wine-card,.wine-lightbox-image{transition:none}
 }
+
+
+/* Scrollable homepage, compact hero message and menu-equivalent sections */
+.minimalist-home main{height:auto;min-height:calc(100vh - 58px)}
+.minimalist-home .heritage-home{
+  position:relative;
+  height:auto;
+  min-height:calc(100svh - 58px);
+  display:grid;
+  place-items:center;
+  isolation:isolate;
+}
+.minimalist-home .heritage-home::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background:linear-gradient(180deg,rgba(8,20,30,.12),rgba(8,20,30,.08) 55%,rgba(8,20,30,.34));
+}
+.home-center-mark{
+  width:min(90%,620px);
+  padding:18px;
+  color:#fff;
+  text-align:center;
+  text-shadow:0 3px 16px rgba(0,0,0,.78);
+}
+.home-center-kicker{
+  margin:0 0 8px;
+  color:#f0cf86;
+  font-size:clamp(.75rem,1.5vw,.95rem);
+  font-weight:800;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+}
+.home-center-mark h1{
+  margin:0;
+  color:#fff;
+  font:700 clamp(2.1rem,5vw,4.8rem)/1.02 Georgia,serif;
+  letter-spacing:-.025em;
+}
+.home-center-motto{
+  margin:12px 0 22px;
+  color:#fff;
+  font:italic clamp(1rem,2vw,1.3rem) Georgia,serif;
+}
+.home-scroll-cue{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 15px;
+  border:1px solid rgba(255,255,255,.8);
+  border-radius:999px;
+  color:#fff;
+  background:rgba(13,25,37,.32);
+  font-size:.82rem;
+  font-weight:700;
+  text-decoration:none;
+  backdrop-filter:blur(4px);
+}
+.home-scroll-cue:hover,.home-scroll-cue:focus-visible{background:#fff;color:var(--wine);text-shadow:none}
+.home-scroll{background:#f8f4ed}
+.home-scroll-row,.home-wines-preview,.home-awards-preview,.home-contact-preview{
+  width:min(100% - 40px,1040px);
+  margin:0 auto;
+}
+.home-scroll-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+  gap:clamp(28px,6vw,72px);
+  padding:72px 0;
+}
+.home-scroll-copy h2,.home-section-heading h2,.home-awards-preview h2,.home-contact-preview h2{
+  margin:5px 0 14px;
+  color:var(--ink);
+  font:700 clamp(1.9rem,3.5vw,3rem)/1.08 Georgia,serif;
+}
+.home-scroll-copy p,.home-section-heading p,.home-awards-preview p,.home-contact-preview p{
+  font-size:1rem;
+  line-height:1.65;
+}
+.home-story-preview img{
+  width:100%;
+  height:360px;
+  object-fit:cover;
+  border:7px solid #fff;
+  box-shadow:0 18px 42px rgba(18,32,44,.16);
+}
+.home-text-link{
+  display:inline-block;
+  margin-top:8px;
+  color:var(--wine);
+  font-weight:800;
+  text-decoration:none;
+  border-bottom:1px solid var(--gold);
+}
+.home-wines-preview{
+  padding:72px 0;
+  text-align:center;
+  border-top:1px solid var(--line);
+}
+.home-section-heading{max-width:660px;margin:0 auto 34px}
+.home-bottle-row{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  margin-bottom:30px;
+}
+.home-bottle-row a{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  padding:18px;
+  color:var(--ink);
+  background:#fff;
+  border:1px solid var(--line);
+  text-decoration:none;
+  box-shadow:0 10px 25px rgba(18,32,44,.07);
+}
+.home-bottle-row img{width:100%;height:300px;object-fit:contain}
+.home-bottle-row strong{font:700 1.1rem Georgia,serif}
+.home-awards-preview,.home-contact-preview{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:32px;
+  padding:50px;
+}
+.home-awards-preview{
+  width:min(100% - 40px,1040px);
+  color:#fff;
+  background:linear-gradient(110deg,#162a3d,#263f53);
+}
+.home-awards-preview h2,.home-awards-preview p{color:#fff}
+.home-awards-preview>div,.home-contact-preview>div{max-width:700px}
+.home-contact-preview{margin-top:50px;margin-bottom:60px;background:#fff;border:1px solid var(--line)}
+
+@media(max-width:700px){
+  .home-center-mark{padding:12px}
+  .home-center-mark h1{font-size:clamp(2rem,10vw,3rem)}
+  .home-center-motto{margin-bottom:18px}
+  .home-scroll-row{grid-template-columns:1fr;gap:24px;padding:48px 0}
+  .home-story-preview img{height:260px}
+  .home-wines-preview{padding:48px 0}
+  .home-bottle-row{gap:8px}
+  .home-bottle-row a{padding:8px 5px}
+  .home-bottle-row img{height:180px}
+  .home-bottle-row strong{font-size:.82rem}
+  .home-awards-preview,.home-contact-preview{align-items:flex-start;flex-direction:column;padding:30px 24px}
+  .home-contact-preview{margin-top:32px;margin-bottom:40px}
+}
