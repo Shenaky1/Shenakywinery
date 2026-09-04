@@ -191,10 +191,13 @@ document.querySelectorAll('.menu-button').forEach(function(button){
     image.setAttribute('aria-haspopup', 'dialog');
     image.setAttribute('aria-expanded', 'false');
     image.setAttribute('aria-label', (image.alt || 'Wine bottle') + ' - enlarge');
-    var hint = document.createElement('span');
+    var hint = document.createElement('button');
+    hint.type = 'button';
     hint.className = 'bottle-view-hint';
-    hint.textContent = isFrenchPage ? 'Touchez pour agrandir' : 'Click to explore the bottle';
+    hint.textContent = isFrenchPage ? 'Voir la bouteille et l’étiquette' : 'View bottle & label';
+    hint.setAttribute('aria-label', (image.alt || 'Wine bottle') + (isFrenchPage ? ' — ouvrir la vue agrandie' : ' — open enlarged view'));
     image.insertAdjacentElement('afterend', hint);
+    hint.addEventListener('click', function () { openBottle(image); });
     image.addEventListener('click', function () { openBottle(image); });
     image.addEventListener('keydown', function (event) {
       if (event.key === 'Enter' || event.key === ' ') {
