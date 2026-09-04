@@ -1,0 +1,18 @@
+SHENAKY WINERY WEBSITE UPDATE
+
+1. Open the Shenaky1/Shenakywinery repository on GitHub.
+2. Open "Add file" and choose "Upload files."
+3. Upload all 10 files from this folder into the main/top level of the repository.
+4. When GitHub asks about replacing existing files, keep the uploaded versions.
+5. Commit the changes directly to the main branch.
+
+Important: Upload the individual files inside this folder, not the ZIP file itself.
+
+This package includes:
+- A homepage image that is fully visible on laptop screens
+- No "View our medals" homepage link
+- No telephone number on the English or French Contact pages
+- Click-to-enlarge and Amazon-style wine-label magnification
+- The Sauvignon Blanc bottle image reference
+- English and French wine pages
+- Display-only status for the 2024 Red Blend and 2023 Riesling Ice Wine
