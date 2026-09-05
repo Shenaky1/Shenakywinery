@@ -231,11 +231,3 @@ body.wine-view-open{overflow:hidden}
 }
 
 .home-center-motto small,.story-copy .quote small{display:block;margin-top:5px;font:normal .78em Arial,sans-serif;letter-spacing:.02em}
-
-
-/* TEMPORARY HOMEPAGE FEATURE — remove with the matching article before launch. */
-.home-fun-preview{border-top:1px solid var(--line)}
-.home-fun-photo{margin:0}
-.home-fun-photo img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border:7px solid #fff;box-shadow:0 18px 42px rgba(18,32,44,.16)}
-.home-fun-photo figcaption{margin-top:9px;color:var(--muted);font-size:.82rem;font-style:italic;text-align:center}
-@media(max-width:700px){.home-fun-preview{display:flex;flex-direction:column}.home-fun-photo{order:-1}}
