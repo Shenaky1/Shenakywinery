@@ -42,6 +42,11 @@ body{font-size:16px}
 body.wine-view-open{overflow:hidden}
 .wine-lightbox-figure{pointer-events:auto}
 .wine-lightbox-close{z-index:3}
+.wine-lightbox-count{margin:0 0 .45rem;color:var(--muted);font-size:.82rem;font-weight:700;letter-spacing:.08em}
+.wine-lightbox-nav{position:absolute;z-index:4;top:50%;width:48px;height:58px;transform:translateY(-50%);border:1px solid var(--gold);border-radius:6px;background:rgba(255,250,242,.94);color:var(--wine);font:700 2.35rem/1 Georgia,serif;cursor:pointer;pointer-events:auto;box-shadow:0 5px 18px rgba(0,0,0,.22)}
+.wine-lightbox-prev{left:12px}
+.wine-lightbox-next{right:12px}
+.wine-lightbox-nav:hover,.wine-lightbox-nav:focus-visible{background:var(--wine);color:#fff;outline:2px solid #fff;outline-offset:2px}
 .wine-lightbox-turn{display:none;align-self:flex-start;margin:.8rem 0 0;padding:.65rem .9rem;border:1px solid var(--gold);border-radius:4px;background:#fffaf2;color:var(--wine);font-weight:700;cursor:pointer}
 .wine-lightbox-turn.is-available{display:inline-flex}
 .wine-lightbox-image{transition:transform .45s ease,opacity .2s ease}
@@ -70,6 +75,9 @@ body.wine-view-open{overflow:hidden}
   .wine-lightbox-details{padding:16px}
   .wine-lightbox-zoom{display:none}
   .wine-lightbox-caption span{font-size:.85rem}
+  .wine-lightbox-nav{top:42%;width:44px;height:52px;font-size:2rem}
+  .wine-lightbox-prev{left:6px}
+  .wine-lightbox-next{right:6px}
   .contact-details-two{grid-template-columns:1fr}
 }
 @media(hover:none){

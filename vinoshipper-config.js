@@ -9,10 +9,10 @@
  * Do not put passwords, banking information, or API secrets in this file.
  */
 window.SHENAKY_VINOSHIPPER = Object.freeze({
-  enabled: true,
+  enabled: false,
   accountId: '6135',
   approvals: Object.freeze({
-    '2024-red-blend': false,
+    '2024-red-blend': true,
     '2025-merlot': true,
     '2024-merlot': true,
     '2024-sauvignon-blanc': true,

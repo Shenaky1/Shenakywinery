@@ -112,6 +112,7 @@ document.querySelectorAll('.menu-button').forEach(function(button){
     '<figure class="wine-lightbox-figure">' +
       '<div class="wine-lightbox-bottle"><img class="wine-lightbox-image" alt=""><span class="wine-lightbox-lens" aria-hidden="true"></span></div>' +
       '<figcaption class="wine-lightbox-details">' +
+        '<p class="wine-lightbox-count" aria-live="polite"></p>' +
         '<p class="wine-lightbox-vintage"></p>' +
         '<h2 class="wine-lightbox-title"></h2>' +
         '<p class="wine-lightbox-origin"></p>' +
@@ -119,6 +120,8 @@ document.querySelectorAll('.menu-button').forEach(function(button){
         '<button class="wine-lightbox-turn" type="button">' + (isFrenchPage ? 'Tourner la bouteille' : 'Turn the bottle') + '</button>' +
         '<div class="wine-lightbox-caption"><span>' + (isFrenchPage ? 'Touchez l’image ou déplacez le curseur pour examiner l’étiquette' : 'Tap the image or move the cursor to examine the label') + '</span><strong class="wine-lightbox-price"></strong></div>' +
       '</figcaption>' +
+      '<button class="wine-lightbox-nav wine-lightbox-prev" type="button" aria-label="' + (isFrenchPage ? 'Vin précédent' : 'Previous wine') + '">&#8249;</button>' +
+      '<button class="wine-lightbox-nav wine-lightbox-next" type="button" aria-label="' + (isFrenchPage ? 'Vin suivant' : 'Next wine') + '">&#8250;</button>' +
       '<button class="wine-lightbox-close" type="button" aria-label="Close enlarged bottle">&times;</button>' +
     '</figure>';
   document.body.appendChild(lightbox);
@@ -128,15 +131,19 @@ document.querySelectorAll('.menu-button').forEach(function(button){
   var lens = lightbox.querySelector('.wine-lightbox-lens');
   var zoomPanel = lightbox.querySelector('.wine-lightbox-zoom');
   var vintageText = lightbox.querySelector('.wine-lightbox-vintage');
+  var countText = lightbox.querySelector('.wine-lightbox-count');
   var titleText = lightbox.querySelector('.wine-lightbox-title');
   var originText = lightbox.querySelector('.wine-lightbox-origin');
   var priceText = lightbox.querySelector('.wine-lightbox-price');
   var turnButton = lightbox.querySelector('.wine-lightbox-turn');
   var closeButton = lightbox.querySelector('.wine-lightbox-close');
+  var previousButton = lightbox.querySelector('.wine-lightbox-prev');
+  var nextButton = lightbox.querySelector('.wine-lightbox-next');
   var activeSource = null;
   var frontImageUrl = '';
   var backImageUrl = '';
   var showingBack = false;
+  var swipeStartX = null;
 
   function closeBottle() {
     var returnTarget = activeSource;
@@ -154,7 +161,7 @@ document.querySelectorAll('.menu-button').forEach(function(button){
     if (returnTarget) returnTarget.focus();
   }
 
-  function openBottle(source) {
+  function openBottle(source, preserveFocus) {
     if (activeSource === source) {
       closeBottle();
       return;
@@ -178,11 +185,20 @@ document.querySelectorAll('.menu-button').forEach(function(button){
     titleText.textContent = card.querySelector('.wine-card-copy h2').textContent;
     originText.textContent = card.querySelector('.wine-card-copy p').textContent;
     priceText.textContent = card.querySelector('.wine-buy-row strong').textContent;
+    var activeIndex = bottleImages.indexOf(source);
+    countText.textContent = (activeIndex + 1) + ' / ' + bottleImages.length;
     turnButton.classList.toggle('is-available', Boolean(backImageUrl));
     turnButton.textContent = isFrenchPage ? 'Voir l’étiquette arrière' : 'View back label';
     lightbox.classList.add('is-open');
     document.body.classList.add('wine-view-open');
-    closeButton.focus();
+    if (!preserveFocus) closeButton.focus();
+  }
+
+  function showRelativeBottle(direction) {
+    if (!activeSource) return;
+    var activeIndex = bottleImages.indexOf(activeSource);
+    var nextIndex = (activeIndex + direction + bottleImages.length) % bottleImages.length;
+    openBottle(bottleImages[nextIndex], true);
   }
 
   bottleImages.forEach(function (image) {
@@ -208,6 +224,8 @@ document.querySelectorAll('.menu-button').forEach(function(button){
   });
 
   closeButton.addEventListener('click', closeBottle);
+  previousButton.addEventListener('click', function () { showRelativeBottle(-1); });
+  nextButton.addEventListener('click', function () { showRelativeBottle(1); });
   lightbox.addEventListener('click', function (event) {
     if (event.target === lightbox) closeBottle();
   });
@@ -228,6 +246,16 @@ document.querySelectorAll('.menu-button').forEach(function(button){
   bottleStage.addEventListener('pointerenter', function () {
     bottleStage.classList.add('is-zooming');
   });
+  bottleStage.addEventListener('pointerdown', function (event) {
+    if (event.pointerType === 'touch') swipeStartX = event.clientX;
+  });
+  bottleStage.addEventListener('pointerup', function (event) {
+    if (event.pointerType !== 'touch' || swipeStartX === null) return;
+    var distance = event.clientX - swipeStartX;
+    swipeStartX = null;
+    if (Math.abs(distance) < 45) return;
+    showRelativeBottle(distance < 0 ? 1 : -1);
+  });
   bottleStage.addEventListener('pointerleave', function () {
     bottleStage.classList.remove('is-zooming');
   });
@@ -247,5 +275,7 @@ document.querySelectorAll('.menu-button').forEach(function(button){
   });
   document.addEventListener('keydown', function (event) {
     if (event.key === 'Escape' && activeSource) closeBottle();
+    if (event.key === 'ArrowLeft' && activeSource) showRelativeBottle(-1);
+    if (event.key === 'ArrowRight' && activeSource) showRelativeBottle(1);
   });
 }());

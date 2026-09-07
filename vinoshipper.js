@@ -18,18 +18,27 @@
   }
 
   function checkoutPendingText(){
-    return isFrench ? 'Étiquette approuvée · Paiement en préparation' : 'Label approved · Checkout setup in progress';
+    return isFrench
+      ? 'Étiquette approuvée · Vente après finalisation de l’emballage'
+      : 'Label approved · Sales open after packaging is finalized';
   }
 
   if (!configured) {
     slots.forEach(function(slot){
-      slot.className = 'wine-status';
-      slot.textContent = unavailableText();
+      var productKey = slot.dataset.vsProductKey;
+      var approved = (config.approvals || {})[productKey] === true;
+      slot.className = approved ? 'wine-status is-checkout-pending' : 'wine-status is-pending-approval';
+      slot.textContent = approved ? checkoutPendingText() : pendingApprovalText();
     });
     if (status) {
       status.textContent = isFrench
-        ? 'La boutique sécurisée VinoShipper sera ouverte lorsque tous les produits approuvés seront configurés.'
-        : 'The secure VinoShipper store will open after all approved products are configured.';
+        ? 'La vente en ligne ouvrira après la finalisation de l’emballage d’expédition.'
+        : 'Online sales will open after shipping packaging is finalized.';
+    }
+    if (checkoutDetails) {
+      checkoutDetails.textContent = isFrench
+        ? 'Les étiquettes de tous les vins, sauf l’Ice Wine, sont approuvées. Aucun paiement n’est accepté actuellement.'
+        : 'Labels for all wines except the Ice Wine are approved. No payments are being accepted yet.';
     }
     return;
   }
