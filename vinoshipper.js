@@ -14,13 +14,11 @@
   }
 
   function pendingApprovalText(){
-    return isFrench ? 'En attente d’approbation de l’étiquette' : 'Awaiting label approval';
+    return isFrench ? 'Bientôt disponible' : 'Available soon';
   }
 
   function checkoutPendingText(){
-    return isFrench
-      ? 'Étiquette approuvée · Vente après finalisation de l’emballage'
-      : 'Label approved · Sales open after packaging is finalized';
+    return isFrench ? 'Bientôt disponible' : 'Available soon';
   }
 
   if (!configured) {
@@ -32,13 +30,13 @@
     });
     if (status) {
       status.textContent = isFrench
-        ? 'La vente en ligne ouvrira après la finalisation de l’emballage d’expédition.'
-        : 'Online sales will open after shipping packaging is finalized.';
+        ? 'La vente en ligne sera bientôt disponible.'
+        : 'Online ordering will be available soon.';
     }
     if (checkoutDetails) {
       checkoutDetails.textContent = isFrench
-        ? 'Les étiquettes de tous les vins, sauf l’Ice Wine, sont approuvées. Aucun paiement n’est accepté actuellement.'
-        : 'Labels for all wines except the Ice Wine are approved. No payments are being accepted yet.';
+        ? 'Revenez bientôt pour commander nos vins.'
+        : 'Please check back soon to order our wines.';
     }
     return;
   }
