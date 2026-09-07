@@ -130,3 +130,21 @@ body.wine-view-open{overflow:hidden}
  .home-awards-preview,.home-contact-preview{align-items:flex-start;flex-direction:column;padding:30px 24px}
  .home-contact-preview{margin-top:32px;margin-bottom:40px}
 }
+
+/* Centered, unboxed homepage message */
+.home-page .heritage-home{position:relative;display:grid;place-items:center}
+.home-page .home-hero-copy{
+  position:relative!important;inset:auto!important;
+  width:min(92%,760px)!important;max-width:760px!important;
+  padding:18px!important;margin:0 auto!important;
+  color:#fff!important;background:none!important;border:0!important;border-radius:0!important;
+  box-shadow:none!important;text-align:center!important;
+  text-shadow:0 3px 14px rgba(0,0,0,.95)!important
+}
+.home-page .home-hero-copy h1{font-size:clamp(2.25rem,5vw,4.7rem)!important;line-height:1.02!important}
+.home-page .home-hero-copy p{max-width:680px!important;margin-left:auto!important;margin-right:auto!important;font-size:clamp(.95rem,1.5vw,1.15rem)!important}
+.home-page .home-hero-copy .actions{justify-content:center!important}
+@media(max-width:600px){
+ .home-page .home-hero-copy{width:calc(100% - 24px)!important;padding:12px!important}
+ .home-page .home-hero-copy h1{font-size:clamp(2rem,10vw,3rem)!important}
+}
