@@ -5,8 +5,9 @@ body{font-size:16px}
 .site-footer p{font-size:.9rem}
 
 /* Hero: preserve the landscape, reveal more sky, and keep the message readable. */
-.minimalist-home{height:auto;min-height:100vh;overflow:auto}
-.minimalist-home main{min-height:calc(100vh - 58px)}
+.home-page.minimalist-home{height:auto!important;min-height:100vh;overflow-x:hidden!important;overflow-y:auto!important}
+.minimalist-home main{display:block;min-height:0}
+
 .heritage-home{
   min-height:calc(100vh - 58px);
   background-position:center 22%;
@@ -25,6 +26,15 @@ body{font-size:16px}
 .home-hero-copy p{max-width:380px;margin:0;color:#fff;font-size:.92rem;line-height:1.4}
 .home-hero-copy .actions{margin-top:.85rem}
 .home-hero-copy .btn-primary{min-height:40px;padding:.65rem 1rem;font-size:.86rem}
+
+.home-personal{padding:clamp(44px,7vw,82px) 0;background:#f8f4ed;color:var(--ink)}
+.home-personal-inner{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr);gap:clamp(32px,6vw,76px);align-items:center}
+.home-personal h2{margin:.35rem 0 .8rem;font:700 clamp(1.8rem,3vw,2.65rem)/1.1 Georgia,serif;color:var(--wine)}
+.home-personal p{max-width:650px;margin:0 0 1.2rem;font-size:1.05rem;line-height:1.75;color:var(--muted)}
+.home-personal blockquote{margin:0;padding:clamp(24px,4vw,40px);border-left:3px solid var(--gold);background:#fff;color:var(--wine);font:italic 700 clamp(1.45rem,2.4vw,2.1rem)/1.35 Georgia,serif;box-shadow:0 14px 34px rgba(30,24,20,.08)}
+.home-personal cite{display:block;margin-top:1rem;color:var(--muted);font:600 .82rem/1.4 Arial,sans-serif;letter-spacing:.04em}
+.home-story-link{display:inline-block;color:var(--wine);font-weight:700;text-decoration:none;border-bottom:1px solid var(--gold)}
+.home-story-link:hover,.home-story-link:focus-visible{color:var(--gold)}
 
 /* Consistent bottle presentation and clear availability states. */
 .wine-card img{height:310px;padding:16px;background:linear-gradient(180deg,#f8f4ed,#eee6da);filter:drop-shadow(0 13px 15px rgba(22,28,34,.14))}
@@ -67,6 +77,9 @@ body.wine-view-open{overflow:hidden}
   .home-hero-copy{left:12px;right:12px;top:18px;width:auto;max-width:340px;padding:14px}
   .home-hero-copy h1{font-size:clamp(1.4rem,6.8vw,1.85rem)}
   .home-hero-copy p{font-size:.86rem}
+  .home-personal-inner{grid-template-columns:1fr;gap:28px}
+  .home-personal{padding:38px 0}
+  .home-personal blockquote{padding:24px}
   .wine-gallery-grid{grid-template-columns:1fr}
   .wine-card img{height:min(54vh,390px);padding:18px}
   .wine-lightbox-figure{display:flex;flex-direction:column;overflow:auto}
