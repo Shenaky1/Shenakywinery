@@ -20,11 +20,11 @@ window.SHENAKY_VINOSHIPPER = Object.freeze({
     '2023-riesling-ice-wine': false
   }),
   products: Object.freeze({
-    '2024-red-blend': '',
+    '2024-red-blend': '200772',
     '2025-merlot': '200015',
-    '2024-merlot': '',
-    '2024-sauvignon-blanc': '',
-    '2025-symphony': '',
+    '2024-merlot': '200774',
+    '2024-sauvignon-blanc': '200775',
+    '2025-symphony': '200776',
     '2023-riesling-ice-wine': ''
   })
 });
