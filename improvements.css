@@ -6,10 +6,11 @@ body{font-size:16px}
 
 /* Hero: preserve the landscape, reveal more sky, and keep the message readable. */
 .home-page.minimalist-home{height:auto!important;min-height:100vh;overflow-x:hidden!important;overflow-y:auto!important}
-.minimalist-home main{display:block;min-height:0}
+.home-page.minimalist-home main{display:block;height:auto!important;min-height:0!important;overflow:visible}
 
 .heritage-home{
-  min-height:calc(100vh - 58px);
+  height:calc(100vh - 58px)!important;
+  min-height:620px;
   background-position:center 22%;
   background-size:cover !important;
   background-repeat:no-repeat;
@@ -72,8 +73,8 @@ body.wine-view-open{overflow:hidden}
 }
 @media(max-width:600px){
   body{font-size:16px}
-  .minimalist-home main,.heritage-home{min-height:calc(100svh - 58px)}
-  .heritage-home{background-position:58% 18%}
+  .home-page.minimalist-home main{height:auto!important;min-height:0!important}
+  .heritage-home{height:calc(100svh - 58px)!important;min-height:560px;background-position:58% 18%}
   .home-hero-copy{left:12px;right:12px;top:18px;width:auto;max-width:340px;padding:14px}
   .home-hero-copy h1{font-size:clamp(1.4rem,6.8vw,1.85rem)}
   .home-hero-copy p{font-size:.86rem}
