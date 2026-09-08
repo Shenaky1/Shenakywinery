@@ -99,7 +99,7 @@ document.querySelectorAll('.menu-button').forEach(function(button){
 // Enlarge wine bottles without leaving the wine collection. Only one bottle
 // can be enlarged at a time; clicking another bottle replaces the open image.
 (function () {
-  var bottleImages = Array.prototype.slice.call(document.querySelectorAll('.wine-card > img'));
+  var bottleImages = Array.prototype.slice.call(document.querySelectorAll('.wine-card > img, .home-bottle-row img'));
   if (!bottleImages.length) return;
   var isFrenchPage = (document.documentElement.lang || '').toLowerCase().indexOf('fr') === 0;
 
@@ -172,6 +172,7 @@ document.querySelectorAll('.menu-button').forEach(function(button){
     }
     activeSource = source;
     var card = source.closest('.wine-card');
+    var preview = source.closest('.home-bottle-preview');
     var imageUrl = source.currentSrc || source.src;
     frontImageUrl = imageUrl;
     backImageUrl = source.getAttribute('data-back-src') || '';
@@ -181,10 +182,10 @@ document.querySelectorAll('.menu-button').forEach(function(button){
     enlargedImage.src = imageUrl;
     enlargedImage.alt = source.alt;
     zoomPanel.style.backgroundImage = 'url("' + imageUrl.replace(/"/g, '%22') + '")';
-    vintageText.textContent = card.querySelector('.wine-card-copy span').textContent;
-    titleText.textContent = card.querySelector('.wine-card-copy h2').textContent;
-    originText.textContent = card.querySelector('.wine-card-copy p').textContent;
-    priceText.textContent = card.querySelector('.wine-buy-row strong').textContent;
+    vintageText.textContent = card ? card.querySelector('.wine-card-copy span').textContent : preview.getAttribute('data-vintage');
+    titleText.textContent = card ? card.querySelector('.wine-card-copy h2').textContent : preview.getAttribute('data-title');
+    originText.textContent = card ? card.querySelector('.wine-card-copy p').textContent : preview.getAttribute('data-origin');
+    priceText.textContent = card ? card.querySelector('.wine-buy-row strong').textContent : preview.getAttribute('data-price');
     var activeIndex = bottleImages.indexOf(source);
     countText.textContent = (activeIndex + 1) + ' / ' + bottleImages.length;
     turnButton.classList.toggle('is-available', Boolean(backImageUrl));
@@ -202,16 +203,28 @@ document.querySelectorAll('.menu-button').forEach(function(button){
   }
 
   bottleImages.forEach(function (image) {
+    var preview = image.closest('.home-bottle-preview');
+    var control = preview || image;
+    control.setAttribute('aria-haspopup', 'dialog');
+    control.setAttribute('aria-expanded', 'false');
+    control.setAttribute('aria-label', (image.alt || 'Wine bottle') + (isFrenchPage ? ', ouvrir la vue agrandie' : ', open enlarged view'));
+
+    if (preview) {
+      preview.setAttribute('role', 'button');
+      preview.addEventListener('click', function (event) {
+        event.preventDefault();
+        openBottle(image);
+      });
+      return;
+    }
+
     image.setAttribute('tabindex', '0');
     image.setAttribute('role', 'button');
-    image.setAttribute('aria-haspopup', 'dialog');
-    image.setAttribute('aria-expanded', 'false');
-    image.setAttribute('aria-label', (image.alt || 'Wine bottle') + ' - enlarge');
     var hint = document.createElement('button');
     hint.type = 'button';
     hint.className = 'bottle-view-hint';
     hint.textContent = isFrenchPage ? 'Voir la bouteille et l’étiquette' : 'View bottle & label';
-    hint.setAttribute('aria-label', (image.alt || 'Wine bottle') + (isFrenchPage ? ' — ouvrir la vue agrandie' : ' — open enlarged view'));
+    hint.setAttribute('aria-label', (image.alt || 'Wine bottle') + (isFrenchPage ? ', ouvrir la vue agrandie' : ', open enlarged view'));
     image.insertAdjacentElement('afterend', hint);
     hint.addEventListener('click', function () { openBottle(image); });
     image.addEventListener('click', function () { openBottle(image); });
