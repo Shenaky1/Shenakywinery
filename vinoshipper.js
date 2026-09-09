@@ -9,6 +9,9 @@
   var status = document.querySelector('[data-vs-checkout-status]');
   var checkoutDetails = status && status.nextElementSibling;
 
+  // Demonstration mode uses the local cart and never loads live checkout.
+  if (config.demoMode === true) return;
+
   function unavailableText(){
     return isFrench ? 'Vente bientôt disponible' : 'Sales opening soon';
   }
