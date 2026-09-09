@@ -10,6 +10,7 @@
  */
 window.SHENAKY_VINOSHIPPER = Object.freeze({
   enabled: false,
+  demoMode: true,
   accountId: '6135',
   approvals: Object.freeze({
     '2024-red-blend': true,
