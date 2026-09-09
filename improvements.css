@@ -164,3 +164,8 @@ body.wine-view-open{overflow:hidden}
   .cart-panel{padding:16px}
   .cart-heading{align-items:flex-start;flex-direction:column}
 }
+
+.shipping-promo{display:inline-block;margin-top:.75rem!important;padding:.55rem .8rem;border:1px solid var(--gold);background:#fff8e8;color:var(--wine)!important;font-weight:800}
+.shipping-offer{color:#386b4b}
+.shipping-offer span{display:flex;flex-direction:column;gap:2px}
+.shipping-offer small{color:var(--muted);font-size:.7rem;font-weight:600}
