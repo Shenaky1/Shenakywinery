@@ -1,13 +1,11 @@
-// Site-wide age gate. Approval is remembered for 30 days on this device.
+// Site-wide age gate. Approval is remembered only for the current browser visit.
 (function () {
   var STORAGE_KEY = 'shenaky_age_verified_at';
-  var THIRTY_DAYS = 30 * 24 * 60 * 60 * 1000;
   var isFrench = (document.documentElement.lang || '').toLowerCase().indexOf('fr') === 0;
 
   function isVerified() {
     try {
-      var verifiedAt = Number(localStorage.getItem(STORAGE_KEY));
-      return verifiedAt && Date.now() - verifiedAt < THIRTY_DAYS;
+      return sessionStorage.getItem(STORAGE_KEY) === 'yes';
     } catch (error) {
       return false;
     }
@@ -15,7 +13,7 @@
 
   function rememberVerification() {
     try {
-      localStorage.setItem(STORAGE_KEY, String(Date.now()));
+      sessionStorage.setItem(STORAGE_KEY, 'yes');
     } catch (error) {
       // The gate still works for this page if browser storage is unavailable.
     }
