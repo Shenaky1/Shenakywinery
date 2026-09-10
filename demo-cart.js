@@ -7,11 +7,12 @@
   var isFrench = (document.documentElement.lang || '').toLowerCase().indexOf('fr') === 0;
   var storageKey = 'shenaky_demo_cart_v1';
   var catalog = {
-    '2024-red-blend': { name: 'Red Blend', vintage: '2024', price: 25, image: 'assets/wines/2024-red-blend.webp?v=20260902-1' },
-    '2025-merlot': { name: 'Merlot', vintage: '2025', price: 25, image: 'assets/wines/2025-merlot-approved.webp' },
-    '2024-merlot': { name: 'Merlot', vintage: '2024', price: 25, image: 'assets/wines/2024-merlot.webp?v=20260902-1' },
-    '2024-sauvignon-blanc': { name: 'Sauvignon Blanc', vintage: '2024', price: 25, image: 'assets/wines/2024-sauvignon-blanc-corrected.webp?v=20260907-2' },
-    '2025-symphony': { name: 'Symphony', vintage: '2025', price: 25, image: 'assets/wines/2025-symphony-corrected.webp?v=20260907-2' }
+    '2024-red-blend': { name: 'Red Blend', vintage: '2024', price: 25, volume: '750 ml', image: 'assets/wines/2024-red-blend.webp?v=20260902-1' },
+    '2025-merlot': { name: 'Merlot', vintage: '2025', price: 25, volume: '750 ml', image: 'assets/wines/2025-merlot-approved.webp' },
+    '2024-merlot': { name: 'Merlot', vintage: '2024', price: 25, volume: '750 ml', image: 'assets/wines/2024-merlot.webp?v=20260902-1' },
+    '2024-sauvignon-blanc': { name: 'Sauvignon Blanc', vintage: '2024', price: 25, volume: '750 ml', image: 'assets/wines/2024-sauvignon-blanc-corrected.webp?v=20260907-2' },
+    '2025-symphony': { name: 'Symphony', vintage: '2025', price: 25, volume: '750 ml', image: 'assets/wines/2025-symphony-corrected.webp?v=20260907-2' },
+    '2023-riesling-ice-wine': { name: 'Riesling Ice Wine', vintage: '2023', price: 35, volume: '375 ml', image: 'assets/wines/2023-riesling-ice-wine-approved.webp?v=20260910-1' }
   };
 
   function readCart() {
@@ -132,7 +133,7 @@
         row.className = 'cart-item';
         row.innerHTML =
           '<img src="' + product.image + '" alt="">' +
-          '<div class="cart-item-name"><strong>' + product.vintage + ' ' + product.name + '</strong><span>' + (isFrench ? 'Bouteille de 750 ml' : '750 ml bottle') + '</span></div>' +
+          '<div class="cart-item-name"><strong>' + product.vintage + ' ' + product.name + '</strong><span>' + (isFrench ? 'Bouteille de ' + product.volume : product.volume + ' bottle') + '</span></div>' +
           '<div class="cart-quantity"><button type="button" data-minus aria-label="' + (isFrench ? 'Réduire la quantité' : 'Decrease quantity') + '">−</button><output>' + quantity + '</output><button type="button" data-plus aria-label="' + (isFrench ? 'Augmenter la quantité' : 'Increase quantity') + '">+</button></div>' +
           '<div class="cart-item-price"><strong>' + money(product.price * quantity) + '</strong><button type="button" class="cart-remove" data-remove>' + (isFrench ? 'Supprimer' : 'Remove') + '</button></div>';
 
