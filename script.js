@@ -295,3 +295,71 @@ document.querySelectorAll('.menu-button').forEach(function(button){
     if (event.key === 'ArrowRight' && activeSource) showRelativeBottle(1);
   });
 }());
+
+// Show only the selected wine when a Wine Guide link includes a wine anchor.
+(function () {
+  var grid = document.querySelector('.wine-guide-grid');
+  if (!grid) return;
+
+  var cards = Array.prototype.slice.call(grid.querySelectorAll('.wine-guide-card[id]'));
+  var isFrenchGuide = (document.documentElement.lang || '').toLowerCase().indexOf('fr') === 0;
+  var heroHeading = document.querySelector('.wine-guide-hero h1');
+  var heroIntro = document.querySelector('.wine-guide-hero p');
+  var signature = document.querySelector('.wine-guide-signature');
+  var defaultHeading = heroHeading ? heroHeading.textContent : '';
+  var defaultIntro = heroIntro ? heroIntro.textContent : '';
+
+  var allLink = document.createElement('a');
+  allLink.className = 'wine-guide-all-link';
+  allLink.href = isFrenchGuide ? 'fr-wine-guide.html' : 'wine-guide.html';
+  allLink.textContent = isFrenchGuide ? 'Voir tous les vins du Guide' : 'View all wines in the Wine Guide';
+  allLink.hidden = true;
+  grid.parentNode.insertBefore(allLink, grid);
+
+  function selectedCard() {
+    var id = window.location.hash.slice(1);
+    if (!id) return null;
+    try {
+      id = decodeURIComponent(id);
+    } catch (error) {
+      return null;
+    }
+    var target = document.getElementById(id);
+    return target && target.classList.contains('wine-guide-card') ? target : null;
+  }
+
+  function applyWineGuideFocus() {
+    var target = selectedCard();
+    document.body.classList.toggle('wine-guide-focus', Boolean(target));
+    cards.forEach(function (card) {
+      card.hidden = Boolean(target) && card !== target;
+    });
+    allLink.hidden = !target;
+
+    if (signature) {
+      signature.hidden = Boolean(target) && target.id !== 'riesling-ice-wine';
+    }
+
+    if (target) {
+      var wineName = target.querySelector('h2').textContent;
+      if (heroHeading) {
+        heroHeading.textContent = isFrenchGuide ? 'Comment déguster le ' + wineName : 'How to Enjoy ' + wineName;
+      }
+      if (heroIntro) {
+        heroIntro.textContent = isFrenchGuide
+          ? 'Température de service, accords et conseil de dégustation pour ce vin.'
+          : 'Serving temperature, food pairings, and a simple serving idea for this wine.';
+      }
+      window.setTimeout(function () {
+        target.scrollIntoView({ block: 'start' });
+      }, 0);
+    } else {
+      if (heroHeading) heroHeading.textContent = defaultHeading;
+      if (heroIntro) heroIntro.textContent = defaultIntro;
+      if (signature) signature.hidden = false;
+    }
+  }
+
+  window.addEventListener('hashchange', applyWineGuideFocus);
+  applyWineGuideFocus();
+}());
