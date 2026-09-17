@@ -201,3 +201,31 @@ body.wine-view-open{overflow:hidden}
   .ice-on-ice-copy{padding:26px 22px 30px}
   .ice-on-ice-recipe{grid-template-columns:1fr}
 }
+
+
+/* Wine Guide */
+.wine-guide-hero{background:linear-gradient(135deg,#102b25,#173e34);color:#fff}
+.wine-guide-hero .eyebrow{color:#d5aa5b}
+.wine-guide-hero h1,.wine-guide-hero p{color:#fff}
+.wine-guide-section{background:#f7f1e7}
+.wine-guide-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.wine-guide-card{scroll-margin-top:90px;padding:30px;background:#fffdf8;border:1px solid #d9c9ae;border-top:4px solid #8b2635;border-radius:8px;box-shadow:0 12px 28px rgba(23,40,58,.08)}
+.wine-guide-card-wide{grid-column:1/-1}
+.wine-guide-vintage{margin-bottom:5px;color:#9b6b20;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.wine-guide-card h2{margin:0 0 12px;color:#17283a;font:700 28px Georgia,serif}
+.wine-guide-card>p{margin:0 0 18px;color:#465565;line-height:1.65}
+.wine-guide-card dl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:0 0 20px}
+.wine-guide-card dl div{padding:14px;background:#f6efe4;border-radius:5px}
+.wine-guide-card dt{margin-bottom:5px;color:#7f2532;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.wine-guide-card dd{margin:0;color:#27394a;line-height:1.5}
+.wine-guide-card>a,.bottle-view-hint{display:inline-block;color:#7f2532;font-weight:800;text-decoration:none}
+.wine-guide-card>a:hover,.wine-guide-card>a:focus,.bottle-view-hint:hover,.bottle-view-hint:focus{text-decoration:underline}
+.wine-guide-signature{margin-top:0;margin-bottom:60px}
+.bottle-view-hint{display:block;text-align:center}
+@media(max-width:760px){
+  .wine-guide-grid{grid-template-columns:1fr}
+  .wine-guide-card-wide{grid-column:auto}
+  .wine-guide-card{padding:22px}
+  .wine-guide-card dl{grid-template-columns:1fr}
+  .wine-guide-signature{margin-bottom:36px}
+}
