@@ -218,13 +218,18 @@ document.querySelectorAll('.menu-button').forEach(function(button){
 
     image.setAttribute('tabindex', '0');
     image.setAttribute('role', 'button');
-    var hint = document.createElement('button');
-    hint.type = 'button';
+    var hint = document.createElement('a');
     hint.className = 'bottle-view-hint';
-    hint.textContent = isFrenchPage ? 'Voir la bouteille et l’étiquette' : 'View bottle & label';
-    hint.setAttribute('aria-label', (image.alt || 'Wine bottle') + (isFrenchPage ? ', ouvrir la vue agrandie' : ', open enlarged view'));
+    var wineTitle = (image.closest('.wine-card').querySelector('.wine-card-copy h2').textContent || '').toLowerCase();
+    var guideAnchor = wineTitle.indexOf('red blend') !== -1 ? 'red-blend'
+      : wineTitle.indexOf('merlot') !== -1 ? 'merlot'
+      : wineTitle.indexOf('sauvignon') !== -1 ? 'sauvignon-blanc'
+      : wineTitle.indexOf('symphony') !== -1 ? 'symphony'
+      : 'riesling-ice-wine';
+    hint.href = (isFrenchPage ? 'fr-wine-guide.html#' : 'wine-guide.html#') + guideAnchor;
+    hint.textContent = isFrenchPage ? 'Comment le déguster' : 'How to Enjoy';
+    hint.setAttribute('aria-label', (isFrenchPage ? 'Conseils de dégustation pour ' : 'Serving guide for ') + (image.alt || 'wine'));
     image.insertAdjacentElement('afterend', hint);
-    hint.addEventListener('click', function () { openBottle(image); });
     image.addEventListener('click', function () { openBottle(image); });
     image.addEventListener('keydown', function (event) {
       if (event.key === 'Enter' || event.key === ' ') {
