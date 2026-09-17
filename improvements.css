@@ -229,3 +229,23 @@ body.wine-view-open{overflow:hidden}
   .wine-guide-card dl{grid-template-columns:1fr}
   .wine-guide-signature{margin-bottom:36px}
 }
+
+/* Focused Wine Guide view */
+.wine-guide-all-link{
+  display:inline-flex;
+  margin:0 0 20px;
+  color:#7f2532;
+  font-weight:800;
+  text-decoration:none;
+  border-bottom:1px solid #b18237;
+}
+.wine-guide-all-link:hover,.wine-guide-all-link:focus-visible{color:#9b6b20}
+.wine-guide-all-link[hidden]{display:none}
+body.wine-guide-focus .wine-guide-grid{
+  grid-template-columns:minmax(0,760px);
+  justify-content:center;
+}
+body.wine-guide-focus .wine-guide-card{
+  grid-column:auto;
+  width:100%;
+}
