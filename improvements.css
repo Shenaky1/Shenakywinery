@@ -285,3 +285,13 @@ body.wine-guide-focus .wine-guide-card h2{font-size:34px}
   .wine-guide-glass img,
   body.wine-guide-focus .wine-guide-glass img{height:180px}
 }
+
+/* Mobile touch enlargement for bottle labels. */
+@media(max-width:600px){
+  .wine-lightbox-bottle{cursor:zoom-in}
+  .wine-lightbox-image.is-touch-zoomed{
+    transform:scale(1.9);
+    transform-origin:50% 80%;
+    cursor:zoom-out;
+  }
+}
