@@ -337,7 +337,7 @@ document.querySelectorAll('.menu-button').forEach(function(button){
     allLink.hidden = !target;
 
     if (signature) {
-      signature.hidden = Boolean(target) && target.id !== 'riesling-ice-wine';
+      signature.hidden = Boolean(target);
     }
 
     if (target) {
