@@ -100,6 +100,10 @@ document.querySelectorAll('.menu-button').forEach(function(button){
   var bottleImages = Array.prototype.slice.call(document.querySelectorAll('.wine-card > img, .home-bottle-row img'));
   if (!bottleImages.length) return;
   var isFrenchPage = (document.documentElement.lang || '').toLowerCase().indexOf('fr') === 0;
+  var isTouchView = window.matchMedia && window.matchMedia('(hover: none)').matches;
+  var examineHint = isTouchView
+    ? (isFrenchPage ? 'Touchez l’image pour agrandir l’étiquette' : 'Tap the image to enlarge the label')
+    : (isFrenchPage ? 'Déplacez le curseur pour examiner l’étiquette' : 'Move the cursor to examine the label');
 
   var lightbox = document.createElement('div');
   lightbox.className = 'wine-lightbox';
@@ -116,7 +120,7 @@ document.querySelectorAll('.menu-button').forEach(function(button){
         '<p class="wine-lightbox-origin"></p>' +
         '<div class="wine-lightbox-zoom" role="img" aria-label="' + (isFrenchPage ? 'Zone agrandie de la bouteille' : 'Magnified bottle area') + '"></div>' +
         '<button class="wine-lightbox-turn" type="button">' + (isFrenchPage ? 'Tourner la bouteille' : 'Turn the bottle') + '</button>' +
-        '<div class="wine-lightbox-caption"><span>' + (isFrenchPage ? 'Touchez l’image ou déplacez le curseur pour examiner l’étiquette' : 'Tap the image or move the cursor to examine the label') + '</span><strong class="wine-lightbox-price"></strong></div>' +
+        '<div class="wine-lightbox-caption"><span>' + examineHint + '</span><strong class="wine-lightbox-price"></strong></div>' +
       '</figcaption>' +
       '<button class="wine-lightbox-nav wine-lightbox-prev" type="button" aria-label="' + (isFrenchPage ? 'Vin précédent' : 'Previous wine') + '">&#8249;</button>' +
       '<button class="wine-lightbox-nav wine-lightbox-next" type="button" aria-label="' + (isFrenchPage ? 'Vin suivant' : 'Next wine') + '">&#8250;</button>' +
@@ -142,6 +146,7 @@ document.querySelectorAll('.menu-button').forEach(function(button){
   var backImageUrl = '';
   var showingBack = false;
   var swipeStartX = null;
+  var swipeStartY = null;
 
   function closeBottle() {
     var returnTarget = activeSource;
@@ -151,6 +156,7 @@ document.querySelectorAll('.menu-button').forEach(function(button){
     }
     activeSource = null;
     lightbox.classList.remove('is-open');
+    enlargedImage.classList.remove('is-touch-zoomed');
     enlargedImage.removeAttribute('src');
     enlargedImage.alt = '';
     zoomPanel.style.backgroundImage = '';
@@ -175,6 +181,7 @@ document.querySelectorAll('.menu-button').forEach(function(button){
     frontImageUrl = imageUrl;
     backImageUrl = source.getAttribute('data-back-src') || '';
     showingBack = false;
+    enlargedImage.classList.remove('is-touch-zoomed');
     source.classList.add('is-enlarged-source');
     source.setAttribute('aria-expanded', 'true');
     enlargedImage.src = imageUrl;
@@ -263,14 +270,29 @@ document.querySelectorAll('.menu-button').forEach(function(button){
     bottleStage.classList.add('is-zooming');
   });
   bottleStage.addEventListener('pointerdown', function (event) {
-    if (event.pointerType === 'touch') swipeStartX = event.clientX;
+    if (event.pointerType === 'touch') {
+      swipeStartX = event.clientX;
+      swipeStartY = event.clientY;
+    }
   });
   bottleStage.addEventListener('pointerup', function (event) {
     if (event.pointerType !== 'touch' || swipeStartX === null) return;
-    var distance = event.clientX - swipeStartX;
+    var distanceX = event.clientX - swipeStartX;
+    var distanceY = event.clientY - swipeStartY;
     swipeStartX = null;
-    if (Math.abs(distance) < 45) return;
-    showRelativeBottle(distance < 0 ? 1 : -1);
+    swipeStartY = null;
+    if (Math.abs(distanceX) > 45 && Math.abs(distanceX) > Math.abs(distanceY)) {
+      enlargedImage.classList.remove('is-touch-zoomed');
+      showRelativeBottle(distanceX < 0 ? 1 : -1);
+      return;
+    }
+    if (Math.abs(distanceX) < 18 && Math.abs(distanceY) < 18) {
+      enlargedImage.classList.toggle('is-touch-zoomed');
+    }
+  });
+  bottleStage.addEventListener('pointercancel', function () {
+    swipeStartX = null;
+    swipeStartY = null;
   });
   bottleStage.addEventListener('pointerleave', function () {
     bottleStage.classList.remove('is-zooming');
