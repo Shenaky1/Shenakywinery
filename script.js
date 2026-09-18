@@ -233,9 +233,20 @@ document.querySelectorAll('.menu-button').forEach(function(button){
       : wineTitle.indexOf('sauvignon') !== -1 ? 'sauvignon-blanc'
       : wineTitle.indexOf('symphony') !== -1 ? 'symphony'
       : 'riesling-ice-wine';
-    hint.href = (isFrenchPage ? 'fr-wine-guide.html#' : 'wine-guide.html#') + guideAnchor;
+    var productNode = image.closest('.wine-card').querySelector('[data-vs-product-key]');
+    var productKey = productNode ? productNode.getAttribute('data-vs-product-key') : '';
+    hint.href = (isFrenchPage ? 'fr-wine-guide.html' : 'wine-guide.html')
+      + (productKey ? '?product=' + encodeURIComponent(productKey) : '')
+      + '#' + guideAnchor;
     hint.textContent = isFrenchPage ? 'Comment le déguster' : 'How to Enjoy';
     hint.setAttribute('aria-label', (isFrenchPage ? 'Conseils de dégustation pour ' : 'Serving guide for ') + (image.alt || 'wine'));
+    hint.addEventListener('click', function () {
+      try {
+        sessionStorage.setItem('shenaky_wine_return', window.location.href);
+      } catch (error) {
+        // Browser history remains available when storage is unavailable.
+      }
+    });
     image.insertAdjacentElement('afterend', hint);
     image.addEventListener('click', function () { openBottle(image); });
     image.addEventListener('keydown', function (event) {
@@ -331,12 +342,75 @@ document.querySelectorAll('.menu-button').forEach(function(button){
   var defaultHeading = heroHeading ? heroHeading.textContent : '';
   var defaultIntro = heroIntro ? heroIntro.textContent : '';
 
-  var allLink = document.createElement('a');
-  allLink.className = 'wine-guide-all-link';
-  allLink.href = isFrenchGuide ? 'fr-wine-guide.html' : 'wine-guide.html';
-  allLink.textContent = isFrenchGuide ? 'Voir tous les vins du Guide' : 'View all wines in the Wine Guide';
-  allLink.hidden = true;
-  grid.parentNode.insertBefore(allLink, grid);
+  var products = {
+    '2024-red-blend': {
+      guide: 'red-blend', vintage: '2024', name: 'Red Blend',
+      originEn: 'Contra Costa', originFr: 'Contra Costa', price: 25,
+      image: 'assets/wines/2024-red-blend.webp?v=20260902-1'
+    },
+    '2025-merlot': {
+      guide: 'merlot', vintage: '2025', name: 'Merlot',
+      originEn: 'Contra Costa', originFr: 'Contra Costa', price: 25,
+      image: 'assets/wines/2025-merlot-approved.webp'
+    },
+    '2024-merlot': {
+      guide: 'merlot', vintage: '2024', name: 'Merlot',
+      originEn: 'Contra Costa', originFr: 'Contra Costa', price: 25,
+      image: 'assets/wines/2024-merlot.webp?v=20260902-1'
+    },
+    '2024-sauvignon-blanc': {
+      guide: 'sauvignon-blanc', vintage: '2024', name: 'Sauvignon Blanc',
+      originEn: 'California', originFr: 'Californie', price: 25,
+      image: 'assets/wines/2024-sauvignon-blanc-corrected.webp?v=20260907-2'
+    },
+    '2025-symphony': {
+      guide: 'symphony', vintage: '2025', name: 'Symphony',
+      originEn: 'California · Silver Medal', originFr: 'Californie · Médaille d’argent', price: 25,
+      image: 'assets/wines/2025-symphony-corrected.webp?v=20260907-2'
+    },
+    '2023-riesling-ice-wine': {
+      guide: 'riesling-ice-wine', vintage: '2023 · 375 ml · 12.6% ABV',
+      vintageFr: '2023 · 375 ml · 12,6 % alc./vol.', name: 'Riesling Ice Wine',
+      originEn: 'American · Gold Medal', originFr: 'États-Unis · Médaille d’or', price: 35,
+      image: 'assets/wines/2023-riesling-ice-wine-approved.webp?v=20260917-3'
+    }
+  };
+
+  var backButton = document.createElement('button');
+  backButton.type = 'button';
+  backButton.className = 'wine-guide-all-link wine-guide-back-button';
+  backButton.textContent = isFrenchGuide ? '← Retour à Nos vins' : '← Back to Our Wines';
+  backButton.setAttribute('aria-label', isFrenchGuide ? 'Fermer et retourner à la page Nos vins' : 'Close and return to Our Wines');
+  backButton.hidden = true;
+  grid.parentNode.insertBefore(backButton, grid);
+
+  function returnToWines() {
+    var winesPage = isFrenchGuide ? 'fr-wines.html' : 'wines.html';
+    var referrerMatches = false;
+    try {
+      var referrer = document.referrer ? new URL(document.referrer) : null;
+      referrerMatches = Boolean(referrer)
+        && referrer.origin === window.location.origin
+        && referrer.pathname.slice(-winesPage.length) === winesPage;
+    } catch (error) {
+      referrerMatches = false;
+    }
+
+    if (referrerMatches && window.history.length > 1) {
+      window.history.back();
+      return;
+    }
+
+    var savedReturn = '';
+    try {
+      savedReturn = sessionStorage.getItem('shenaky_wine_return') || '';
+    } catch (error) {
+      savedReturn = '';
+    }
+    window.location.href = savedReturn || winesPage;
+  }
+
+  backButton.addEventListener('click', returnToWines);
 
   function selectedCard() {
     var id = window.location.hash.slice(1);
@@ -350,19 +424,55 @@ document.querySelectorAll('.menu-button').forEach(function(button){
     return target && target.classList.contains('wine-guide-card') ? target : null;
   }
 
+  function selectedProduct(target) {
+    if (!target || !window.URLSearchParams) return null;
+    var key = new URLSearchParams(window.location.search).get('product');
+    var product = key ? products[key] : null;
+    return product && product.guide === target.id ? { key: key, details: product } : null;
+  }
+
+  function removeProductPanel() {
+    var existing = grid.querySelector('.wine-guide-product');
+    if (existing) existing.remove();
+  }
+
+  function addProductPanel(target) {
+    removeProductPanel();
+    var selected = selectedProduct(target);
+    if (!selected) return;
+
+    var product = selected.details;
+    var panel = document.createElement('div');
+    panel.className = 'wine-guide-product';
+    panel.innerHTML =
+      '<img src="' + product.image + '" alt="' +
+        (isFrenchGuide ? 'Bouteille ' : '') + product.name + ' ' + product.vintage.split(' · ')[0] + '">' +
+      '<div class="wine-guide-product-copy">' +
+        '<span>' + (isFrenchGuide && product.vintageFr ? product.vintageFr : product.vintage) + '</span>' +
+        '<h3>' + product.name + '</h3>' +
+        '<p>' + (isFrenchGuide ? product.originFr : product.originEn) + '</p>' +
+        '<div class="wine-guide-product-buy">' +
+          '<strong>' + (isFrenchGuide ? product.price + ' $' : '$' + product.price) + '</strong>' +
+          '<div data-vs-product-key="' + selected.key + '"></div>' +
+        '</div>' +
+      '</div>';
+    target.insertBefore(panel, target.firstChild);
+  }
+
   function applyWineGuideFocus() {
     var target = selectedCard();
     document.body.classList.toggle('wine-guide-focus', Boolean(target));
     cards.forEach(function (card) {
       card.hidden = Boolean(target) && card !== target;
     });
-    allLink.hidden = !target;
+    backButton.hidden = !target;
 
     if (signature) {
       signature.hidden = Boolean(target);
     }
 
     if (target) {
+      addProductPanel(target);
       var wineName = target.querySelector('h2').textContent;
       if (heroHeading) {
         heroHeading.textContent = isFrenchGuide ? 'Comment déguster le ' + wineName : 'How to Enjoy ' + wineName;
@@ -376,6 +486,7 @@ document.querySelectorAll('.menu-button').forEach(function(button){
         target.scrollIntoView({ block: 'start' });
       }, 0);
     } else {
+      removeProductPanel();
       if (heroHeading) heroHeading.textContent = defaultHeading;
       if (heroIntro) heroIntro.textContent = defaultIntro;
       if (signature) signature.hidden = false;
