@@ -225,18 +225,6 @@ document.querySelectorAll('.menu-button').forEach(function(button){
 
     image.setAttribute('tabindex', '0');
     image.setAttribute('role', 'button');
-    var hint = document.createElement('a');
-    hint.className = 'bottle-view-hint';
-    var wineTitle = (image.closest('.wine-card').querySelector('.wine-card-copy h2').textContent || '').toLowerCase();
-    var guideAnchor = wineTitle.indexOf('red blend') !== -1 ? 'red-blend'
-      : wineTitle.indexOf('merlot') !== -1 ? 'merlot'
-      : wineTitle.indexOf('sauvignon') !== -1 ? 'sauvignon-blanc'
-      : wineTitle.indexOf('symphony') !== -1 ? 'symphony'
-      : 'riesling-ice-wine';
-    hint.href = (isFrenchPage ? 'fr-wine-guide.html#' : 'wine-guide.html#') + guideAnchor;
-    hint.textContent = isFrenchPage ? 'Comment le déguster' : 'How to Enjoy';
-    hint.setAttribute('aria-label', (isFrenchPage ? 'Conseils de dégustation pour ' : 'Serving guide for ') + (image.alt || 'wine'));
-    image.insertAdjacentElement('afterend', hint);
     image.addEventListener('click', function () { openBottle(image); });
     image.addEventListener('keydown', function (event) {
       if (event.key === 'Enter' || event.key === ' ') {
