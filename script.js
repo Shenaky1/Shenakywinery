@@ -105,6 +105,94 @@ document.querySelectorAll('.menu-button').forEach(function(button){
     ? (isFrenchPage ? 'Touchez l’image pour agrandir l’étiquette' : 'Tap the image to enlarge the label')
     : (isFrenchPage ? 'Déplacez le curseur pour examiner l’étiquette' : 'Move the cursor to examine the label');
 
+  var wineExperiences = {
+    '2024-red-blend': {
+      glass: 'assets/guide-glass-bordeaux.svg',
+      glassEn: 'Bordeaux or universal glass', glassFr: 'Verre de Bordeaux ou universel',
+      tastingEn: 'Dark fruit, gentle spice, and a smooth finish.',
+      tastingFr: 'Fruits noirs, épices douces et finale souple.',
+      serveEn: 'Serve slightly cool, 60 to 65°F. Open 20 minutes before serving.',
+      serveFr: 'Servir légèrement frais, entre 16 et 18 °C. Ouvrir 20 minutes avant le service.',
+      pairEn: 'Beef, burgers, or barbecue.', pairFr: 'Bœuf, hamburgers ou grillades.',
+      recipeImage: 'assets/recipes/red-blend-steak.webp',
+      recipeTitleEn: 'Grilled Herb Steak', recipeTitleFr: 'Steak grillé aux herbes',
+      recipeIntroEn: 'A savory pairing for the wine’s dark-fruit character.',
+      recipeIntroFr: 'Un accord savoureux avec le caractère de fruits noirs du vin.',
+      ingredientsEn: ['Steak', 'Olive oil', 'Rosemary or thyme', 'Salt and black pepper'],
+      ingredientsFr: ['Steak', 'Huile d’olive', 'Romarin ou thym', 'Sel et poivre noir'],
+      methodEn: 'Season and grill to your preferred doneness. Rest for 5 to 10 minutes, then slice.',
+      methodFr: 'Assaisonner et griller selon la cuisson désirée. Laisser reposer 5 à 10 minutes, puis trancher.'
+    },
+    '2025-merlot': {
+      glass: 'assets/guide-glass-bordeaux.svg',
+      glassEn: 'Bordeaux or universal glass', glassFr: 'Verre de Bordeaux ou universel',
+      tastingEn: 'Plum and black cherry with a soft, rounded finish.',
+      tastingFr: 'Prune et cerise noire, avec une finale souple et ronde.',
+      serveEn: 'Serve slightly cool, 60 to 65°F. Let the wine breathe for 15 minutes.',
+      serveFr: 'Servir légèrement frais, entre 16 et 18 °C. Laisser respirer 15 minutes.',
+      pairEn: 'Beef, lamb, pasta, or mushrooms.', pairFr: 'Bœuf, agneau, pâtes ou champignons.',
+      recipeImage: 'assets/recipes/merlot-mushroom-pasta.webp',
+      recipeTitleEn: 'Wild Mushroom Pasta', recipeTitleFr: 'Pâtes aux champignons',
+      recipeIntroEn: 'Earthy mushrooms complement Merlot’s plum and cherry character.',
+      recipeIntroFr: 'Les champignons accompagnent les notes de prune et de cerise du Merlot.',
+      ingredientsEn: ['Pasta', 'Mixed mushrooms', 'Butter or olive oil', 'Thyme and Parmesan'],
+      ingredientsFr: ['Pâtes', 'Champignons variés', 'Beurre ou huile d’olive', 'Thym et parmesan'],
+      methodEn: 'Sauté the mushrooms until browned, toss with hot pasta, then finish with thyme and Parmesan.',
+      methodFr: 'Faire dorer les champignons, mélanger avec les pâtes chaudes, puis ajouter le thym et le parmesan.'
+    },
+    '2024-merlot': null,
+    '2024-sauvignon-blanc': {
+      glass: 'assets/guide-glass-white.svg',
+      glassEn: 'White wine glass', glassFr: 'Verre à vin blanc',
+      tastingEn: 'Citrus and green apple with a crisp finish.',
+      tastingFr: 'Agrumes et pomme verte, avec une finale vive.',
+      serveEn: 'Serve chilled, 45 to 50°F.', serveFr: 'Servir frais, entre 7 et 10 °C.',
+      pairEn: 'Seafood, salads, or goat cheese.', pairFr: 'Fruits de mer, salades ou fromage de chèvre.',
+      recipeImage: 'assets/recipes/sauvignon-lemon-salmon.webp',
+      recipeTitleEn: 'Lemon-Herb Salmon', recipeTitleFr: 'Saumon au citron et aux herbes',
+      recipeIntroEn: 'Fresh lemon and herbs echo the wine’s crisp style.',
+      recipeIntroFr: 'Le citron frais et les herbes accompagnent le style vif du vin.',
+      ingredientsEn: ['Salmon fillets', 'Lemon', 'Olive oil', 'Parsley or dill'],
+      ingredientsFr: ['Filets de saumon', 'Citron', 'Huile d’olive', 'Persil ou aneth'],
+      methodEn: 'Season and roast at 400°F until just cooked. Finish with lemon and fresh herbs.',
+      methodFr: 'Assaisonner et cuire au four à 205 °C jusqu’à cuisson. Terminer avec le citron et les herbes fraîches.'
+    },
+    '2025-symphony': {
+      glass: 'assets/guide-glass-aromatic.svg',
+      glassEn: 'Aromatic white wine glass', glassFr: 'Verre à vin blanc aromatique',
+      tastingEn: 'Floral aromas and ripe peach with a fresh finish.',
+      tastingFr: 'Arômes floraux et pêche mûre, avec une finale fraîche.',
+      serveEn: 'Serve chilled, 45 to 50°F.', serveFr: 'Servir frais, entre 7 et 10 °C.',
+      pairEn: 'Spiced dishes, poultry, or soft cheese.', pairFr: 'Plats épicés, volaille ou fromage à pâte molle.',
+      recipeImage: 'assets/recipes/symphony-apricot-chicken.webp',
+      recipeTitleEn: 'Spiced Apricot Chicken', recipeTitleFr: 'Poulet épicé à l’abricot',
+      recipeIntroEn: 'Apricot and gentle spice complement this aromatic white wine.',
+      recipeIntroFr: 'L’abricot et les épices douces accompagnent ce vin blanc aromatique.',
+      ingredientsEn: ['Chicken thighs', 'Apricots or apricot preserves', 'Olive oil', 'Coriander and thyme'],
+      ingredientsFr: ['Cuisses de poulet', 'Abricots ou confiture d’abricot', 'Huile d’olive', 'Coriandre et thym'],
+      methodEn: 'Brush the chicken with the apricot mixture and roast at 400°F until it reaches 165°F.',
+      methodFr: 'Badigeonner le poulet du mélange à l’abricot et cuire à 205 °C jusqu’à 74 °C à cœur.'
+    },
+    '2023-riesling-ice-wine': {
+      glass: 'assets/guide-glass-dessert.svg',
+      glassEn: 'Small dessert wine glass', glassFr: 'Petit verre à vin de dessert',
+      tastingEn: 'Concentrated sweetness with apricot and honeyed notes.',
+      tastingFr: 'Douceur concentrée, avec des notes d’abricot et de miel.',
+      serveEn: 'Serve well chilled, 42 to 46°F. A 2 oz pour is ideal.',
+      serveFr: 'Servir bien frais, entre 6 et 8 °C. Une portion de 60 ml est idéale.',
+      pairEn: 'Dessert, blue cheese, fresh fruit, or on its own.', pairFr: 'Dessert, fromage bleu, fruits frais ou seul.',
+      recipeImage: 'assets/ice-on-ice-lemon.webp?v=20260916-1',
+      recipeTitleEn: 'Ice on Ice', recipeTitleFr: 'Ice on Ice',
+      recipeIntroEn: 'A refreshing summer way to enjoy Shenaky Riesling Ice Wine.',
+      recipeIntroFr: 'Une façon rafraîchissante de déguster le Riesling Ice Wine Shenaky en été.',
+      ingredientsEn: ['3 oz Riesling Ice Wine', '1 oz chilled sparkling water', 'Large ice cubes', 'Fresh mint and a lemon wheel'],
+      ingredientsFr: ['90 ml de Riesling Ice Wine', '30 ml d’eau pétillante bien fraîche', 'Gros glaçons', 'Menthe fraîche et rondelle de citron'],
+      methodEn: 'Pour over ice, gently stir, and enjoy.',
+      methodFr: 'Verser sur les glaçons, remuer délicatement et déguster.'
+    }
+  };
+  wineExperiences['2024-merlot'] = wineExperiences['2025-merlot'];
+
   var lightbox = document.createElement('div');
   lightbox.className = 'wine-lightbox';
   lightbox.setAttribute('role', 'dialog');
@@ -121,6 +209,16 @@ document.querySelectorAll('.menu-button').forEach(function(button){
         '<div class="wine-lightbox-zoom" role="img" aria-label="' + (isFrenchPage ? 'Zone agrandie de la bouteille' : 'Magnified bottle area') + '"></div>' +
         '<button class="wine-lightbox-turn" type="button">' + (isFrenchPage ? 'Tourner la bouteille' : 'Turn the bottle') + '</button>' +
         '<div class="wine-lightbox-caption"><span>' + examineHint + '</span><strong class="wine-lightbox-price"></strong></div>' +
+        '<div class="wine-lightbox-buy"><button type="button" class="wine-lightbox-add-cart"></button></div>' +
+        '<section class="wine-lightbox-guide" aria-labelledby="wine-lightbox-guide-title">' +
+          '<div class="wine-lightbox-section-heading"><span>' + (isFrenchPage ? 'Guide des vins' : 'Wine Guide') + '</span><h3 id="wine-lightbox-guide-title">' + (isFrenchPage ? 'Comment le déguster' : 'How to Enjoy') + '</h3></div>' +
+          '<div class="wine-lightbox-guide-main"><figure><img class="wine-lightbox-glass" alt=""><figcaption class="wine-lightbox-glass-name"></figcaption></figure><div><p class="wine-lightbox-tasting"></p><p class="wine-lightbox-serve"></p></div></div>' +
+          '<p class="wine-lightbox-pairing"></p>' +
+        '</section>' +
+        '<section class="wine-lightbox-recipe" aria-labelledby="wine-lightbox-recipe-title">' +
+          '<img class="wine-lightbox-recipe-image" alt="" loading="lazy">' +
+          '<div class="wine-lightbox-recipe-copy"><span>' + (isFrenchPage ? 'Suggestion de service' : 'Serving Inspiration') + '</span><h3 id="wine-lightbox-recipe-title" class="wine-lightbox-recipe-title"></h3><p class="wine-lightbox-recipe-intro"></p><ul class="wine-lightbox-recipe-list"></ul><p class="wine-lightbox-recipe-method"></p></div>' +
+        '</section>' +
       '</figcaption>' +
       '<button class="wine-lightbox-nav wine-lightbox-prev" type="button" aria-label="' + (isFrenchPage ? 'Vin précédent' : 'Previous wine') + '">&#8249;</button>' +
       '<button class="wine-lightbox-nav wine-lightbox-next" type="button" aria-label="' + (isFrenchPage ? 'Vin suivant' : 'Next wine') + '">&#8250;</button>' +
@@ -137,6 +235,17 @@ document.querySelectorAll('.menu-button').forEach(function(button){
   var titleText = lightbox.querySelector('.wine-lightbox-title');
   var originText = lightbox.querySelector('.wine-lightbox-origin');
   var priceText = lightbox.querySelector('.wine-lightbox-price');
+  var addCartButton = lightbox.querySelector('.wine-lightbox-add-cart');
+  var glassImage = lightbox.querySelector('.wine-lightbox-glass');
+  var glassName = lightbox.querySelector('.wine-lightbox-glass-name');
+  var tastingText = lightbox.querySelector('.wine-lightbox-tasting');
+  var serveText = lightbox.querySelector('.wine-lightbox-serve');
+  var pairingText = lightbox.querySelector('.wine-lightbox-pairing');
+  var recipeImage = lightbox.querySelector('.wine-lightbox-recipe-image');
+  var recipeTitle = lightbox.querySelector('.wine-lightbox-recipe-title');
+  var recipeIntro = lightbox.querySelector('.wine-lightbox-recipe-intro');
+  var recipeList = lightbox.querySelector('.wine-lightbox-recipe-list');
+  var recipeMethod = lightbox.querySelector('.wine-lightbox-recipe-method');
   var turnButton = lightbox.querySelector('.wine-lightbox-turn');
   var closeButton = lightbox.querySelector('.wine-lightbox-close');
   var previousButton = lightbox.querySelector('.wine-lightbox-prev');
@@ -147,6 +256,39 @@ document.querySelectorAll('.menu-button').forEach(function(button){
   var showingBack = false;
   var swipeStartX = null;
   var swipeStartY = null;
+  var activeProductKey = '';
+
+  function inferProductKey(card, preview) {
+    var productNode = card ? card.querySelector('[data-vs-product-key]') : null;
+    if (productNode) return productNode.getAttribute('data-vs-product-key') || '';
+    if (!preview) return '';
+    var title = (preview.getAttribute('data-title') || '').toLowerCase();
+    var vintage = preview.getAttribute('data-vintage') || '';
+    if (title.indexOf('merlot') !== -1) return vintage === '2024' ? '2024-merlot' : '2025-merlot';
+    if (title.indexOf('symphony') !== -1) return '2025-symphony';
+    if (title.indexOf('sauvignon') !== -1) return '2024-sauvignon-blanc';
+    if (title.indexOf('red blend') !== -1) return '2024-red-blend';
+    if (title.indexOf('ice wine') !== -1) return '2023-riesling-ice-wine';
+    return '';
+  }
+
+  function renderExperience(productKey) {
+    var experience = wineExperiences[productKey] || wineExperiences['2024-red-blend'];
+    var languageSuffix = isFrenchPage ? 'Fr' : 'En';
+    var ingredients = experience['ingredients' + languageSuffix] || [];
+    glassImage.src = experience.glass;
+    glassImage.alt = experience['glass' + languageSuffix];
+    glassName.textContent = experience['glass' + languageSuffix];
+    tastingText.innerHTML = '<strong>' + (isFrenchPage ? 'Caractère typique :' : 'Typical character:') + '</strong> ' + experience['tasting' + languageSuffix];
+    serveText.innerHTML = '<strong>' + (isFrenchPage ? 'Service :' : 'Serve:') + '</strong> ' + experience['serve' + languageSuffix];
+    pairingText.innerHTML = '<strong>' + (isFrenchPage ? 'À déguster avec :' : 'Enjoy with:') + '</strong> ' + experience['pair' + languageSuffix];
+    recipeImage.src = experience.recipeImage;
+    recipeImage.alt = experience['recipeTitle' + languageSuffix];
+    recipeTitle.textContent = experience['recipeTitle' + languageSuffix];
+    recipeIntro.textContent = experience['recipeIntro' + languageSuffix];
+    recipeList.innerHTML = ingredients.map(function (ingredient) { return '<li>' + ingredient + '</li>'; }).join('');
+    recipeMethod.textContent = experience['method' + languageSuffix];
+  }
 
   function closeBottle() {
     var returnTarget = activeSource;
@@ -177,6 +319,7 @@ document.querySelectorAll('.menu-button').forEach(function(button){
     activeSource = source;
     var card = source.closest('.wine-card');
     var preview = source.closest('.home-bottle-preview');
+    activeProductKey = inferProductKey(card, preview);
     var imageUrl = source.currentSrc || source.src;
     frontImageUrl = imageUrl;
     backImageUrl = source.getAttribute('data-back-src') || '';
@@ -191,6 +334,10 @@ document.querySelectorAll('.menu-button').forEach(function(button){
     titleText.textContent = card ? card.querySelector('.wine-card-copy h2').textContent : preview.getAttribute('data-title');
     originText.textContent = card ? card.querySelector('.wine-card-copy p').textContent : preview.getAttribute('data-origin');
     priceText.textContent = card ? card.querySelector('.wine-buy-row strong').textContent : preview.getAttribute('data-price');
+    renderExperience(activeProductKey);
+    addCartButton.textContent = isFrenchPage ? 'Ajouter au panier' : 'Add to cart';
+    addCartButton.disabled = !card;
+    addCartButton.hidden = !card;
     var activeIndex = bottleImages.indexOf(source);
     countText.textContent = (activeIndex + 1) + ' / ' + bottleImages.length;
     turnButton.classList.toggle('is-available', Boolean(backImageUrl));
@@ -240,15 +387,9 @@ document.querySelectorAll('.menu-button').forEach(function(button){
       + '#' + guideAnchor;
     hint.textContent = isFrenchPage ? 'Comment le déguster' : 'How to Enjoy';
     hint.setAttribute('aria-label', (isFrenchPage ? 'Conseils de dégustation pour ' : 'Serving guide for ') + (image.alt || 'wine'));
-    hint.addEventListener('click', function () {
-      try {
-        sessionStorage.setItem('shenaky_wine_return', JSON.stringify({
-          href: window.location.href,
-          scrollY: window.scrollY
-        }));
-      } catch (error) {
-        // Browser history remains available when storage is unavailable.
-      }
+    hint.addEventListener('click', function (event) {
+      event.preventDefault();
+      openBottle(image);
     });
     image.insertAdjacentElement('afterend', hint);
     image.addEventListener('click', function () { openBottle(image); });
@@ -263,6 +404,17 @@ document.querySelectorAll('.menu-button').forEach(function(button){
   closeButton.addEventListener('click', closeBottle);
   previousButton.addEventListener('click', function () { showRelativeBottle(-1); });
   nextButton.addEventListener('click', function () { showRelativeBottle(1); });
+  addCartButton.addEventListener('click', function () {
+    if (!activeSource) return;
+    var card = activeSource.closest('.wine-card');
+    var sourceButton = card ? card.querySelector('.add-cart') : null;
+    if (!sourceButton) return;
+    sourceButton.click();
+    addCartButton.textContent = isFrenchPage ? 'Ajouté au panier' : 'Added to cart';
+    window.setTimeout(function () {
+      addCartButton.textContent = isFrenchPage ? 'Ajouter au panier' : 'Add to cart';
+    }, 1200);
+  });
   lightbox.addEventListener('click', function (event) {
     if (event.target === lightbox) closeBottle();
   });

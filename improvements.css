@@ -63,6 +63,62 @@ body.wine-view-open{overflow:hidden}
 .wine-lightbox-image{transition:transform .45s ease,opacity .2s ease}
 .wine-lightbox-image.is-turning{transform:rotateY(90deg);opacity:.35}
 
+/* Complete bottle, guide, and serving presentation. */
+.wine-lightbox-figure{
+  width:min(1180px,calc(100vw - 56px));
+  max-height:calc(100vh - 96px);
+  grid-template-columns:minmax(300px,38%) minmax(420px,62%);
+}
+.wine-lightbox-bottle{min-height:0}
+.wine-lightbox-details{
+  min-height:0;
+  padding:28px 36px 42px;
+  justify-content:flex-start;
+  overflow-y:auto;
+  overscroll-behavior:contain;
+}
+.wine-lightbox-details>.wine-lightbox-origin{margin-bottom:.35rem}
+.wine-lightbox-caption{margin-top:.65rem}
+.wine-lightbox-buy{display:flex;margin:.8rem 0 1.35rem}
+.wine-lightbox-add-cart{
+  min-width:180px;
+  padding:.72rem 1.05rem;
+  border:1px solid #a77e3e;
+  border-radius:4px;
+  background:#a77e3e;
+  color:#111;
+  font-weight:800;
+  cursor:pointer;
+}
+.wine-lightbox-add-cart:hover,.wine-lightbox-add-cart:focus-visible{background:#8f682f;color:#fff;outline:2px solid rgba(167,126,62,.3);outline-offset:2px}
+.wine-lightbox-guide{padding:22px;border-top:1px solid #dfd0b9;border-bottom:1px solid #dfd0b9;background:#f8f2e8}
+.wine-lightbox-section-heading>span,.wine-lightbox-recipe-copy>span{color:#9b6b20;font-size:.7rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase}
+.wine-lightbox-section-heading h3,.wine-lightbox-recipe-title{margin:.3rem 0 .75rem;color:var(--wine);font:700 1.65rem/1.1 Georgia,serif}
+.wine-lightbox-guide-main{display:grid;grid-template-columns:110px 1fr;gap:20px;align-items:center}
+.wine-lightbox-guide-main figure{margin:0;text-align:center}
+.wine-lightbox-glass{display:block;width:100%;height:145px;object-fit:contain}
+.wine-lightbox-glass-name{display:block;margin-top:4px;color:var(--wine);font-size:.72rem;font-weight:800;line-height:1.25}
+.wine-lightbox-tasting,.wine-lightbox-serve,.wine-lightbox-pairing{margin:.45rem 0;color:#3f4c58;font-size:.92rem;line-height:1.55}
+.wine-lightbox-recipe{display:grid;grid-template-columns:minmax(180px,40%) 1fr;margin-top:24px;border:1px solid #dfd0b9;background:#fffaf2}
+.wine-lightbox-recipe-image{display:block;width:100%;height:100%;min-height:310px;object-fit:cover}
+.wine-lightbox-recipe-copy{padding:26px}
+.wine-lightbox-recipe-intro,.wine-lightbox-recipe-method{margin:.45rem 0;color:#3f4c58;font-size:.9rem;line-height:1.55}
+.wine-lightbox-recipe-list{display:grid;grid-template-columns:1fr 1fr;gap:.35rem 1.2rem;margin:1rem 0;padding-left:1.1rem;color:#263746;font-size:.86rem}
+.wine-lightbox-recipe-method{font-style:italic}
+.wine-lightbox-zoom{
+  display:none;
+  position:absolute;
+  z-index:6;
+  top:20px;
+  right:20px;
+  width:220px;
+  height:220px;
+  border:2px solid #fff;
+  border-radius:6px;
+  box-shadow:0 12px 30px rgba(0,0,0,.28);
+}
+.wine-lightbox-bottle.is-zooming+.wine-lightbox-details .wine-lightbox-zoom{display:block}
+
 .contact-detail a[href^="tel:"]{font-weight:700;color:var(--wine)}
 .contact-details-two{grid-template-columns:repeat(2,1fr)}
 
@@ -83,15 +139,24 @@ body.wine-view-open{overflow:hidden}
   .home-personal blockquote{padding:24px}
   .wine-gallery-grid{grid-template-columns:1fr}
   .wine-card img{height:min(54vh,390px);padding:18px}
-  .wine-lightbox-figure{display:flex;flex-direction:column;overflow:auto}
-  .wine-lightbox-bottle{min-height:52vh}
-  .wine-lightbox-image{max-height:48vh}
+  .wine-lightbox-figure{display:flex;flex-direction:column;inset:10px;width:calc(100vw - 20px);max-height:calc(100svh - 20px);overflow:auto}
+  .wine-lightbox-bottle{min-height:48svh;flex:0 0 48svh}
+  .wine-lightbox-image{max-height:44svh}
   .wine-lightbox-details{padding:16px}
   .wine-lightbox-zoom{display:none}
   .wine-lightbox-caption span{font-size:.85rem}
   .wine-lightbox-nav{top:42%;width:44px;height:52px;font-size:2rem}
   .wine-lightbox-prev{left:6px}
   .wine-lightbox-next{right:6px}
+  .wine-lightbox-buy{margin-bottom:1rem}
+  .wine-lightbox-add-cart{width:100%}
+  .wine-lightbox-guide{padding:18px 14px}
+  .wine-lightbox-guide-main{grid-template-columns:90px 1fr;gap:14px}
+  .wine-lightbox-glass{height:120px}
+  .wine-lightbox-recipe{grid-template-columns:1fr}
+  .wine-lightbox-recipe-image{height:260px;min-height:0}
+  .wine-lightbox-recipe-copy{padding:20px 16px}
+  .wine-lightbox-recipe-list{grid-template-columns:1fr}
   .contact-details-two{grid-template-columns:1fr}
 }
 @media(hover:none){
