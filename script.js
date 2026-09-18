@@ -242,7 +242,10 @@ document.querySelectorAll('.menu-button').forEach(function(button){
     hint.setAttribute('aria-label', (isFrenchPage ? 'Conseils de dégustation pour ' : 'Serving guide for ') + (image.alt || 'wine'));
     hint.addEventListener('click', function () {
       try {
-        sessionStorage.setItem('shenaky_wine_return', window.location.href);
+        sessionStorage.setItem('shenaky_wine_return', JSON.stringify({
+          href: window.location.href,
+          scrollY: window.scrollY
+        }));
       } catch (error) {
         // Browser history remains available when storage is unavailable.
       }
@@ -329,6 +332,23 @@ document.querySelectorAll('.menu-button').forEach(function(button){
   });
 }());
 
+// Restore the wine-page position after closing a focused Wine Guide.
+(function () {
+  if (!document.querySelector('.wine-card')) return;
+  try {
+    var savedData = JSON.parse(sessionStorage.getItem('shenaky_wine_return') || 'null');
+    if (!savedData || !savedData.href || typeof savedData.scrollY !== 'number') return;
+    var savedUrl = new URL(savedData.href, window.location.href);
+    if (savedUrl.pathname !== window.location.pathname) return;
+    window.setTimeout(function () {
+      window.scrollTo(0, savedData.scrollY);
+      sessionStorage.removeItem('shenaky_wine_return');
+    }, 0);
+  } catch (error) {
+    // Normal browser scroll restoration still applies.
+  }
+}());
+
 // Show only the selected wine when a Wine Guide link includes a wine anchor.
 (function () {
   var grid = document.querySelector('.wine-guide-grid');
@@ -403,7 +423,8 @@ document.querySelectorAll('.menu-button').forEach(function(button){
 
     var savedReturn = '';
     try {
-      savedReturn = sessionStorage.getItem('shenaky_wine_return') || '';
+      var savedData = JSON.parse(sessionStorage.getItem('shenaky_wine_return') || 'null');
+      savedReturn = savedData && savedData.href ? savedData.href : '';
     } catch (error) {
       savedReturn = '';
     }
