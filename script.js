@@ -180,7 +180,8 @@ document.querySelectorAll('.menu-button').forEach(function(button){
       tastingFr: 'Douceur concentrée, avec des notes d’abricot et de miel.',
       serveEn: 'Serve well chilled, 42 to 46°F. A 2 oz pour is ideal.',
       serveFr: 'Servir bien frais, entre 6 et 8 °C. Une portion de 60 ml est idéale.',
-      pairEn: 'Dessert, blue cheese, fresh fruit, or on its own.', pairFr: 'Dessert, fromage bleu, fruits frais ou seul.',
+      pairEn: 'On its own after dinner; apple or pear tart; cheesecake or crème brûlée; blue cheese; foie gras or pâté.',
+      pairFr: 'Seul après le dîner ; tarte aux pommes ou aux poires ; cheesecake ou crème brûlée ; fromage bleu ; foie gras ou pâté.',
       recipeImage: 'assets/ice-on-ice-lemon.webp?v=20260916-1',
       recipeTitleEn: 'Ice on Ice', recipeTitleFr: 'Ice on Ice',
       recipeIntroEn: 'A refreshing summer way to enjoy Shenaky Riesling Ice Wine.',
@@ -188,7 +189,11 @@ document.querySelectorAll('.menu-button').forEach(function(button){
       ingredientsEn: ['3 oz Riesling Ice Wine', '1 oz chilled sparkling water', 'Large ice cubes', 'Fresh mint and a lemon wheel'],
       ingredientsFr: ['90 ml de Riesling Ice Wine', '30 ml d’eau pétillante bien fraîche', 'Gros glaçons', 'Menthe fraîche et rondelle de citron'],
       methodEn: 'Pour over ice, gently stir, and enjoy.',
-      methodFr: 'Verser sur les glaçons, remuer délicatement et déguster.'
+      methodFr: 'Verser sur les glaçons, remuer délicatement et déguster.',
+      pairingImage: 'assets/recipes/ice-wine-pear-tart.webp',
+      pairingTitleEn: 'Ice Wine with Pear Tart', pairingTitleFr: 'Ice Wine avec tarte aux poires',
+      pairingIntroEn: 'Serve a small, well-chilled pour alongside a pear or apple tart. The fruit complements the wine’s sweetness while the pastry adds a gentle contrast.',
+      pairingIntroFr: 'Servir une petite portion bien fraîche avec une tarte aux poires ou aux pommes. Le fruit accompagne la douceur du vin et la pâte apporte un contraste délicat.'
     }
   };
   wineExperiences['2024-merlot'] = wineExperiences['2025-merlot'];
@@ -219,6 +224,10 @@ document.querySelectorAll('.menu-button').forEach(function(button){
           '<img class="wine-lightbox-recipe-image" alt="" loading="lazy">' +
           '<div class="wine-lightbox-recipe-copy"><span>' + (isFrenchPage ? 'Suggestion de service' : 'Serving Inspiration') + '</span><h3 id="wine-lightbox-recipe-title" class="wine-lightbox-recipe-title"></h3><p class="wine-lightbox-recipe-intro"></p><ul class="wine-lightbox-recipe-list"></ul><p class="wine-lightbox-recipe-method"></p></div>' +
         '</section>' +
+        '<section class="wine-lightbox-recipe wine-lightbox-classic-pairing" aria-labelledby="wine-lightbox-pairing-title" hidden>' +
+          '<img class="wine-lightbox-recipe-image wine-lightbox-pairing-image" alt="" loading="lazy">' +
+          '<div class="wine-lightbox-recipe-copy"><span>' + (isFrenchPage ? 'Accord classique' : 'Classic Pairing') + '</span><h3 id="wine-lightbox-pairing-title" class="wine-lightbox-recipe-title wine-lightbox-pairing-title"></h3><p class="wine-lightbox-recipe-intro wine-lightbox-pairing-intro"></p></div>' +
+        '</section>' +
       '</figcaption>' +
       '<button class="wine-lightbox-nav wine-lightbox-prev" type="button" aria-label="' + (isFrenchPage ? 'Vin précédent' : 'Previous wine') + '">&#8249;</button>' +
       '<button class="wine-lightbox-nav wine-lightbox-next" type="button" aria-label="' + (isFrenchPage ? 'Vin suivant' : 'Next wine') + '">&#8250;</button>' +
@@ -246,6 +255,10 @@ document.querySelectorAll('.menu-button').forEach(function(button){
   var recipeIntro = lightbox.querySelector('.wine-lightbox-recipe-intro');
   var recipeList = lightbox.querySelector('.wine-lightbox-recipe-list');
   var recipeMethod = lightbox.querySelector('.wine-lightbox-recipe-method');
+  var classicPairing = lightbox.querySelector('.wine-lightbox-classic-pairing');
+  var classicPairingImage = lightbox.querySelector('.wine-lightbox-pairing-image');
+  var classicPairingTitle = lightbox.querySelector('.wine-lightbox-pairing-title');
+  var classicPairingIntro = lightbox.querySelector('.wine-lightbox-pairing-intro');
   var turnButton = lightbox.querySelector('.wine-lightbox-turn');
   var closeButton = lightbox.querySelector('.wine-lightbox-close');
   var previousButton = lightbox.querySelector('.wine-lightbox-prev');
@@ -288,6 +301,18 @@ document.querySelectorAll('.menu-button').forEach(function(button){
     recipeIntro.textContent = experience['recipeIntro' + languageSuffix];
     recipeList.innerHTML = ingredients.map(function (ingredient) { return '<li>' + ingredient + '</li>'; }).join('');
     recipeMethod.textContent = experience['method' + languageSuffix];
+    classicPairing.hidden = !experience.pairingImage;
+    if (experience.pairingImage) {
+      classicPairingImage.src = experience.pairingImage;
+      classicPairingImage.alt = experience['pairingTitle' + languageSuffix];
+      classicPairingTitle.textContent = experience['pairingTitle' + languageSuffix];
+      classicPairingIntro.textContent = experience['pairingIntro' + languageSuffix];
+    } else {
+      classicPairingImage.removeAttribute('src');
+      classicPairingImage.alt = '';
+      classicPairingTitle.textContent = '';
+      classicPairingIntro.textContent = '';
+    }
   }
 
   function closeBottle() {
