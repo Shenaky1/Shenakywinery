@@ -336,6 +336,26 @@ body.wine-guide-focus .wine-guide-card{
   font-weight:800;
   line-height:1.25;
 }
+.wine-guide-pairing{
+  clear:both;
+  margin:18px 0 20px;
+  overflow:hidden;
+  background:#f6efe4;
+  border:1px solid #dfd0b9;
+  border-radius:6px;
+}
+.wine-guide-pairing img{
+  display:block;
+  width:100%;
+  aspect-ratio:3/2;
+  object-fit:cover;
+}
+.wine-guide-pairing figcaption{
+  padding:10px 12px;
+  color:#465565;
+  font-size:12px;
+  line-height:1.45;
+}
 .wine-guide-card dl{clear:both}
 body.wine-guide-focus .wine-guide-glass{width:150px;margin:-14px 10px 18px 30px}
 body.wine-guide-focus .wine-guide-glass img{height:210px}
