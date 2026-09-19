@@ -99,12 +99,13 @@ body.wine-view-open{overflow:hidden}
 .wine-lightbox-glass{display:block;width:100%;height:145px;object-fit:contain}
 .wine-lightbox-glass-name{display:block;margin-top:4px;color:var(--wine);font-size:.72rem;font-weight:800;line-height:1.25}
 .wine-lightbox-tasting,.wine-lightbox-serve,.wine-lightbox-pairing{margin:.45rem 0;color:#3f4c58;font-size:.92rem;line-height:1.55}
-.wine-lightbox-recipe{display:grid;grid-template-columns:minmax(180px,40%) 1fr;margin-top:24px;border:1px solid #dfd0b9;background:#fffaf2}
-.wine-lightbox-recipe-image{display:block;width:100%;height:100%;min-height:310px;object-fit:cover}
+.wine-lightbox-recipe{display:grid;grid-template-columns:1fr;margin-top:24px;border:1px solid #dfd0b9;background:#fffaf2}
+.wine-lightbox-recipe-image{display:block;width:100%;height:auto;min-height:0;aspect-ratio:3/2;object-fit:cover;object-position:center}
 .wine-lightbox-recipe-copy{padding:26px}
 .wine-lightbox-recipe-intro,.wine-lightbox-recipe-method{margin:.45rem 0;color:#3f4c58;font-size:.9rem;line-height:1.55}
 .wine-lightbox-recipe-list{display:grid;grid-template-columns:1fr 1fr;gap:.35rem 1.2rem;margin:1rem 0;padding-left:1.1rem;color:#263746;font-size:.86rem}
 .wine-lightbox-recipe-method{font-style:italic}
+.wine-lightbox-classic-pairing[hidden]{display:none!important}
 .wine-lightbox-zoom{
   display:none;
   position:absolute;
@@ -154,7 +155,7 @@ body.wine-view-open{overflow:hidden}
   .wine-lightbox-guide-main{grid-template-columns:90px 1fr;gap:14px}
   .wine-lightbox-glass{height:120px}
   .wine-lightbox-recipe{grid-template-columns:1fr}
-  .wine-lightbox-recipe-image{height:260px;min-height:0}
+  .wine-lightbox-recipe-image{height:auto;min-height:0}
   .wine-lightbox-recipe-copy{padding:20px 16px}
   .wine-lightbox-recipe-list{grid-template-columns:1fr}
   .contact-details-two{grid-template-columns:1fr}
