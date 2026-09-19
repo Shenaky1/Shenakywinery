@@ -114,14 +114,14 @@ document.querySelectorAll('.menu-button').forEach(function(button){
       serveEn: 'Serve slightly cool, 60 to 65°F. Open 20 minutes before serving.',
       serveFr: 'Servir légèrement frais, entre 16 et 18 °C. Ouvrir 20 minutes avant le service.',
       pairEn: 'Beef, burgers, or barbecue.', pairFr: 'Bœuf, hamburgers ou grillades.',
-      recipeImage: 'assets/recipes/red-blend-steak.webp',
-      recipeTitleEn: 'Grilled Herb Steak', recipeTitleFr: 'Steak grillé aux herbes',
-      recipeIntroEn: 'A savory pairing for the wine’s dark-fruit character.',
-      recipeIntroFr: 'Un accord savoureux avec le caractère de fruits noirs du vin.',
-      ingredientsEn: ['Steak', 'Olive oil', 'Rosemary or thyme', 'Salt and black pepper'],
-      ingredientsFr: ['Steak', 'Huile d’olive', 'Romarin ou thym', 'Sel et poivre noir'],
-      methodEn: 'Season and grill to your preferred doneness. Rest for 5 to 10 minutes, then slice.',
-      methodFr: 'Assaisonner et griller selon la cuisson désirée. Laisser reposer 5 à 10 minutes, puis trancher.'
+      recipeImage: 'assets/recipes/red-blend-steak-frites.webp',
+      recipeTitleEn: 'Steak Frites with Herb Butter', recipeTitleFr: 'Steak-frites au beurre maître d’hôtel',
+      recipeIntroEn: 'A French bistro classic. Beef and herb butter suit the wine’s dark-fruit character, while the crisp fries provide contrast.',
+      recipeIntroFr: 'Un classique du bistrot français. Le bœuf et le beurre aux herbes accompagnent les fruits noirs du vin, tandis que les frites apportent du contraste.',
+      ingredientsEn: ['Steak', 'Pommes frites', 'Butter and parsley', 'Salt and black pepper'],
+      ingredientsFr: ['Steak', 'Pommes frites', 'Beurre et persil', 'Sel et poivre noir'],
+      methodEn: 'Cook the steak to your preferred doneness, rest it briefly, then serve with crisp fries and parsley butter.',
+      methodFr: 'Cuire le steak selon la cuisson désirée, le laisser reposer, puis servir avec des frites croustillantes et un beurre persillé.'
     },
     '2025-merlot': {
       glass: 'assets/guide-glass-bordeaux.svg',
@@ -131,14 +131,14 @@ document.querySelectorAll('.menu-button').forEach(function(button){
       serveEn: 'Serve slightly cool, 60 to 65°F. Let the wine breathe for 15 minutes.',
       serveFr: 'Servir légèrement frais, entre 16 et 18 °C. Laisser respirer 15 minutes.',
       pairEn: 'Beef, lamb, pasta, or mushrooms.', pairFr: 'Bœuf, agneau, pâtes ou champignons.',
-      recipeImage: 'assets/recipes/merlot-mushroom-pasta.webp',
-      recipeTitleEn: 'Wild Mushroom Pasta', recipeTitleFr: 'Pâtes aux champignons',
-      recipeIntroEn: 'Earthy mushrooms complement Merlot’s plum and cherry character.',
-      recipeIntroFr: 'Les champignons accompagnent les notes de prune et de cerise du Merlot.',
-      ingredientsEn: ['Pasta', 'Mixed mushrooms', 'Butter or olive oil', 'Thyme and Parmesan'],
-      ingredientsFr: ['Pâtes', 'Champignons variés', 'Beurre ou huile d’olive', 'Thym et parmesan'],
-      methodEn: 'Sauté the mushrooms until browned, toss with hot pasta, then finish with thyme and Parmesan.',
-      methodFr: 'Faire dorer les champignons, mélanger avec les pâtes chaudes, puis ajouter le thym et le parmesan.'
+      recipeImage: 'assets/recipes/merlot-magret-canard.webp',
+      recipeTitleEn: 'Magret de Canard with Mushrooms', recipeTitleFr: 'Magret de canard aux champignons',
+      recipeIntroEn: 'A French pairing in which tender duck and earthy mushrooms complement Merlot’s plum and black-cherry character.',
+      recipeIntroFr: 'Un accord français où le canard tendre et les champignons accompagnent les notes de prune et de cerise noire du Merlot.',
+      ingredientsEn: ['Duck breast', 'Mixed mushrooms', 'Shallot', 'Thyme and red-wine jus'],
+      ingredientsFr: ['Magret de canard', 'Champignons variés', 'Échalote', 'Thym et jus au vin rouge'],
+      methodEn: 'Render the duck skin until crisp, finish to medium, rest, then slice and serve with sautéed mushrooms and jus.',
+      methodFr: 'Faire fondre la graisse côté peau jusqu’à ce qu’elle soit croustillante, terminer la cuisson rosée, laisser reposer, puis servir avec les champignons et le jus.'
     },
     '2024-merlot': null,
     '2024-sauvignon-blanc': {
@@ -148,14 +148,14 @@ document.querySelectorAll('.menu-button').forEach(function(button){
       tastingFr: 'Agrumes et pomme verte, avec une finale vive.',
       serveEn: 'Serve chilled, 45 to 50°F.', serveFr: 'Servir frais, entre 7 et 10 °C.',
       pairEn: 'Seafood, salads, or goat cheese.', pairFr: 'Fruits de mer, salades ou fromage de chèvre.',
-      recipeImage: 'assets/recipes/sauvignon-lemon-salmon.webp',
-      recipeTitleEn: 'Lemon-Herb Salmon', recipeTitleFr: 'Saumon au citron et aux herbes',
-      recipeIntroEn: 'Fresh lemon and herbs echo the wine’s crisp style.',
-      recipeIntroFr: 'Le citron frais et les herbes accompagnent le style vif du vin.',
-      ingredientsEn: ['Salmon fillets', 'Lemon', 'Olive oil', 'Parsley or dill'],
-      ingredientsFr: ['Filets de saumon', 'Citron', 'Huile d’olive', 'Persil ou aneth'],
-      methodEn: 'Season and roast at 400°F until just cooked. Finish with lemon and fresh herbs.',
-      methodFr: 'Assaisonner et cuire au four à 205 °C jusqu’à cuisson. Terminer avec le citron et les herbes fraîches.'
+      recipeImage: 'assets/recipes/sauvignon-chevre-chaud.webp',
+      recipeTitleEn: 'Salade de Chèvre Chaud', recipeTitleFr: 'Salade de chèvre chaud',
+      recipeIntroEn: 'A French bistro favorite. Tangy warm goat cheese echoes Sauvignon Blanc’s freshness and citrus character.',
+      recipeIntroFr: 'Un classique du bistrot français. Le chèvre chaud, frais et acidulé, accompagne la vivacité et les agrumes du Sauvignon Blanc.',
+      ingredientsEn: ['Goat cheese', 'Baguette rounds', 'Mixed greens', 'Walnuts and vinaigrette'],
+      ingredientsFr: ['Fromage de chèvre', 'Tranches de baguette', 'Salade verte', 'Noix et vinaigrette'],
+      methodEn: 'Toast the goat cheese on baguette rounds until warm, then serve over lightly dressed greens with walnuts.',
+      methodFr: 'Faire dorer le chèvre sur les tranches de baguette, puis servir sur une salade légèrement assaisonnée avec des noix.'
     },
     '2025-symphony': {
       glass: 'assets/guide-glass-aromatic.svg',
@@ -164,14 +164,14 @@ document.querySelectorAll('.menu-button').forEach(function(button){
       tastingFr: 'Arômes floraux et pêche mûre, avec une finale fraîche.',
       serveEn: 'Serve chilled, 45 to 50°F.', serveFr: 'Servir frais, entre 7 et 10 °C.',
       pairEn: 'Spiced dishes, poultry, or soft cheese.', pairFr: 'Plats épicés, volaille ou fromage à pâte molle.',
-      recipeImage: 'assets/recipes/symphony-apricot-chicken.webp',
-      recipeTitleEn: 'Spiced Apricot Chicken', recipeTitleFr: 'Poulet épicé à l’abricot',
-      recipeIntroEn: 'Apricot and gentle spice complement this aromatic white wine.',
-      recipeIntroFr: 'L’abricot et les épices douces accompagnent ce vin blanc aromatique.',
-      ingredientsEn: ['Chicken thighs', 'Apricots or apricot preserves', 'Olive oil', 'Coriander and thyme'],
-      ingredientsFr: ['Cuisses de poulet', 'Abricots ou confiture d’abricot', 'Huile d’olive', 'Coriandre et thym'],
-      methodEn: 'Brush the chicken with the apricot mixture and roast at 400°F until it reaches 165°F.',
-      methodFr: 'Badigeonner le poulet du mélange à l’abricot et cuire à 205 °C jusqu’à 74 °C à cœur.'
+      recipeImage: 'assets/recipes/symphony-poulet-roti.webp',
+      recipeTitleEn: 'Herbes de Provence Roast Chicken', recipeTitleFr: 'Poulet rôti aux herbes de Provence',
+      recipeIntroEn: 'French country cooking with herbs and golden roast chicken provides a gentle savory counterpoint to this aromatic white wine.',
+      recipeIntroFr: 'La cuisine de campagne française, avec ses herbes et son poulet doré, apporte un contrepoint savoureux à ce vin blanc aromatique.',
+      ingredientsEn: ['Chicken', 'Baby potatoes', 'Herbes de Provence', 'Garlic and olive oil'],
+      ingredientsFr: ['Poulet', 'Pommes de terre grenaille', 'Herbes de Provence', 'Ail et huile d’olive'],
+      methodEn: 'Season with garlic and herbs, then roast with the vegetables until the chicken is golden and reaches 165°F.',
+      methodFr: 'Assaisonner avec l’ail et les herbes, puis rôtir avec les légumes jusqu’à ce que le poulet soit doré et atteigne 74 °C à cœur.'
     },
     '2023-riesling-ice-wine': {
       glass: 'assets/guide-glass-dessert.svg',
@@ -191,9 +191,9 @@ document.querySelectorAll('.menu-button').forEach(function(button){
       methodEn: 'Pour over ice, gently stir, and enjoy.',
       methodFr: 'Verser sur les glaçons, remuer délicatement et déguster.',
       pairingImage: 'assets/recipes/ice-wine-pear-tart.webp',
-      pairingTitleEn: 'Ice Wine with Pear Tart', pairingTitleFr: 'Ice Wine avec tarte aux poires',
-      pairingIntroEn: 'Serve a small, well-chilled pour alongside a pear or apple tart. The fruit complements the wine’s sweetness while the pastry adds a gentle contrast.',
-      pairingIntroFr: 'Servir une petite portion bien fraîche avec une tarte aux poires ou aux pommes. Le fruit accompagne la douceur du vin et la pâte apporte un contraste délicat.'
+      pairingTitleEn: 'Ice Wine with Tarte Bourdaloue', pairingTitleFr: 'Ice Wine et tarte Bourdaloue',
+      pairingIntroEn: 'This classic French pear and almond tart complements the wine’s ripe-fruit character. Serve a small, well-chilled pour so the pairing remains balanced.',
+      pairingIntroFr: 'Cette tarte française classique aux poires et aux amandes accompagne le caractère de fruits mûrs du vin. Servir une petite portion bien fraîche pour préserver l’équilibre.'
     }
   };
   wineExperiences['2024-merlot'] = wineExperiences['2025-merlot'];
