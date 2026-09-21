@@ -462,3 +462,8 @@ body.wine-guide-focus .wine-guide-card>h2{
 /* Wine Guide: use the glass already shown in each pairing photograph; hide separate drawn glass artwork. */
 .wine-lightbox-guide-main > figure, .wine-guide-glass { display:none !important; }
 .wine-lightbox-guide-main { grid-template-columns:1fr !important; }
+
+/* Full Wine Guide poster */
+.wine-guide-poster{width:min(1500px,calc(100% - 32px));margin:24px auto 30px;}
+.wine-guide-poster img{display:block;width:100%;height:auto;border-radius:4px;box-shadow:0 8px 24px rgba(45,20,12,.12);}
+@media(max-width:700px){.wine-guide-poster{width:calc(100% - 16px);margin:12px auto 20px;overflow-x:auto}.wine-guide-poster img{min-width:900px;max-width:none}}
