@@ -107,7 +107,7 @@ document.querySelectorAll('.menu-button').forEach(function(button){
 
   var wineExperiences = {
     '2024-red-blend': {
-      glass: 'assets/guide-glass-bordeaux.svg?v=20260920-2',
+      glass: 'assets/guide-glass-bordeaux.svg?v=20260921-3',
       glassEn: 'Bordeaux or universal glass', glassFr: 'Verre de Bordeaux ou universel',
       tastingEn: 'Dark fruit, gentle spice, and a smooth finish.',
       tastingFr: 'Fruits noirs, épices douces et finale souple.',
@@ -124,7 +124,7 @@ document.querySelectorAll('.menu-button').forEach(function(button){
       methodFr: 'Cuire le steak selon la cuisson désirée, le laisser reposer, puis servir avec des frites croustillantes et un beurre persillé.'
     },
     '2025-merlot': {
-      glass: 'assets/guide-glass-bordeaux.svg?v=20260920-2',
+      glass: 'assets/guide-glass-bordeaux.svg?v=20260921-3',
       glassEn: 'Bordeaux or universal glass', glassFr: 'Verre de Bordeaux ou universel',
       tastingEn: 'Plum and black cherry with a soft, rounded finish.',
       tastingFr: 'Prune et cerise noire, avec une finale souple et ronde.',
@@ -142,7 +142,7 @@ document.querySelectorAll('.menu-button').forEach(function(button){
     },
     '2024-merlot': null,
     '2024-sauvignon-blanc': {
-      glass: 'assets/guide-glass-white.svg?v=20260920-2',
+      glass: 'assets/guide-glass-white.svg?v=20260921-3',
       glassEn: 'White wine glass', glassFr: 'Verre à vin blanc',
       tastingEn: 'Citrus and green apple with a crisp finish.',
       tastingFr: 'Agrumes et pomme verte, avec une finale vive.',
@@ -158,7 +158,7 @@ document.querySelectorAll('.menu-button').forEach(function(button){
       methodFr: 'Faire dorer le chèvre sur les tranches de baguette, puis servir sur une salade légèrement assaisonnée avec des noix.'
     },
     '2025-symphony': {
-      glass: 'assets/guide-glass-aromatic.svg?v=20260920-2',
+      glass: 'assets/guide-glass-aromatic.svg?v=20260921-3',
       glassEn: 'Aromatic white wine glass', glassFr: 'Verre à vin blanc aromatique',
       tastingEn: 'Floral aromas and ripe peach with a fresh finish.',
       tastingFr: 'Arômes floraux et pêche mûre, avec une finale fraîche.',
@@ -174,7 +174,7 @@ document.querySelectorAll('.menu-button').forEach(function(button){
       methodFr: 'Assaisonner avec l’ail et les herbes, puis rôtir avec les légumes jusqu’à ce que le poulet soit doré et atteigne 74 °C à cœur.'
     },
     '2023-riesling-ice-wine': {
-      glass: 'assets/guide-glass-dessert.svg?v=20260921-1',
+      glass: 'assets/guide-glass-dessert.svg?v=20260921-3',
       glassEn: 'Small dessert wine glass', glassFr: 'Petit verre à vin de dessert',
       tastingEn: 'Concentrated sweetness with apricot and honeyed notes.',
       tastingFr: 'Douceur concentrée, avec des notes d’abricot et de miel.',
