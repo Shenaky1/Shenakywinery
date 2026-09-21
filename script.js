@@ -118,7 +118,7 @@ document.querySelectorAll('.menu-button').forEach(function(button){
       recipeTitleEn: 'Steak Frites with Herb Butter', recipeTitleFr: 'Steak-frites au beurre maître d’hôtel',
       recipeIntroEn: 'A French bistro classic. Beef and herb butter suit the wine’s dark-fruit character, while the crisp fries provide contrast.',
       recipeIntroFr: 'Un classique du bistrot français. Le bœuf et le beurre aux herbes accompagnent les fruits noirs du vin, tandis que les frites apportent du contraste.',
-      ingredientsEn: ['Steak', 'Pommes frites', 'Butter and parsley', 'Salt and black pepper'],
+      ingredientsEn: ['Steak', 'French fries', 'Butter and parsley', 'Salt and black pepper'],
       ingredientsFr: ['Steak', 'Pommes frites', 'Beurre et persil', 'Sel et poivre noir'],
       methodEn: 'Cook the steak to your preferred doneness, rest it briefly, then serve with crisp fries and parsley butter.',
       methodFr: 'Cuire le steak selon la cuisson désirée, le laisser reposer, puis servir avec des frites croustillantes et un beurre persillé.'
