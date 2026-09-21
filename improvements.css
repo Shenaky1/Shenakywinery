@@ -458,3 +458,7 @@ body.wine-guide-focus .wine-guide-card>h2{
     flex-direction:column;
   }
 }
+
+/* Wine Guide: use the glass already shown in each pairing photograph; hide separate drawn glass artwork. */
+.wine-lightbox-guide-main > figure, .wine-guide-glass { display:none !important; }
+.wine-lightbox-guide-main { grid-template-columns:1fr !important; }
