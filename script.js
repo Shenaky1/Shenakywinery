@@ -174,7 +174,7 @@ document.querySelectorAll('.menu-button').forEach(function(button){
       methodFr: 'Assaisonner avec l’ail et les herbes, puis rôtir avec les légumes jusqu’à ce que le poulet soit doré et atteigne 74 °C à cœur.'
     },
     '2023-riesling-ice-wine': {
-      glass: 'assets/guide-glass-dessert.svg?v=20260920-2',
+      glass: 'assets/guide-glass-dessert.svg?v=20260921-1',
       glassEn: 'Small dessert wine glass', glassFr: 'Petit verre à vin de dessert',
       tastingEn: 'Concentrated sweetness with apricot and honeyed notes.',
       tastingFr: 'Douceur concentrée, avec des notes d’abricot et de miel.',
