@@ -190,6 +190,14 @@ document.querySelectorAll('.menu-button').forEach(function(button){
       ingredientsFr: ['90 ml de Riesling Ice Wine', '30 ml d’eau pétillante bien fraîche', 'Gros glaçons', 'Menthe fraîche et rondelle de citron'],
       methodEn: 'Pour over ice, gently stir, and enjoy.',
       methodFr: 'Verser sur les glaçons, remuer délicatement et déguster.',
+      secondRecipeImage: 'assets/recipes/shenaky-sunset.webp?v=20260929-1',
+      secondRecipeTitleEn: 'Shenaky Sunset', secondRecipeTitleFr: 'Shenaky Sunset',
+      secondRecipeIntroEn: 'A refreshing Shenaky original, created with Merlot, Riesling Ice Wine, and a touch of pure maple syrup.',
+      secondRecipeIntroFr: 'Une création rafraîchissante de Shenaky, préparée avec du Merlot, du Riesling Ice Wine et une touche de sirop d’érable pur.',
+      secondIngredientsEn: ['3 oz chilled Merlot', '1 oz Riesling Ice Wine', '¼ tsp pure maple syrup', 'Large ice cubes', 'Orange slice', 'Optional splash of sparkling water'],
+      secondIngredientsFr: ['90 ml de Merlot frais', '30 ml de Riesling Ice Wine', '¼ c. à café de sirop d’érable pur', 'Gros glaçons', 'Tranche d’orange', 'Un trait d’eau pétillante, facultatif'],
+      secondMethodEn: 'Stir the Merlot, Ice Wine, and maple syrup together. Pour over large ice cubes, add an optional splash of sparkling water, and garnish with an orange slice.',
+      secondMethodFr: 'Mélanger le Merlot, l’Ice Wine et le sirop d’érable. Verser sur de gros glaçons, ajouter un trait d’eau pétillante si désiré et garnir d’une tranche d’orange.',
       pairingImage: 'assets/recipes/ice-wine-pear-tart.webp',
       pairingTitleEn: 'Ice Wine with Tarte Bourdaloue', pairingTitleFr: 'Ice Wine et tarte Bourdaloue',
       pairingIntroEn: 'This classic French pear and almond tart complements the wine’s ripe-fruit character. Serve a small, well-chilled pour so the pairing remains balanced.',
@@ -224,6 +232,10 @@ document.querySelectorAll('.menu-button').forEach(function(button){
           '<img class="wine-lightbox-recipe-image" alt="" loading="lazy">' +
           '<div class="wine-lightbox-recipe-copy"><span>' + (isFrenchPage ? 'Suggestion de service' : 'Serving Inspiration') + '</span><h3 id="wine-lightbox-recipe-title" class="wine-lightbox-recipe-title"></h3><p class="wine-lightbox-recipe-intro"></p><ul class="wine-lightbox-recipe-list"></ul><p class="wine-lightbox-recipe-method"></p></div>' +
         '</section>' +
+        '<section class="wine-lightbox-recipe wine-lightbox-second-recipe" aria-labelledby="wine-lightbox-second-recipe-title" hidden>' +
+          '<img class="wine-lightbox-recipe-image wine-lightbox-second-recipe-image" alt="" loading="lazy">' +
+          '<div class="wine-lightbox-recipe-copy"><span>' + (isFrenchPage ? 'Création Shenaky' : 'Shenaky Original') + '</span><h3 id="wine-lightbox-second-recipe-title" class="wine-lightbox-recipe-title wine-lightbox-second-recipe-title"></h3><p class="wine-lightbox-recipe-intro wine-lightbox-second-recipe-intro"></p><ul class="wine-lightbox-recipe-list wine-lightbox-second-recipe-list"></ul><p class="wine-lightbox-recipe-method wine-lightbox-second-recipe-method"></p></div>' +
+        '</section>' +
         '<section class="wine-lightbox-recipe wine-lightbox-classic-pairing" aria-labelledby="wine-lightbox-pairing-title" hidden>' +
           '<img class="wine-lightbox-recipe-image wine-lightbox-pairing-image" alt="" loading="lazy">' +
           '<div class="wine-lightbox-recipe-copy"><span>' + (isFrenchPage ? 'Accord classique' : 'Classic Pairing') + '</span><h3 id="wine-lightbox-pairing-title" class="wine-lightbox-recipe-title wine-lightbox-pairing-title"></h3><p class="wine-lightbox-recipe-intro wine-lightbox-pairing-intro"></p></div>' +
@@ -255,6 +267,12 @@ document.querySelectorAll('.menu-button').forEach(function(button){
   var recipeIntro = lightbox.querySelector('.wine-lightbox-recipe-intro');
   var recipeList = lightbox.querySelector('.wine-lightbox-recipe-list');
   var recipeMethod = lightbox.querySelector('.wine-lightbox-recipe-method');
+  var secondRecipe = lightbox.querySelector('.wine-lightbox-second-recipe');
+  var secondRecipeImage = lightbox.querySelector('.wine-lightbox-second-recipe-image');
+  var secondRecipeTitle = lightbox.querySelector('.wine-lightbox-second-recipe-title');
+  var secondRecipeIntro = lightbox.querySelector('.wine-lightbox-second-recipe-intro');
+  var secondRecipeList = lightbox.querySelector('.wine-lightbox-second-recipe-list');
+  var secondRecipeMethod = lightbox.querySelector('.wine-lightbox-second-recipe-method');
   var classicPairing = lightbox.querySelector('.wine-lightbox-classic-pairing');
   var classicPairingImage = lightbox.querySelector('.wine-lightbox-pairing-image');
   var classicPairingTitle = lightbox.querySelector('.wine-lightbox-pairing-title');
@@ -301,6 +319,23 @@ document.querySelectorAll('.menu-button').forEach(function(button){
     recipeIntro.textContent = experience['recipeIntro' + languageSuffix];
     recipeList.innerHTML = ingredients.map(function (ingredient) { return '<li>' + ingredient + '</li>'; }).join('');
     recipeMethod.textContent = experience['method' + languageSuffix];
+    var secondIngredients = experience['secondIngredients' + languageSuffix] || [];
+    secondRecipe.hidden = !experience.secondRecipeImage;
+    if (experience.secondRecipeImage) {
+      secondRecipeImage.src = experience.secondRecipeImage;
+      secondRecipeImage.alt = experience['secondRecipeTitle' + languageSuffix];
+      secondRecipeTitle.textContent = experience['secondRecipeTitle' + languageSuffix];
+      secondRecipeIntro.textContent = experience['secondRecipeIntro' + languageSuffix];
+      secondRecipeList.innerHTML = secondIngredients.map(function (ingredient) { return '<li>' + ingredient + '</li>'; }).join('');
+      secondRecipeMethod.textContent = experience['secondMethod' + languageSuffix];
+    } else {
+      secondRecipeImage.removeAttribute('src');
+      secondRecipeImage.alt = '';
+      secondRecipeTitle.textContent = '';
+      secondRecipeIntro.textContent = '';
+      secondRecipeList.innerHTML = '';
+      secondRecipeMethod.textContent = '';
+    }
     classicPairing.hidden = !experience.pairingImage;
     if (experience.pairingImage) {
       classicPairingImage.src = experience.pairingImage;

@@ -106,6 +106,8 @@ body.wine-view-open{overflow:hidden}
 .wine-lightbox-recipe-list{display:grid;grid-template-columns:1fr 1fr;gap:.35rem 1.2rem;margin:1rem 0;padding-left:1.1rem;color:#263746;font-size:.86rem}
 .wine-lightbox-recipe-method{font-style:italic}
 .wine-lightbox-classic-pairing[hidden]{display:none!important}
+.wine-lightbox-second-recipe[hidden]{display:none!important}
+.wine-lightbox-second-recipe-image{aspect-ratio:auto;max-height:760px;object-fit:contain;background:#f4eadc}
 .wine-lightbox-zoom{
   display:none;
   position:absolute;
