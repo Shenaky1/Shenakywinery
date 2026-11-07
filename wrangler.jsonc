@@ -3,14 +3,32 @@
   "name": "shenakywinery",
   "compatibility_date": "2026-09-18",
   "main": "cellar-worker.mjs",
-  "observability": { "enabled": true },
+  "observability": {
+    "enabled": true
+  },
   "assets": {
     "directory": "public",
     "binding": "ASSETS",
-    "run_worker_first": ["/cellar", "/cellar/*"]
+    "run_worker_first": [
+      "/cellar",
+      "/cellar/*",
+      "/__cellar_auth_health"
+    ]
   },
   "durable_objects": {
-    "bindings": [{ "name": "CELLAR_STORE", "class_name": "CellarStore" }]
+    "bindings": [
+      {
+        "name": "CELLAR_STORE",
+        "class_name": "CellarStore"
+      }
+    ]
   },
-  "migrations": [{ "tag": "cellar-v1", "new_sqlite_classes": ["CellarStore"] }]
+  "migrations": [
+    {
+      "tag": "cellar-v1",
+      "new_sqlite_classes": [
+        "CellarStore"
+      ]
+    }
+  ]
 }
