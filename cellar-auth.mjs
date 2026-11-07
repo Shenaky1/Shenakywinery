@@ -7,7 +7,7 @@ const decode=s=>{const value=s.replace(/-/g,'+').replace(/_/g,'/');return Uint8A
 const json=s=>JSON.parse(new TextDecoder().decode(decode(s)));
 export async function verifyAccess(request,loadKeys=async()=>{
  if(cachedKeys&&Date.now()<keysUntil)return cachedKeys;
- let response;try{response=await fetch(ACCESS_ISSUER+'/cdn-cgi/access/certs',{redirect:'error'});}catch{throw Error('Key service unavailable');}
+ let response;try{response=await fetch(ACCESS_ISSUER+'/cdn-cgi/access/certs',{redirect:'manual'});}catch{throw Error('Key service unavailable');}
  if(!response.ok)throw Error('Key lookup failed');
  let jwks;try{jwks=await response.json();}catch{throw Error('Invalid key set');}if(!Array.isArray(jwks.keys))throw Error('Invalid key set');
  cachedKeys=jwks.keys;keysUntil=Date.now()+300000;return cachedKeys;
@@ -40,7 +40,7 @@ export async function verifyAccess(request,loadKeys=async()=>{
 export async function authHealth(){
  let step='key-fetch';
  try{
-  const response=await fetch(ACCESS_ISSUER+'/cdn-cgi/access/certs',{redirect:'error'});
+  const response=await fetch(ACCESS_ISSUER+'/cdn-cgi/access/certs',{redirect:'manual'});
   if(!response.ok)return {ok:false,step,status:response.status};
   step='key-json';const jwks=await response.json();
   step='key-import';
