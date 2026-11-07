@@ -12,13 +12,18 @@ export async function verifyAccess(request,loadKeys=async()=>{
  const jwks=await response.json();if(!Array.isArray(jwks.keys))throw Error('Invalid key set');
  cachedKeys=jwks.keys;keysUntil=Date.now()+300000;return cachedKeys;
 }){
- const token=request.headers.get('Cf-Access-Jwt-Assertion');
+ const cookie=(request.headers.get('Cookie')||'').split(';').map(s=>s.trim()).find(s=>s.startsWith('CF_Authorization='));
+ const token=request.headers.get('Cf-Access-Jwt-Assertion')||(cookie?cookie.slice('CF_Authorization='.length):null);
  if(!token||token.length>16384)throw Error('Authentication required');
  const parts=token.split('.');if(parts.length!==3)throw Error('Invalid assertion');
  const head=json(parts[0]),payload=json(parts[1]);
  if(head.alg!=='RS256'||typeof head.kid!=='string'||head.crit)throw Error('Unsupported assertion');
  const now=Math.floor(Date.now()/1000);
- if(payload.iss!==ACCESS_ISSUER||!Array.isArray(payload.aud)||!payload.aud.includes(ACCESS_AUDIENCE)||typeof payload.exp!=='number'||payload.exp<=now||typeof payload.sub!=='string'||!payload.sub||typeof payload.email!=='string')throw Error('Invalid identity');
+ if(payload.iss!==ACCESS_ISSUER)throw Error('Issuer mismatch');
+ const audiences=typeof payload.aud==='string'?[payload.aud]:payload.aud;
+ if(!Array.isArray(audiences)||!audiences.includes(ACCESS_AUDIENCE))throw Error('Audience mismatch');
+ if(typeof payload.exp!=='number'||payload.exp<=now)throw Error('Session expired');
+ if(typeof payload.sub!=='string'||!payload.sub||typeof payload.email!=='string')throw Error('Missing user identity');
  if(payload.nbf!==undefined&&(typeof payload.nbf!=='number'||payload.nbf>now))throw Error('Assertion not active');
  if(payload.iat!==undefined&&(typeof payload.iat!=='number'||payload.iat>now+30))throw Error('Assertion issued in future');
  const keys=await loadKeys();let key=keys.find(k=>k.kid===head.kid&&k.kty==='RSA');
