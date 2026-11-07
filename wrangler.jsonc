@@ -2,10 +2,15 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "shenakywinery",
   "compatibility_date": "2026-09-18",
-  "observability": {
-    "enabled": true
-  },
+  "main": "cellar-worker.mjs",
+  "observability": { "enabled": true },
   "assets": {
-    "directory": "public"
-  }
+    "directory": "public",
+    "binding": "ASSETS",
+    "run_worker_first": ["/cellar", "/cellar/*"]
+  },
+  "durable_objects": {
+    "bindings": [{ "name": "CELLAR_STORE", "class_name": "CellarStore" }]
+  },
+  "migrations": [{ "tag": "cellar-v1", "new_sqlite_classes": ["CellarStore"] }]
 }
