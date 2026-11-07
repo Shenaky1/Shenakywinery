@@ -1,0 +1,3 @@
+# Private cellar shortcut. Authentication is enforced by the destination site.
+/cellar https://shenaky-private-cellar.anwar306294.chatgpt.site/ 302
+/cellar/ https://shenaky-private-cellar.anwar306294.chatgpt.site/ 302
