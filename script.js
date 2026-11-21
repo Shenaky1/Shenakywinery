@@ -106,23 +106,6 @@ document.querySelectorAll('.menu-button').forEach(function(button){
     : (isFrenchPage ? 'Déplacez le curseur pour examiner l’étiquette' : 'Move the cursor to examine the label');
 
   var wineExperiences = {
-    '2024-red-blend': {
-      glass: 'assets/guide-glass-bordeaux.svg?v=20260921-3',
-      glassEn: 'Bordeaux or universal glass', glassFr: 'Verre de Bordeaux ou universel',
-      tastingEn: 'Dark fruit, gentle spice, and a smooth finish.',
-      tastingFr: 'Fruits noirs, épices douces et finale souple.',
-      serveEn: 'Serve slightly cool, 60 to 65°F. Open 20 minutes before serving.',
-      serveFr: 'Servir légèrement frais, entre 16 et 18 °C. Ouvrir 20 minutes avant le service.',
-      pairEn: 'Beef, burgers, or barbecue.', pairFr: 'Bœuf, hamburgers ou grillades.',
-      recipeImage: 'assets/recipes/red-blend-steak-frites-glass-v2.webp',
-      recipeTitleEn: 'Steak Frites with Herb Butter', recipeTitleFr: 'Steak-frites au beurre maître d’hôtel',
-      recipeIntroEn: 'A French bistro classic. Beef and herb butter suit the wine’s dark-fruit character, while the crisp fries provide contrast.',
-      recipeIntroFr: 'Un classique du bistrot français. Le bœuf et le beurre aux herbes accompagnent les fruits noirs du vin, tandis que les frites apportent du contraste.',
-      ingredientsEn: ['Steak', 'French fries', 'Butter and parsley', 'Salt and black pepper'],
-      ingredientsFr: ['Steak', 'Pommes frites', 'Beurre et persil', 'Sel et poivre noir'],
-      methodEn: 'Cook the steak to your preferred doneness, rest it briefly, then serve with crisp fries and parsley butter.',
-      methodFr: 'Cuire le steak selon la cuisson désirée, le laisser reposer, puis servir avec des frites croustillantes et un beurre persillé.'
-    },
     '2025-merlot': {
       glass: 'assets/guide-glass-bordeaux.svg?v=20260921-3',
       glassEn: 'Bordeaux or universal glass', glassFr: 'Verre de Bordeaux ou universel',
@@ -298,13 +281,12 @@ document.querySelectorAll('.menu-button').forEach(function(button){
     if (title.indexOf('merlot') !== -1) return vintage === '2024' ? '2024-merlot' : '2025-merlot';
     if (title.indexOf('symphony') !== -1) return '2025-symphony';
     if (title.indexOf('sauvignon') !== -1) return '2024-sauvignon-blanc';
-    if (title.indexOf('red blend') !== -1) return '2024-red-blend';
     if (title.indexOf('ice wine') !== -1) return '2023-riesling-ice-wine';
     return '';
   }
 
   function renderExperience(productKey) {
-    var experience = wineExperiences[productKey] || wineExperiences['2024-red-blend'];
+    var experience = wineExperiences[productKey] || wineExperiences['2025-merlot'];
     var languageSuffix = isFrenchPage ? 'Fr' : 'En';
     var ingredients = experience['ingredients' + languageSuffix] || [];
     glassImage.src = experience.glass;
@@ -435,8 +417,7 @@ document.querySelectorAll('.menu-button').forEach(function(button){
     var hint = document.createElement('a');
     hint.className = 'bottle-view-hint';
     var wineTitle = (image.closest('.wine-card').querySelector('.wine-card-copy h2').textContent || '').toLowerCase();
-    var guideAnchor = wineTitle.indexOf('red blend') !== -1 ? 'red-blend'
-      : wineTitle.indexOf('merlot') !== -1 ? 'merlot'
+    var guideAnchor = wineTitle.indexOf('merlot') !== -1 ? 'merlot'
       : wineTitle.indexOf('sauvignon') !== -1 ? 'sauvignon-blanc'
       : wineTitle.indexOf('symphony') !== -1 ? 'symphony'
       : 'riesling-ice-wine';
@@ -575,11 +556,6 @@ document.querySelectorAll('.menu-button').forEach(function(button){
   var defaultIntro = heroIntro ? heroIntro.textContent : '';
 
   var products = {
-    '2024-red-blend': {
-      guide: 'red-blend', vintage: '2024', name: 'Red Blend',
-      originEn: 'Contra Costa', originFr: 'Contra Costa', price: 25,
-      image: 'assets/wines/2024-red-blend.webp?v=20260902-1'
-    },
     '2025-merlot': {
       guide: 'merlot', vintage: '2025', name: 'Merlot',
       originEn: 'Contra Costa', originFr: 'Contra Costa', price: 25,

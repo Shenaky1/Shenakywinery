@@ -7,7 +7,6 @@
   var isFrench = (document.documentElement.lang || '').toLowerCase().indexOf('fr') === 0;
   var storageKey = 'shenaky_demo_cart_v1';
   var catalog = {
-    '2024-red-blend': { name: 'Red Blend', vintage: '2024', price: 25, volume: '750 ml', image: 'assets/wines/2024-red-blend.webp?v=20260902-1' },
     '2025-merlot': { name: 'Merlot', vintage: '2025', price: 25, volume: '750 ml', image: 'assets/wines/2025-merlot-approved.webp' },
     '2024-merlot': { name: 'Merlot', vintage: '2024', price: 25, volume: '750 ml', image: 'assets/wines/2024-merlot.webp?v=20260902-1' },
     '2024-sauvignon-blanc': { name: 'Sauvignon Blanc', vintage: '2024', price: 25, volume: '750 ml', image: 'assets/wines/2024-sauvignon-blanc-corrected.webp?v=20260907-2' },
